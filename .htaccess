@@ -1,0 +1,12 @@
+Options -Indexes
+
+RewriteEngine on
+
+# ErrorDocument 404 /app/controller/error.php
+
+
+RewriteRule ^$ app/controller/home.php
+
+RewriteRule ^new/question/?$ app/controller/new_question.php
+RewriteRule ^new/topic/?$ app/controller/new_topic.php
+
