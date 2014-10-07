@@ -33,15 +33,12 @@
 				</button> 
 				
 			<a class="navbar-brand" href="<?= SERVER_PATH ?>">VT Knowledge</a>
-				<div class="col-sm-6">
-						<input type="text" class="form-control" id="search" placeholder="Search...">
-				</div>
 		</div> 
 		
-	<?php	
-$directoryURI = $_SERVER['REQUEST_URI'];
-$path = parse_url($directoryURI, PHP_URL_PATH);
-?>
+		<?php	
+		$directoryURI = $_SERVER['REQUEST_URI'];
+		$path = parse_url($directoryURI, PHP_URL_PATH);
+		?>
 
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
@@ -52,6 +49,12 @@ $path = parse_url($directoryURI, PHP_URL_PATH);
 			 	<li class="<?php if ($path=="/VTKnowledge/new/topic") {echo "active"; } else  {echo "noactive";}?>"><a href="<?= SERVER_PATH ?>new/topic">Create a Topic</a></li>
 			 
 			</ul> 
+			<form class="navbar-form navbar-left" role="search">
+        		<div class="form-group">
+          			<input type="text" class="form-control" placeholder="Search">
+        		</div>
+        		<button type="submit" class="btn btn-default">Submit</button>
+      		</form>
 		</div> 
 	</div> 
 </div> 
@@ -60,8 +63,8 @@ $path = parse_url($directoryURI, PHP_URL_PATH);
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../../public/js/bootstrap.min.js"></script>
-    <script src="../../public/js/script.js"></script>
+    <script src="<?= SERVER_PATH ?>public/js/bootstrap.min.js"></script>
+    <script src="<?= SERVER_PATH ?>public/js/script.js"></script>
     
 
   </body>

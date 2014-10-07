@@ -11,13 +11,13 @@ $pageName = 'New Topic';
 
 require_once '../view/header.tpl';
 
-require_once '../view/new_topic.tpl';
+//require_once '../view/new_topic.tpl';
 
 require_once '../view/footer.tpl';
 
 
 
-if (!isset($_POST["save"]) || $_POST["save"] != "topic") {
+/*if (!isset($_POST["save"]) || $_POST["save"] != "topic") {
 	
     exit;
 }
@@ -26,7 +26,7 @@ if (!isset($_POST["save"]) || $_POST["save"] != "topic") {
 		$d = $_POST["topic-desc"];
     
     echo $t;
-    echo $d;
+    echo $d;*/
  
 class TopicController {
      
@@ -42,11 +42,37 @@ class TopicController {
      
     public function handleRequest() {
         
+        
+        
+        $op = isset($_GET['op'])?$_GET['op']:NULL;
+        try {
+            if ( !$op || $op == 'list' ) {
+                $this->listTopics();
+            } elseif ( $op == 'delete' ) {
+                //$this->deleteContact();
+            } elseif ( $op == 'show' ) {
+                //$this->showContact();
+            } else {
+                $this->showError("Page not found", "Page for operation ".$op." was not found!");
+            }
+        } catch ( Exception $e ) {
+            // some unknown Exception got through here, use application error page to display it
+            $this->showError("Application error", $e->getMessage());
+        }
+        
+        if ( isset($_POST['save'])){
                 $this->saveTopic();
+          }
           
     }
      
-
+ 	public function listTopics() {
+        $orderby = isset($_GET['orderby'])?$_GET['orderby']:NULL;
+        $topics = $this->contactsService->getAllTopics($orderby);
+        include '../view/new_topic.tpl';
+    }
+    
+    
     public function saveTopic() {
         
         $title = 'Add new topic';
@@ -73,7 +99,7 @@ class TopicController {
             }
         }
          
-        include '../view/new_topic.tpl';
+        //include '../view/new_topic.tpl';
     }
      
    
@@ -82,6 +108,7 @@ class TopicController {
     }
      
 }
+
 
 $controller = new TopicController();
  

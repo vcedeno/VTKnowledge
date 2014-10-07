@@ -22,8 +22,38 @@
   </head>
   <body>
   
-  
   <div class="container">
+  <form name="topicform" id="topicform" method="POST" action="<?= SERVER_PATH ?>new/topic">    
+	<div class="row">
+		<table class="table table-striped" border="0" cellpadding="0" cellspacing="0">
+            <thead>
+                <tr>
+                	<th>Detailed View</th>
+                    <th><a href="?orderby=id">ID<span class="glyphicon glyphicon-sort-by-attributes"></span></a></th>
+                    <th><a href="?orderby=name">Name<span class="glyphicon glyphicon-sort-by-attributes"></span></a></th>
+                    <th><a href="?orderby=description">Description<span class="glyphicon glyphicon-sort-by-attributes"></span></a></th>
+                    <th><a href="?orderby=date">Date<span class="glyphicon glyphicon-sort-by-attributes"></span></a></th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($topics as $topic): ?>
+                <tr>
+                	<td><a href="<?= SERVER_PATH ?>new/topic?op=show&id=<?php print $topic->id; ?>">Details</a></td>
+                    <td><?php print htmlentities($topic->id); ?></td>
+                    <td><?php print htmlentities($topic->name); ?></td>
+                    <td><?php print htmlentities($topic->description); ?></td>
+                    <td><?php print htmlentities($topic->date); ?></td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+	</div>
+	</form>
+	<button type="submit" name="save" value="topic" class="btn btn-primary center-block">Add New Topic</button>
+</div> 
+
+  <!--<div class="container">
   <form name="topicform" id="topicform" method="POST" action="<?= SERVER_PATH ?>new/topic">    
 	<div class="row">
 		<div class="col-sm-12">
@@ -59,7 +89,7 @@
 		</div>
 	</div>
 	</form>
-</div> 
+</div> -->
 
 
 <?php if (isset($_POST["save"])&&$_POST["save"] == "topic"&&empty($_POST["topic-name"])) { ?>

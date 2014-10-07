@@ -37,7 +37,7 @@ class TopicGateway {
         $dbName = ($name != NULL)?"'".mysql_real_escape_string($name)."'":'NULL';
         $dbDesc = ($desc != NULL)?"'".mysql_real_escape_string($desc)."'":'NULL';
 		
-        mysql_query("INSERT INTO topic (name, description,date) VALUES ($dbName, $dbDesc, curdate())");
+        mysql_query("INSERT INTO topic (name, description,date) VALUES ($dbName, $dbDesc, now())");
         return mysql_insert_id();
         
     }

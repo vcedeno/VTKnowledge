@@ -1,7 +1,7 @@
 <?php
  
 require_once 'TopicGateway.class.php';
-require_once 'ValidationException.php';
+require_once 'ValidationException.class.php';
  
 class Topic {
 
@@ -25,15 +25,15 @@ $this->topicGateway = new TopicGateway();
 }
 
 public function getAllTopics($order) {
-try {
-$this->openDb();
-$res = $this->topicGateway->selectAll($order);
-$this->closeDb();
-return $res;
-} catch (Exception $e) {
-$this->closeDb();
-throw $e;
-}
+		try {
+				$this->openDb();
+				$res = $this->topicGateway->selectAll($order);
+				$this->closeDb();
+				return $res;
+				} catch (Exception $e) {
+				$this->closeDb();
+				throw $e;
+				}
 }
 
 public function getTopic($id) {
@@ -61,16 +61,16 @@ throw new ValidationException($errors);
 }
 
 public function createNewTopic( $name, $desc) {
-try {
-$this->openDb();
-$this->validateTopicParams($name, $desc);
-$res = $this->topicGateway->insert($name, $desc);
-$this->closeDb();
-return $res;
-} catch (Exception $e) {
-$this->closeDb();
-throw $e;
-}
+	try {
+			$this->openDb();
+			$this->validateTopicParams($name, $desc);
+			$res = $this->topicGateway->insert($name, $desc);
+			$this->closeDb();
+			return $res;
+		} catch (Exception $e) {
+			$this->closeDb();
+			throw $e;
+			}
 }
 
 public function deleteTopic( $id ) {
