@@ -40,12 +40,14 @@
             <tbody>
             <?php foreach ($topics as $topic): ?>
                 <tr>
-                	<td><a href="<?= SERVER_PATH ?>new/topic?op=show&id=<?php print $topic->id; ?>" class="btn btn-info">Details</a></td>
+                	<!--<td><a href="<?= SERVER_PATH ?>new/topic?op=show&id=<?php print $topic->id; ?>" class="btn btn-info">Details</a></td>-->
+                	<td><a href="#detailsTopic" data-toggle="modal" class="btn btn-info" data-id="<?php print $topic->id; ?>" data-name="<?php print $topic->name; ?>" data-desc="<?php print $topic->description; ?>" data-date="<?php print $topic->date; ?>">Details</a></td>
                 	<td><?php print htmlentities($topic->id); ?></td>
                     <td><?php print htmlentities($topic->name); ?></td>
                     <td><?php print htmlentities($topic->description); ?></td>
                     <td><?php print htmlentities($topic->date); ?></td>
-                    <td><button type="submit" name="edit" value="topic" class="btn btn-primary">Edit</button></td>
+                   
+                    <td><a href="<?= SERVER_PATH ?>new/topic?op=edit&id=<?php print $topic->id; ?>" class="btn btn-primary">Edit</a></td>
                     <td><a href="#deleteTopic" data-toggle="modal" class="btn btn-danger" data-id="<?php print $topic->name; ?>">Delete</a></td>
                 </tr>
             <?php endforeach; ?>
@@ -53,7 +55,9 @@
         </table>
 	</div>
 	</form>
-	<button type="submit" name="save" value="topic" class="btn btn-primary center-block">Add New Topic</button>
+	<div class="col-lg-12" style="text-align:center">  
+	<a href="<?= SERVER_PATH ?>new/topic?op=new" class="btn btn-primary">Add New Topic</a>
+	</div>  
 </div> 
 
 		<div class="modal fade" id="deleteTopic" role="dialog">
@@ -75,6 +79,44 @@
 						<a class="btn btn-primary" data-dismiss="modal">Cancel</a>
 						<a href="<?= SERVER_PATH ?>new/topic?op=delete&id=<?php print $topic->id; ?>" class="btn btn-danger">Delete</a>
 					</div> 
+					
+				<form>
+			</div> 
+		</div> 
+	</div> 
+	
+	<div class="modal fade" id="detailsTopic" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form class="form-horizontal" role="form">
+			
+					<div class="modal-header">
+						<h4>Topic Details</h4>
+					</div> 
+					<div class="modal-body">
+						<div>
+            				<label  class="label label-info">ID:</label>
+            				<label for="detTopicID" ></label>
+        				</div>
+						<div>
+            				<label class="label label-info">Name:</label>
+            				<label for="detTopicName" ></label>
+        				</div>
+        				<div>
+            				<label class="label label-info">Description:</label>
+            				<label for="detTopicDesc"></label>
+        				</div>
+        				<div>
+        					<label  class="label label-info">Date created:</label>
+            				<label for="detTopicDate"></label>
+           			 		
+        				</div>
+
+					</div> 
+					<div class="modal-footer">
+						<a class="btn btn-primary" data-dismiss="modal">Close</a>
+					</div> 
+					
 				<form>
 			</div> 
 		</div> 
@@ -119,9 +161,7 @@
 </div> -->
 
 
-<?php if (isset($_POST["save"])&&$_POST["save"] == "topic"&&empty($_POST["topic-name"])) { ?>
-  <div class="alert alert-danger" role="alert">You can't leave the name of the topic empty...</div>
-<?php } ?>
+
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

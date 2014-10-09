@@ -48,10 +48,12 @@ class TopicController {
         try {
             if ( !$op || $op == 'list' ) {
                 $this->listTopics();
+            }  elseif ( $op == 'new'   ) {
+                $this->saveTopic();
             } elseif ( $op == 'delete' ) {
                 $this->deleteTopic();
-            } elseif ( $op == 'show' ) {
-                $this->showTopic();
+            } elseif ( $op == 'edit' ) {
+                $this->editTopic();
             } else {
                 $this->showError("Page not found", "Page for operation ".$op." was not found!");
             }
@@ -60,12 +62,10 @@ class TopicController {
             $this->showError("Application error", $e->getMessage());
         }
         
-        if ( isset($_POST['save'])){
+        /*if ( isset($_POST['save'])){
                 $this->saveTopic();
-          }
- 		elseif (isset($_POST['delete'])){
-                $this->deleteTopic();
-          }
+          }*/
+
     }
      
  	public function listTopics() {
@@ -77,31 +77,31 @@ class TopicController {
     
     public function saveTopic() {
         
-        $title = 'Add new topic';
-         
+
+        $title = 'Add new Topic';
+        
         $name = '';
         $desc = '';
 
-        
         $errors = array();
-       
-        if ( isset($_POST['save'])){
-             
-            $name       = isset($_POST['topic-name']) ?   $_POST['topic-name']  :NULL;
-            $desc       = isset($_POST['topic-desc'])?   $_POST['topic-desc'] :NULL;
-       		
-       	
-             
+        
+        if ( isset($_POST['form-submitted']) ) {
+            
+            $name = isset($_POST["topic-name"]) ?   $_POST["topic-name"]  :NULL;
+            $desc = isset($_POST["topic-desc"])?   $_POST["topic-desc"] :NULL;
+           
             try {
                 $this->contactsService->createNewTopic($name, $desc);
-                $this->redirect('../view/home.php');
+                $this->listTopics();
                 return;
             } catch (ValidationException $e) {
                 $errors = $e->getErrors();
             }
+            
+       
         }
          
-        //include '../view/new_topic.tpl';
+        include '../controller/topic_form.php';
     }
      
     public function deleteTopic() {
@@ -109,20 +109,19 @@ class TopicController {
         if ( !$id ) {
             throw new Exception('Internal error.');
         }
-        echo "jhjhj";
         $this->contactsService->deleteTopic($id);
-        
-        $this->redirect('<?= SERVER_PATH ?>new/topic');
+
+        $this->listTopics();
     }
     
-     public function showTopic() {
+     public function editTopic() {
         $id = isset($_GET['id'])?$_GET['id']:NULL;
         if ( !$id ) {
             throw new Exception('Internal error.');
         }
         $topic = $this->contactsService->getTopic($id);
         
-        include '../view/view_topic.tpl';
+        include '../controller/view_topic.php';
     }
    
     public function showError($title, $message) {

@@ -9,4 +9,5 @@ RewriteRule ^$ app/controller/home.php
 
 RewriteRule ^new/question/?$ app/controller/new_question.php
 RewriteRule ^new/topic/?$ app/controller/new_topic.php
+RewriteRule ^view/topic/?$ app/controller/view_topic.php
 

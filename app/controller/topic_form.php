@@ -2,12 +2,13 @@
 require_once '../global.php';
 
 
-$pageName = 'View Topic';
+$pageName = 'New Topic';
 
+require_once '../model/topic.class.php';
 
 require_once '../view/header.tpl';
 
-require_once '../view/view_topic.tpl';
+require_once '../view/topic_form.tpl';
 
 require_once '../view/footer.tpl';
 
