@@ -24,23 +24,23 @@
   <div class="container">
   <form name="topicview" id="topicview" method="POST" action="<?= SERVER_PATH ?>view/topic">    
 	<div class="row">
-						<h4>Topic Details</h4>
+						<h4>Edit Topic with ID <?php print $topic->id; ?></h4>
 
        				 	<div>
             				<span for="prueba" class="label label-info">Name:</span>
-            				<?php print $topic->name; ?>
+            				<input type="text" name="editTopicName" value="<?php print $topic->name; ?>"><br>
         				</div>
         				<div>
             				<span class="label label-info">Description:</span>
-            				<?php print $topic->description; ?>
+            				<input type="text" name="editTopicDesc" value="<?php print $topic->description; ?>"><br>
+            				
         				</div>
-        				<div>
-            				<span class="label label-info">Date created:</span>
-           			 		<?php print $topic->date; ?>
-        				</div>
+
 	</div>
 	</form>
 	<a href="<?= SERVER_PATH ?>new/topic" class="btn btn-primary">Close</a>
+	<a href="<?= SERVER_PATH ?>new/topic?op=edit&id=<?php print $topic->id; ?>" class="btn btn-primary">Submit</a>
+                    
 	</div> 
 
 	

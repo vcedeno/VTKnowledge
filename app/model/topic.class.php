@@ -81,7 +81,18 @@ public function createNewTopic( $name, $desc) {
 		} catch (Exception $e) {
 		$this->closeDb();
 		throw $e;
+		}
 }
+
+	public function editTopic( $id ) {
+		try {
+		$this->openDb();
+		$res = $this->topicGateway->delete($id);
+		$this->closeDb();
+		} catch (Exception $e) {
+		$this->closeDb();
+		throw $e;
+		}
 }
 
 }

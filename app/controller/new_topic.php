@@ -52,6 +52,8 @@ class TopicController {
                 $this->saveTopic();
             } elseif ( $op == 'delete' ) {
                 $this->deleteTopic();
+            } elseif ( $op == 'show' ) {
+                $this->showTopic();
             } elseif ( $op == 'edit' ) {
                 $this->editTopic();
             } else {
@@ -114,7 +116,7 @@ class TopicController {
         $this->listTopics();
     }
     
-     public function editTopic() {
+     public function showTopic() {
         $id = isset($_GET['id'])?$_GET['id']:NULL;
         if ( !$id ) {
             throw new Exception('Internal error.');
@@ -124,6 +126,35 @@ class TopicController {
         include '../controller/view_topic.php';
     }
    
+       public function editTopic() {
+       
+        $id = isset($_GET['id'])?$_GET['id']:NULL;
+        if ( !$id ) {
+            throw new Exception('Internal error.');
+        }
+        if ( isset($_POST['edit-submitted']) ) {
+            
+            $name = isset($_POST["editTopicName"]) ?   $_POST["editTopicName"]  :NULL;
+        	$desc = isset($_POST["editTopicDesc"])?   $_POST["editTopicDesc"] :NULL;
+           
+            try {
+                $this->contactsService->editNewTopic($id,$name, $desc);
+                $this->listTopics();
+                return;
+            } catch (ValidationException $e) {
+                $errors = $e->getErrors();
+            }
+            
+       
+        }
+         
+        
+            
+       
+       
+        $this->listTopics();
+    }
+    
     public function showError($title, $message) {
         include '../view/error.tpl';
     }
