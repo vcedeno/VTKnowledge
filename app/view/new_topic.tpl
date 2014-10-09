@@ -73,7 +73,7 @@
 					</div> 
 					<div class="modal-footer">
 						<a class="btn btn-primary" data-dismiss="modal">Cancel</a>
-						<button type="submit" class="btn btn-danger">Delete</button>
+						<a href="<?= SERVER_PATH ?>new/topic?op=delete&id=<?php print $topic->id; ?>" class="btn btn-danger">Delete</a>
 					</div> 
 				<form>
 			</div> 

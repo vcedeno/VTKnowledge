@@ -49,7 +49,7 @@ class TopicController {
             if ( !$op || $op == 'list' ) {
                 $this->listTopics();
             } elseif ( $op == 'delete' ) {
-                //$this->deleteContact();
+                $this->deleteTopic();
             } elseif ( $op == 'show' ) {
                 $this->showTopic();
             } else {
@@ -109,10 +109,10 @@ class TopicController {
         if ( !$id ) {
             throw new Exception('Internal error.');
         }
-        
+        echo "jhjhj";
         $this->contactsService->deleteTopic($id);
         
-        $this->redirect('index.php');
+        $this->redirect('<?= SERVER_PATH ?>new/topic');
     }
     
      public function showTopic() {
