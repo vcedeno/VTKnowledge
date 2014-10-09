@@ -51,7 +51,7 @@ class TopicController {
             } elseif ( $op == 'delete' ) {
                 //$this->deleteContact();
             } elseif ( $op == 'show' ) {
-                //$this->showContact();
+                $this->showTopic();
             } else {
                 $this->showError("Page not found", "Page for operation ".$op." was not found!");
             }
@@ -63,7 +63,9 @@ class TopicController {
         if ( isset($_POST['save'])){
                 $this->saveTopic();
           }
-          
+ 		elseif (isset($_POST['delete'])){
+                $this->deleteTopic();
+          }
     }
      
  	public function listTopics() {
@@ -102,6 +104,26 @@ class TopicController {
         //include '../view/new_topic.tpl';
     }
      
+    public function deleteTopic() {
+        $id = isset($_GET['id'])?$_GET['id']:NULL;
+        if ( !$id ) {
+            throw new Exception('Internal error.');
+        }
+        
+        $this->contactsService->deleteTopic($id);
+        
+        $this->redirect('index.php');
+    }
+    
+     public function showTopic() {
+        $id = isset($_GET['id'])?$_GET['id']:NULL;
+        if ( !$id ) {
+            throw new Exception('Internal error.');
+        }
+        $topic = $this->contactsService->getTopic($id);
+        
+        include '../view/view_topic.tpl';
+    }
    
     public function showError($title, $message) {
         include '../view/error.tpl';

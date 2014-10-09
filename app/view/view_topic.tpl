@@ -21,64 +21,28 @@
     <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
   </head>
   <body>
-  
   <div class="container">
-  <form name="topicform" id="topicform" method="POST" action="<?= SERVER_PATH ?>new/topic">  
-  <h1>Topic</h1>  
+  <form name="topicview" id="topicview" method="POST" action="<?= SERVER_PATH ?>view/topic">    
 	<div class="row">
-		<table class="table table-striped" border="0" cellpadding="0" cellspacing="0">
-            <thead>
-                <tr>
-                	<th>Detailed View</th>
-                    <th><a href="?orderby=id">ID<span class="glyphicon glyphicon-sort-by-attributes"></span></a></th>
-                    <th><a href="?orderby=name">Name<span class="glyphicon glyphicon-sort-by-attributes"></span></a></th>
-                    <th><a href="?orderby=description">Description<span class="glyphicon glyphicon-sort-by-attributes"></span></a></th>
-                    <th><a href="?orderby=date">Date<span class="glyphicon glyphicon-sort-by-attributes"></span></a></th>
-                    <th>&nbsp;</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($topics as $topic): ?>
-                <tr>
-                	<td><a href="<?= SERVER_PATH ?>new/topic?op=show&id=<?php print $topic->id; ?>" class="btn btn-info">Details</a></td>
-                	<td><?php print htmlentities($topic->id); ?></td>
-                    <td><?php print htmlentities($topic->name); ?></td>
-                    <td><?php print htmlentities($topic->description); ?></td>
-                    <td><?php print htmlentities($topic->date); ?></td>
-                    <td><button type="submit" name="edit" value="topic" class="btn btn-primary">Edit</button></td>
-                    <td><a href="#deleteTopic" data-toggle="modal" class="btn btn-danger" data-id="<?php print $topic->name; ?>">Delete</a></td>
-                </tr>
-            <?php endforeach; ?>
-            </tbody>
-        </table>
+						<h4>Topic Details</h4>
+
+       				 	<div>
+            				<span for="prueba" class="label label-info">Name:</span>
+            				<?php print $topic->name; ?>
+        				</div>
+        				<div>
+            				<span class="label label-info">Description:</span>
+            				<?php print $topic->description; ?>
+        				</div>
+        				<div>
+            				<span class="label label-info">Date created:</span>
+           			 		<?php print $topic->date; ?>
+        				</div>
 	</div>
 	</form>
-	<button type="submit" name="save" value="topic" class="btn btn-primary center-block">Add New Topic</button>
-</div> 
-
-		<div class="modal fade" id="deleteTopic" role="dialog">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form class="form-horizontal" role="form">
-			
-					<div class="modal-header">
-						<h4>Delete Topic</h4>
-					</div> 
-					<div class="modal-body">
-						<div class="form-group">
-							<label for="alertTopic" class="col-sm-12 control-label"></label>
-						</div> 
-
-
-					</div> 
-					<div class="modal-footer">
-						<a class="btn btn-primary" data-dismiss="modal">Cancel</a>
-						<button type="submit" class="btn btn-danger">Delete</button>
-					</div> 
-				<form>
-			</div> 
-		</div> 
+	<a href="<?= SERVER_PATH ?>new/topic" class="btn btn-primary">Close</a>
 	</div> 
+
 	
   <!--<div class="container">
   <form name="topicform" id="topicform" method="POST" action="<?= SERVER_PATH ?>new/topic">    
@@ -118,10 +82,6 @@
 	</form>
 </div> -->
 
-
-<?php if (isset($_POST["save"])&&$_POST["save"] == "topic"&&empty($_POST["topic-name"])) { ?>
-  <div class="alert alert-danger" role="alert">You can't leave the name of the topic empty...</div>
-<?php } ?>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

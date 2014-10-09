@@ -37,16 +37,16 @@ public function getAllTopics($order) {
 }
 
 public function getTopic($id) {
-try {
-$this->openDb();
-$res = $this->topicGateway->selectById($id);
-$this->closeDb();
-return $res;
-} catch (Exception $e) {
-$this->closeDb();
-throw $e;
-}
-return $this->topicGateway->find($id);
+		try {
+				$this->openDb();
+				$res = $this->topicGateway->selectById($id);
+				$this->closeDb();
+				return $res;
+				} catch (Exception $e) {
+				$this->closeDb();
+				throw $e;
+				}
+				return $this->topicGateway->find($id);
 }
 
 private function validateTopicParams( $name, $desc) {
@@ -73,14 +73,14 @@ public function createNewTopic( $name, $desc) {
 			}
 }
 
-public function deleteTopic( $id ) {
-try {
-$this->openDb();
-$res = $this->topicGateway->delete($id);
-$this->closeDb();
-} catch (Exception $e) {
-$this->closeDb();
-throw $e;
+	public function deleteTopic( $id ) {
+		try {
+		$this->openDb();
+		$res = $this->topicGateway->delete($id);
+		$this->closeDb();
+		} catch (Exception $e) {
+		$this->closeDb();
+		throw $e;
 }
 }
 
