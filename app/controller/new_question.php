@@ -1,8 +1,8 @@
 <?php
 require_once '../global.php';
 
-require_once '../model/question.class.php';
-require_once '../model/topic.class.php';
+//require_once '../model/question.class.php';
+//require_once '../model/topic.class.php';
 
 $pageName = 'New Question';
 
@@ -15,6 +15,7 @@ require_once '../view/footer.tpl';
 class QuestionController {
      
     private $contactsService = NULL;
+    private $contactsService2 = NULL;
      
     public function __construct() {
         $this->contactsService = new Question();
