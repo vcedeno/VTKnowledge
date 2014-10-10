@@ -84,10 +84,10 @@ public function createNewTopic( $name, $desc) {
 		}
 }
 
-	public function editTopic( $id ) {
+	public function editTopic( $id, $name, $desc ) {
 		try {
 		$this->openDb();
-		$res = $this->topicGateway->delete($id);
+		$res = $this->topicGateway->update($id, $name, $desc);
 		$this->closeDb();
 		} catch (Exception $e) {
 		$this->closeDb();

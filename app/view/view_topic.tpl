@@ -21,66 +21,40 @@
     <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
   </head>
   <body>
-  <div class="container">
-  <form name="topicview" id="topicview" method="POST" action="<?= SERVER_PATH ?>view/topic">    
-	<div class="row">
-						<h4>Edit Topic with ID <?php print $topic->id; ?></h4>
 
+  <div class="container">
+  <form method="POST" action="">    
+	<div class="row">
+						<h4>Edit Topic</h4>
+
+						<div>
+            				<span for="editTopicID" class="label label-info">ID:</span>
+            				<label for="editTopicID"><?php print $topic->id; ?></label><br>
+            				<input type="hidden" name="editTopicID" value="<?php print $topic->id; ?>" />
+        				</div>
        				 	<div>
-            				<span for="prueba" class="label label-info">Name:</span>
+            				<span for="editTopicName" class="label label-info">Name:</span>
             				<input type="text" name="editTopicName" value="<?php print $topic->name; ?>"><br>
         				</div>
         				<div>
-            				<span class="label label-info">Description:</span>
+            				<span for = "editTopicDesc" class="label label-info">Description:</span>
             				<input type="text" name="editTopicDesc" value="<?php print $topic->description; ?>"><br>
             				
         				</div>
 
 	</div>
-	</form>
-	<a href="<?= SERVER_PATH ?>new/topic" class="btn btn-primary">Close</a>
-	<a href="<?= SERVER_PATH ?>new/topic?op=edit&id=<?php print $topic->id; ?>" class="btn btn-primary">Submit</a>
-                    
+	<div class="col-lg-12" style="text-align:center">  
+	
+	<a href="<?= SERVER_PATH ?>topic" class="btn btn-primary">Cancel</a>
+	<!--<a href="<?= SERVER_PATH ?>new/topic?op=edit&id=<?php print $topic->id; ?>" class="btn btn-primary">Submit</a>--!>
+	<input name="form-edit" type="submit" class="btn btn-primary" value="Submit" />
+	</div> 
+	</form>                
 	</div> 
 
-	
-  <!--<div class="container">
-  <form name="topicform" id="topicform" method="POST" action="<?= SERVER_PATH ?>new/topic">    
-	<div class="row">
-		<div class="col-sm-12">
-			<p><h3>New Topic</h3></p>
-			<div class="form-group">
-				<label form="topic-name" class="col-sm-2 control-label">Topic:</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" name="topic-name" id="topic-name" placeholder="Name of the topic...">
-				</div> 
-			
-			</div>
-		</div>	
-	</div>	
-	<p><br></p>
-	<div class="row">
-		<div class="col-sm-12">
-			<div class="form-group">
-				<label form="topic-desc" class="col-sm-2 control-label">Description:</label>
-				<div class="col-sm-6">
-					<textarea class="form-control" name="topic-desc" rows=4 id="topic-desc"></textarea>
-				</div> 
-			</div> 
-		</div>
-	</div>
-	<p><br></p>
-	<div class="row">
-		<div class="col-sm-10 text-center">	
-			<div class="form-actions">
-			
-			<a class="btn btn-primary" id="cancelTopic" href="<?= SERVER_PATH ?>">Cancel</a>
-			<button type="submit" name="save" value="topic" class="btn btn-primary">Create</button>
-			</div>
-		</div>
-	</div>
-	</form>
-</div> -->
+	<?php if (isset($_POST['form-edit'])&&empty($_POST["editTopicName"])) { ?>
+  	<div class="alert alert-danger" role="alert">You can't leave the name of the topic empty...</div>
+	<?php } ?>
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

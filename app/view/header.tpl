@@ -45,8 +45,8 @@
 				
 			 	<li class="<?php if ($path=="/VTKnowledge/") {echo "active"; } else  {echo "noactive";}?>"><a href="<?= SERVER_PATH ?>">Home</a></li>
 			 	<li> <a href="#">Logged in as ...</a></li>
-			 	<li class="<?php if ($path=="/VTKnowledge/new/question") {echo "active"; } else  {echo "noactive";}?>"><a href="<?= SERVER_PATH ?>new/question">Ask a question</a></li>
-			 	<li class="<?php if ($path=="/VTKnowledge/new/topic") {echo "active"; } else  {echo "noactive";}?>"><a href="<?= SERVER_PATH ?>new/topic">Create a Topic</a></li>
+			 	<li class="<?php if ($path=="/VTKnowledge/question") {echo "active"; } else  {echo "noactive";}?>"><a href="<?= SERVER_PATH ?>question">Ask a question</a></li>
+			 	<li class="<?php if ($path=="/VTKnowledge/topic") {echo "active"; } else  {echo "noactive";}?>"><a href="<?= SERVER_PATH ?>topic">Create a Topic</a></li>
 			 
 			</ul> 
 			<form class="navbar-form navbar-left" role="search">

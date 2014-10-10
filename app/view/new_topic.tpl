@@ -23,7 +23,7 @@
   <body>
   
   <div class="container">
-  <form name="topicform" id="topicform" method="POST" action="<?= SERVER_PATH ?>new/topic">  
+  <form name="topicform" id="topicform" method="POST" action="">  
   <h1>Topic</h1>  
 	<div class="row">
 		<table class="table table-striped" border="0" cellpadding="0" cellspacing="0">
@@ -47,7 +47,7 @@
                     <td><?php print htmlentities($topic->description); ?></td>
                     <td><?php print htmlentities($topic->date); ?></td>
                    
-                    <td><a href="<?= SERVER_PATH ?>new/topic?op=show&id=<?php print $topic->id; ?>" class="btn btn-primary">Edit</a></td>
+                    <td><a href="<?= SERVER_PATH ?>topic?op=show&id=<?php print $topic->id; ?>" class="btn btn-primary">Edit</a></td>
                     <td><a href="#deleteTopic" data-toggle="modal" class="btn btn-danger" data-id="<?php print $topic->name; ?>">Delete</a></td>
                 </tr>
             <?php endforeach; ?>
@@ -56,7 +56,7 @@
 	</div>
 	</form>
 	<div class="col-lg-12" style="text-align:center">  
-	<a href="<?= SERVER_PATH ?>new/topic?op=new" class="btn btn-primary">Add New Topic</a>
+	<a href="<?= SERVER_PATH ?>topic?op=new" class="btn btn-primary">Add New Topic</a>
 	</div>  
 </div> 
 
@@ -77,7 +77,7 @@
 					</div> 
 					<div class="modal-footer">
 						<a class="btn btn-primary" data-dismiss="modal">Cancel</a>
-						<a href="<?= SERVER_PATH ?>new/topic?op=delete&id=<?php print $topic->id; ?>" class="btn btn-danger">Delete</a>
+						<a href="<?= SERVER_PATH ?>topic?op=delete&id=<?php print $topic->id; ?>" class="btn btn-danger">Delete</a>
 					</div> 
 					
 				<form>

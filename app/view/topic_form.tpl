@@ -41,7 +41,6 @@
 						<label form="topic-name" class="control-label">Topic:</label>
 					</div>
 					<div class="col-sm-6">
-				
 						<input type="text" class="form-control" name="topic-name" placeholder="Name of the topic..." value="<?php print htmlentities($name) ?>"/>
 				
 	
@@ -66,7 +65,7 @@
 	
 	<div class="col-lg-12" style="text-align:center">  
 	
-	<a href="<?= SERVER_PATH ?>new/topic" class="btn btn-primary">Cancel</a>
+	<a href="<?= SERVER_PATH ?>topic" class="btn btn-primary">Cancel</a>
     <input name="form-submitted" type="submit" class="btn btn-primary" value="Submit" />
 	</div> 
 </form>

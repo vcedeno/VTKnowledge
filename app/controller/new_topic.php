@@ -54,8 +54,6 @@ class TopicController {
                 $this->deleteTopic();
             } elseif ( $op == 'show' ) {
                 $this->showTopic();
-            } elseif ( $op == 'edit' ) {
-                $this->editTopic();
             } else {
                 $this->showError("Page not found", "Page for operation ".$op." was not found!");
             }
@@ -64,10 +62,8 @@ class TopicController {
             $this->showError("Application error", $e->getMessage());
         }
         
-        /*if ( isset($_POST['save'])){
-                $this->saveTopic();
-          }*/
 
+			
     }
      
  	public function listTopics() {
@@ -121,38 +117,38 @@ class TopicController {
         if ( !$id ) {
             throw new Exception('Internal error.');
         }
-        $topic = $this->contactsService->getTopic($id);
         
-        include '../controller/view_topic.php';
-    }
-   
-       public function editTopic() {
-       
-        $id = isset($_GET['id'])?$_GET['id']:NULL;
-        if ( !$id ) {
-            throw new Exception('Internal error.');
-        }
-        if ( isset($_POST['edit-submitted']) ) {
-            
+        if ( isset($_POST['form-edit']) ){
+
+        	$id = isset($_POST["editTopicID"]) ?   $_POST["editTopicID"]  :NULL;
             $name = isset($_POST["editTopicName"]) ?   $_POST["editTopicName"]  :NULL;
         	$desc = isset($_POST["editTopicDesc"])?   $_POST["editTopicDesc"] :NULL;
-           
-            try {
-                $this->contactsService->editNewTopic($id,$name, $desc);
+         
+        	try {
+                $this->contactsService->editTopic($id,$name, $desc);
                 $this->listTopics();
                 return;
             } catch (ValidationException $e) {
                 $errors = $e->getErrors();
             }
             
-       
         }
-         
+        $topic = $this->contactsService->getTopic($id);
         
-            
-       
-       
-        $this->listTopics();
+        include '../controller/view_topic.php';
+        
+    }
+   
+       public function editTopic($id,$name,$desc) {
+         
+    		
+            try {
+                $this->contactsService->editTopic($id,$name, $desc);
+                return;
+            } catch (ValidationException $e) {
+                $errors = $e->getErrors();
+            }
+        include '../view/new_topic.tpl';
     }
     
     public function showError($title, $message) {

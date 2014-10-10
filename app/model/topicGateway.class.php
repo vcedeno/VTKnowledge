@@ -47,6 +47,15 @@ class TopicGateway {
         mysql_query("DELETE FROM topic WHERE id=$dbId");
     }
      
+    public function update( $id, $name, $desc ) {
+         
+        $dbId = ($id != NULL)?"'".mysql_real_escape_string($id)."'":'NULL';
+        $dbName = ($name != NULL)?"'".mysql_real_escape_string($name)."'":'NULL';
+        $dbDesc = ($desc != NULL)?"'".mysql_real_escape_string($desc)."'":'NULL';
+		
+        mysql_query("update topic set name=$dbName, description=$dbDesc,date=now() where id=$dbId");
+        
+    }
 }
  
 ?>
