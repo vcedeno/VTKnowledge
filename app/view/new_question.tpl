@@ -23,13 +23,14 @@
   <body>
 
   <div class="container">
+  <form method="POST" action=""> 
 	<div class="row">
 		<div class="col-sm-12">
 			<p><h3>New Question</h3></p>
 			<div class="form-group">
 				<label form="topic-name" class="col-sm-2 control-label">Question:</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" id="question-text" placeholder="Input your question...">
+					<input type="text" class="form-control" name="q-text" id="question-text" placeholder="Input your question...">
 				</div> 
 			</div>
 		</div>	
@@ -38,26 +39,37 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="form-group">
-				<label form="topic-desc" class="col-sm-2 control-label">Topic: (Select up to three)</label>
-				<div class="col-sm-6">
-								<select class="selectpicker show-tick form-control" data-live-search="true">
-  									<option value="topic1">No topic</option>
-  									<option value="topic2">topic2</option>
-  									<option value="topic3">topic3</option>
-  									<option value="topic4">topic4</option>
+				<label form="topic-desc" class="col-sm-2 control-label">Topic Related: (Select up to two)</label>
+				<div class="col-sm-3">
+				
+								<select name="q-topic1" class="selectpicker show-tick form-control" data-live-search="true">
+  									<option value="">No topic</option>
+  									<?php foreach ($topics as $topic): ?>
+  									<option value="<?php echo htmlentities($topic->id); ?>"><?php echo htmlentities($topic->name); ?></option>
+  									<?php endforeach; ?>
 								</select>
-								<select class="form-control">
-  									<option value="topic1">No topic</option>
-  									<option value="topic2">topic2</option>
-  									<option value="topic3">topic3</option>
-  									<option value="topic4">topic4</option>
+								
+								<select name="q-topic2" class="form-control">
+  									<option value="">No topic</option>
+  									<?php foreach ($topics as $topic): ?>
+  									<option value="<?php echo htmlentities($topic->id); ?>"><?php echo htmlentities($topic->name); ?></option>
+  									<?php endforeach; ?>
 								</select>
-								<select class="form-control">
-  									<option value="topic1">No topic</option>
-  									<option value="topic2">topic2</option>
-  									<option value="topic3">topic3</option>
-  									<option value="topic4">topic4</option>
+								<p><br></p>
+				</div> 
+				
+				<div class="row">
+					<div class="col-sm-12">
+					<label form="topic-desc" class="col-sm-2 control-label">Will you like to ask the question to an specific user?</label>
+						<div class="col-sm-3">
+									<select name= "q-user2" class="selectpicker show-tick form-control" data-live-search="true">
+  									<option value="">No</option>
+  									<option value="topic2">user1</option>
+  									<option value="topic3">user2</option>
+  									<option value="topic4">user3</option>
 								</select>
+						</div> 
+					</div>	
 				</div> 
 			</div> 
 		</div>
@@ -65,12 +77,12 @@
 	<p><br></p>
 	<div class="row">
 		<div class="col-sm-10 text-center">	
-			<a class="btn btn-primary" id="cancelQuestion">Cancel</a>
-			<button type="submit" class="btn btn-primary" id="createQuestion">Post</button>
+			<a href="<?= SERVER_PATH ?>" class="btn btn-primary">Cancel</a>
+			<input name="form-submitted" type="submit" class="btn btn-primary" value="Post" />
 		</div>
 	</div>
+</form> 
 </div> 
-
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

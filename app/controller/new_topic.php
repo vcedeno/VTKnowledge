@@ -1,9 +1,6 @@
 <?php
 require_once '../global.php';
 
-//include '../model/topic.class.php';
-//require '../model/view.class.php';
-
 require_once '../model/topic.class.php';
 
 $pageName = 'New Topic';
@@ -67,7 +64,7 @@ class TopicController {
     }
      
  	public function listTopics() {
-        $orderby = isset($_GET['orderby'])?$_GET['orderby']:NULL;
+        $orderby = isset($_GET['orderby'])?$_GET['orderby']:"date";
         $topics = $this->contactsService->getAllTopics($orderby);
         include '../view/new_topic.tpl';
     }
