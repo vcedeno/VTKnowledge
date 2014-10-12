@@ -11,3 +11,9 @@ RewriteRule ^question/?$ app/controller/new_question.php
 RewriteRule ^topic/?$ app/controller/new_topic.php
 RewriteRule ^view/topic/?$ app/controller/view_topic.php
 RewriteRule ^new/topic/?$ app/controller/topic_form.php
+
+RewriteRule ^login/?$ app/controller/login.php
+RewriteRule ^login/process/?$ app/controller/processLogin.php
+
+RewriteRule ^register/?$ app/controller/register.php
+RewriteRule ^register/process/?$ app/controller/processRegister.php

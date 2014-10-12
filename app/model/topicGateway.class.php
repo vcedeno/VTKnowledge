@@ -45,6 +45,11 @@ class TopicGateway {
     public function delete($id) {
         $dbId = mysql_real_escape_string($id);
         mysql_query("DELETE FROM topic WHERE id=$dbId");
+        if (mysql_affected_rows() <= 0) {
+    		echo "You can't delete a topic being referenced by a User or Question.<br><br>";
+		}
+
+
     }
      
     public function update( $id, $name, $desc ) {

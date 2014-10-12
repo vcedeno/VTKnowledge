@@ -8,23 +8,11 @@ $pageName = 'New Topic';
 
 require_once '../view/header.tpl';
 
-//require_once '../view/new_topic.tpl';
+
 
 require_once '../view/footer.tpl';
 
 
-
-/*if (!isset($_POST["save"]) || $_POST["save"] != "topic") {
-	
-    exit;
-}
-
-        $t = $_POST["topic-name"];
-		$d = $_POST["topic-desc"];
-    
-    echo $t;
-    echo $d;*/
- 
 class TopicController {
      
     private $contactsService = NULL;
@@ -104,9 +92,13 @@ class TopicController {
         if ( !$id ) {
             throw new Exception('Internal error.');
         }
+        try {
         $this->contactsService->deleteTopic($id);
-
         $this->listTopics();
+        return;
+        } catch (ValidationException $e) {
+                $errors = $e->getErrors();
+        }
     }
     
      public function showTopic() {

@@ -43,11 +43,14 @@
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
 				
-			 	<li class="<?php if ($path=="/VTKnowledge/") {echo "active"; } else  {echo "noactive";}?>"><a href="<?= SERVER_PATH ?>">Home</a></li>
-			 	<li> <a href="#">Logged in as ...</a></li>
+			 	<li class="<?php if ($path=="/VTKnowledge/") {echo "active"; } else  {echo "noactive";}?>"><a href="<?= SERVER_PATH ?>">Home</a></li>	 	
 			 	<li class="<?php if ($path=="/VTKnowledge/question") {echo "active"; } else  {echo "noactive";}?>"><a href="<?= SERVER_PATH ?>question">Ask a question</a></li>
 			 	<li class="<?php if ($path=="/VTKnowledge/topic") {echo "active"; } else  {echo "noactive";}?>"><a href="<?= SERVER_PATH ?>topic">Create a Topic</a></li>
-			 
+			 	<!--<?php if(isset($_SESSION['id'])) {?><li> <a href="#"> <?php $arr = explode('@',trim($_SESSION['user']));
+        print "Logged in as ".$arr[0];?></a></li><li> <a href="<?= SERVER_PATH ?>login">Log out</a></li><?php }?>--!>
+			<li> <a href="#"><?php if(isset($_SESSION['id'])) {$arr = explode('@',trim($_SESSION['user']));
+        print "Logged in as ".$arr[0];}?></a></li>
+        <li> <a href="<?= SERVER_PATH ?>login">Log out</a></li>
 			</ul> 
 			<form class="navbar-form navbar-left" role="search">
         		<div class="form-group">

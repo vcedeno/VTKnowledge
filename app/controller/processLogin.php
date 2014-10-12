@@ -32,7 +32,7 @@ if($user == null) {
         $_SESSION['topic_id'] = $user->get('topic_id');
         $_SESSION['topic_id1'] = $user->get('topic_id1');
 
-        header('Location: '.SERVER_PATH.'app/view/success.php');
+        header('Location: '.SERVER_PATH);
         exit();
     }
 }

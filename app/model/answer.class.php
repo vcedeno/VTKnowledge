@@ -1,11 +1,11 @@
 <?php
  
-require_once 'QuestionGateway.class.php';
+require_once 'AnswerGateway.class.php';
 require_once 'ValidationException.class.php';
  
-class Question {
+class Answer {
 
-private $questionGateway    = NULL;
+private $answerGateway    = NULL;
 
 private function openDb() {
 if (!mysql_connect("127.0.0.1", "root", "")) {
@@ -21,13 +21,13 @@ mysql_close();
 }
 
 public function __construct() {
-$this->questionGateway = new questionGateway();
+$this->answerGateway = new answerGateway();
 }
 
-public function getAllQuestions($order) {
+public function getAllAnswers($id) {
 		try {
 				$this->openDb();
-				$res = $this->questionGateway->selectAll($order);
+				$res = $this->answerGateway->selectAll($id);
 				$this->closeDb();
 				return $res;
 				} catch (Exception $e) {
@@ -36,38 +36,36 @@ public function getAllQuestions($order) {
 				}
 }
 
-public function getQuestion($id) {
+public function getAnswer($id) {
 		try {
 				$this->openDb();
-				$res = $this->questionGateway->selectById($id);
+				$res = $this->answerGateway->selectById($id);
 				$this->closeDb();
 				return $res;
 				} catch (Exception $e) {
 				$this->closeDb();
 				throw $e;
 				}
-				return $this->questionGateway->find($id);
+				return $this->answerGateway->find($id);
 }
 
-private function validateQuestionParams( $text, $user1,$user2,$topic1,$topic2) {
+private function validateQuestionParams( $text, $user, $question) {
 $errors = array();
 if ( !isset($text) || empty($text) ) {
 $errors[] = 'Text is required';
 }
-if (empty($user1) ) {
-$errors[] = 'Problem with user id';
-}
+
 if ( empty($errors) ) {
 return;
 }
 throw new ValidationException($errors);
 }
 
-public function createNewQuestion($text, $user1,$user2,$topic1,$topic2) {
+public function createNewAnswer($text, $user, $question) {
 	try {
 			$this->openDb();
-			$this->validateQuestionParams($text, $user1,$user2,$topic1,$topic2);
-			$res = $this->questionGateway->insert($text, $user1,$user2,$topic1,$topic2);
+			$this->validateQuestionParams($text, $user, $question);
+			$res = $this->answerGateway->insert($text, $user, $question);
 			$this->closeDb();
 			return $res;
 		} catch (Exception $e) {
@@ -76,10 +74,10 @@ public function createNewQuestion($text, $user1,$user2,$topic1,$topic2) {
 			}
 }
 
-	public function deleteQuestion( $id ) {
+	public function deleteAnswer( $id ) {
 		try {
 		$this->openDb();
-		$res = $this->questionGateway->delete($id);
+		$res = $this->answerGateway->delete($id);
 		$this->closeDb();
 		} catch (Exception $e) {
 		$this->closeDb();
@@ -87,10 +85,10 @@ public function createNewQuestion($text, $user1,$user2,$topic1,$topic2) {
 		}
 }
 
-	public function editQuestion( $id, $name, $desc ) {
+	public function editAnswer( $id, $text) {
 		try {
 		$this->openDb();
-		$res = $this->questionGateway->update($id, $name, $desc);
+		$res = $this->answerGateway->update($id, $text);
 		$this->closeDb();
 		} catch (Exception $e) {
 		$this->closeDb();

@@ -8,7 +8,7 @@ class QuestionGateway {
             $order = "name";
         }
         $dbOrder =  mysql_real_escape_string($order);
-        $dbres = mysql_query("SELECT * FROM topic ORDER BY $dbOrder ASC");
+        $dbres = mysql_query("SELECT * FROM question ORDER BY $dbOrder DESC");
          
         $topics = array();
         while ( ($obj = mysql_fetch_object($dbres)) != NULL ) {
@@ -21,7 +21,7 @@ class QuestionGateway {
     public function selectById($id) {
         $dbId = mysql_real_escape_string($id);
          
-        $dbres = mysql_query("SELECT * FROM topic WHERE id=$dbId");
+        $dbres = mysql_query("SELECT * FROM question WHERE id=$dbId");
          
         return mysql_fetch_object($dbres);
          
@@ -43,7 +43,7 @@ class QuestionGateway {
      
     public function delete($id) {
         $dbId = mysql_real_escape_string($id);
-        mysql_query("DELETE FROM topic WHERE id=$dbId");
+        mysql_query("DELETE FROM question WHERE id=$dbId");
     }
      
     public function update( $id, $name, $desc ) {
@@ -52,7 +52,7 @@ class QuestionGateway {
         $dbName = ($name != NULL)?"'".mysql_real_escape_string($name)."'":'NULL';
         $dbDesc = ($desc != NULL)?"'".mysql_real_escape_string($desc)."'":'NULL';
 		
-        mysql_query("update topic set name=$dbName, description=$dbDesc,date=now() where id=$dbId");
+        mysql_query("update question set name=$dbName, description=$dbDesc,date=now() where id=$dbId");
         
     }
 }

@@ -1,0 +1,84 @@
+body, html {
+    margin: 0; padding: 0;   
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: lightblue;
+    color: #000;
+    font-size: medium;
+    }
+
+div#wrapper {
+    background-color: #fff;
+    width: 40em;
+    margin: 0 auto;
+    padding: 0.5em 1em;
+    }
+
+ul#nav {
+    margin: 0; padding: 0;
+    }
+
+ul#nav li {
+    display: inline;
+    float: left;
+    margin: 0 1em 0 0;
+    }
+
+ul#nav li.selected {
+    font-weight: bold;
+    }
+
+ul#feed, ul.follow, ul.events {
+    margin: 0; padding: 0;
+    list-style: none;
+    }
+
+ul#feed li, ul.follow li, ul.events li {
+    list-style: none;
+    margin-bottom: 1em;
+    }
+
+ul#feed li {
+    font-size: large;
+    }
+
+br.clear {
+    clear: both;
+    }
+
+hr {
+    clear: both;
+    }
+
+div#avatar {
+    width: 150px;
+    height: 200px;
+    margin: 0 1em 1em 0;
+    background-color: #dddddd;
+    float: left;
+    }
+
+input.login {
+    display: block;
+    width: 200px;
+    }
+
+.error {
+    font-weight: bold;
+    color: #f00;
+    }
+
+.byline {
+    font-size: small;
+    font-style: italic;
+    display: block;
+    color: #333;
+}
+
+textarea {
+    width: 400px;
+    height: 60px;
+}
+
+label {
+    display: block;
+    }

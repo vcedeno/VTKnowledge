@@ -64,9 +64,9 @@
 						<div class="col-sm-3">
 									<select name= "q-user2" class="selectpicker show-tick form-control" data-live-search="true">
   									<option value="">No</option>
-  									<option value="topic2">user1</option>
-  									<option value="topic3">user2</option>
-  									<option value="topic4">user3</option>
+  									<?php foreach ($userList as $user): ?>
+  									<option value="<?php print $user->get('id'); ?>"><?php print $user->get('user'); ?></option>
+  									<?php endforeach; ?>
 								</select>
 						</div> 
 					</div>	

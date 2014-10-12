@@ -20,3 +20,29 @@ if(isset($_SESSION['error'])) {
     $errorMessage = $_SESSION['error'];
     unset($_SESSION['error']);
 }
+
+function renderEvent($event=null) {
+    if($event == null)
+        echo '';
+    
+    $eventTypeID = $event->get('event_type_id');
+    switch($eventTypeID) {
+        // first name
+        case EventType::getIdFromName('edit_first_name'):
+            $user = AppUser::loadById($event->get('user_1_id'));
+            echo '<li>';
+            echo 'Changed their first name from '.$event->get('data_1').' to '.$event->get('data_2').'. ';
+            echo '<span class="byline">'.date("M j, g:i a", strtotime($event->get('when_happened'))).'</span>';
+            echo '</li>';
+            break;
+        
+        // last name
+        case EventType::getIdFromName('edit_last_name'):
+            $user = AppUser::loadById($event->get('user_1_id'));
+            echo '<li>';
+            echo 'Changed their last name from '.$event->get('data_1').' to '.$event->get('data_2').'. ';
+            echo '<span class="byline">'.date("M j, g:i a", strtotime($event->get('when_happened'))).'</span>';
+            echo '</li>';
+            break;
+    }
+}

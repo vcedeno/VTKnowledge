@@ -1,0 +1,1 @@
+<p>Log in or register to post messages and read your customized news feed.</p>

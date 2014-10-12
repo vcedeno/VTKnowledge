@@ -12,6 +12,8 @@ require_once '../view/header.tpl';
 
 require_once '../view/footer.tpl';
 
+
+
 class QuestionController {
      
     private $contactsService = NULL;
@@ -20,6 +22,7 @@ class QuestionController {
     public function __construct() {
         $this->contactsService = new Question();
         $this->contactsService2 = new Topic();
+        $this->contactsService3 = new Answer();
     }
      
     public function redirect($location) {
@@ -30,15 +33,13 @@ class QuestionController {
         
         $op = isset($_GET['op'])?$_GET['op']:NULL;
         try {
-            if ( !$op || $op == 'list' ) {
+            if ( !$op  ) {
                 $this->saveQuestion();
                 
-            }  elseif ( $op == 'new'   ) {
-                //$this->saveQuestion();
             } elseif ( $op == 'delete' ) {
                 //$this->deleteTopic();
             } elseif ( $op == 'show' ) {
-                //$this->showTopic();
+                $this->showQuestion();
             } else {
                 $this->showError("Page not found", "Page for operation ".$op." was not found!");
             }
@@ -51,12 +52,12 @@ class QuestionController {
 			
     }
      
- 	/*public function listTopics() {
+ 	public function listQuestions() {
         $orderby = isset($_GET['orderby'])?$_GET['orderby']:"date";
-        $topics = $this->contactsService->getAllTopics($orderby);
-        include '../view/new_topic.tpl';
+        $questions = $this->contactsService->getAllQuestions($orderby);
+        //include '../view/new_topic.tpl';
     }
-    */
+    
     
     public function saveQuestion() {
         
@@ -65,30 +66,62 @@ class QuestionController {
         
         $text = '';
         //!!!!
-        $user1 = '4';
+        $user1 = '';
 		$user2 = '';
 		$topic1 = '';
 		$topic2 = '';
 		
         $errors = array();
         
-        if ( isset($_POST['form-submitted']) ) {
+        if ( isset($_POST['form-submitted']) && isset($_SESSION['user'])) {
             
             $text = isset($_POST["q-text"]) ?   $_POST["q-text"]  :NULL;
+            $user1 = isset($_SESSION['id']) ?   $_SESSION['id']  :NULL;
             $user2 = isset($_POST["q-user2"])?   $_POST["q-user2"] :NULL;
             $topic1 = isset($_POST["q-topic1"]) ?   $_POST["q-topic1"]  :NULL;
             $topic2 = isset($_POST["q-topic2"])?   $_POST["q-topic2"] :NULL;
             
             try {
                 $this->contactsService->createNewQuestion($text, $user1,$user2,$topic1,$topic2);
+                require_once '../controller/home.php';
                 return;
             } catch (ValidationException $e) {
                 $errors = $e->getErrors();
             }
         }
-        
+        $userList = User::loadUsers();
         $topics = $this->contactsService2->getAllTopics("name");
         require_once '../view/new_question.tpl';
+    }
+    
+    public function showQuestion() {
+        $id = isset($_GET['id'])?$_GET['id']:NULL;
+        if ( !$id ) {
+            throw new Exception('Internal error.');
+        }
+        
+        if ( isset($_POST['form-submitted']) ){
+
+        	$text = isset($_POST["answer-text"]) ?   $_POST["answer-text"]  :NULL;
+            //$user = isset($_SESSION['id']) ?   isset($_SESSION['id']) :NULL;
+        	$question = $id;
+			$user =$_SESSION['id'];
+        	try {
+                $this->contactsService3->createNewAnswer($text,$user, $question);
+                include '../controller/home.php';
+                return;
+            } catch (ValidationException $e) {
+                $errors = $e->getErrors();
+            }
+            
+        }
+        $answers = $this->contactsService3->getAllAnswers($id);
+        $question=$this->contactsService->getQuestion("$id");
+        $userList = User::loadUsers();
+        $topics = $this->contactsService2->getAllTopics("name");
+        
+        include '../view/answer.tpl';
+        
     }
      /*
     public function deleteTopic() {
@@ -101,32 +134,7 @@ class QuestionController {
         $this->listTopics();
     }
     
-     public function showTopic() {
-        $id = isset($_GET['id'])?$_GET['id']:NULL;
-        if ( !$id ) {
-            throw new Exception('Internal error.');
-        }
-        
-        if ( isset($_POST['form-edit']) ){
-
-        	$id = isset($_POST["editTopicID"]) ?   $_POST["editTopicID"]  :NULL;
-            $name = isset($_POST["editTopicName"]) ?   $_POST["editTopicName"]  :NULL;
-        	$desc = isset($_POST["editTopicDesc"])?   $_POST["editTopicDesc"] :NULL;
-         
-        	try {
-                $this->contactsService->editTopic($id,$name, $desc);
-                $this->listTopics();
-                return;
-            } catch (ValidationException $e) {
-                $errors = $e->getErrors();
-            }
-            
-        }
-        $topic = $this->contactsService->getTopic($id);
-        
-        include '../controller/view_topic.php';
-        
-    }
+     
    
        public function editTopic($id,$name,$desc) {
          
