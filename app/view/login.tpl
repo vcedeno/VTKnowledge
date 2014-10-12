@@ -22,7 +22,7 @@
   <body>
       
      
-      <!-- Body of page: Columns of text with Thumbnails -->
+      <!-- Body of page: Columns of text with thumbnails -->
       <div class="container">
             
             <div class="row">
