@@ -2,7 +2,7 @@ $(document).ready(function(){
     
     // Password must be a valid one: at least one number, one lowercase and 
     // one uppercase letter, and at least eight characters.
-    $('#pass').on('change', function() {
+    $('#pass').on('input', function() {
         var input=$(this);
         var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
         var is_pwd=re.test(input.val());
@@ -14,7 +14,7 @@ $(document).ready(function(){
     });
 
     // Reentered password must match password
-    $('#reenterpass').on('change', function() {
+    $('#reenterpass').on('input', function() {
         var input=$(this);
         var enteredPass = $('#pass').val();
 
@@ -27,7 +27,21 @@ $(document).ready(function(){
             input.removeClass("invalid").addClass("valid");
         }
     });
+
     
+    // VT email checking
+    $('#email').on('input', function() {
+        var input=$(this);
+        re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@vt.edu/;
+        var is_pwd=re.test(input.val());
+        if (is_pwd){
+            input.removeClass("invalid").addClass("valid");
+        } else {
+            input.removeClass("valid").addClass("invalid");
+        }
+    });
+
+
     
     // Form validation after button for registration has been clicked
     $("#submit_button").click(function(event){

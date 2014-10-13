@@ -21,7 +21,7 @@ if(isset($_SESSION['error'])) {
     unset($_SESSION['error']);
 }
 
-// success message
+// return success message, if any
 
 $successMessage = '';
 if(isset($_SESSION['success'])) {
