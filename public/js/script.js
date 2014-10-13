@@ -2,7 +2,7 @@ $(document).ready(function(){
     
     // Password must be a valid one: at least one number, one lowercase and 
     // one uppercase letter, and at least eight characters.
-    $('#pass').on('input', function() {
+    $('#pass').on('change', function() {
         var input=$(this);
         var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
         var is_pwd=re.test(input.val());
@@ -14,7 +14,7 @@ $(document).ready(function(){
     });
 
     // Reentered password must match password
-    $('#reenterpass').on('input', function() {
+    $('#reenterpass').on('change', function() {
         var input=$(this);
         var enteredPass = $('#pass').val();
 

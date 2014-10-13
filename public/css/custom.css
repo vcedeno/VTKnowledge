@@ -143,6 +143,11 @@ overflow: hidden;
     color: #f00;
  }
 
+ .successMessage {
+    font-weight: bold;
+    color: #458B00;
+ }
+
 .error {
     display: none;
     margin-left: 10px;

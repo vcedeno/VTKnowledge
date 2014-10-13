@@ -41,7 +41,14 @@
                             print($errorMessage); 
                         }
                         ?>
-                    </p>  
+                    </p> 
+                    <p class="successMessage">
+                        <?php
+                        if($successMessage != '') {
+                            print($successMessage); 
+                        }
+                        ?>
+                    </p>   
                     <form name="form01" method="POST" action="<?= SERVER_PATH ?>login/process" class="form" role="form">
 
                         <input class="form-control" name="username" placeholder="Your VT Email Address" type="email" required/>
