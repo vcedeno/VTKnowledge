@@ -4,7 +4,7 @@
 }
 
 body{
-	padding-top: 70px;
+	padding-top: 40px;
 	padding-bottom: 100px;
 }
 
@@ -122,6 +122,42 @@ width: 100%;
 .thumbnail {
 overflow: hidden;
 }
+
+
+
+.form-control { 
+    margin-bottom: 10px; 
+}
+
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
+
+.errorMessage {
+    font-weight: bold;
+    color: #f00;
+ }
+
+.error {
+    display: none;
+    margin-left: 10px;
+}      
+
+.error_show {
+    color: red;
+    margin-left: 10px;
+} 
+
+input.invalid {
+    border: 3px solid red;
+}
+ 
+input.valid {
+    border: 3px solid green;
+}
+
+
 
 
 
