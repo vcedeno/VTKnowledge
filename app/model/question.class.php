@@ -50,17 +50,17 @@ public function getQuestion($id) {
 }
 
 private function validateQuestionParams( $text, $user1,$user2,$topic1,$topic2) {
-$errors = array();
-if ( !isset($text) || empty($text) ) {
-$errors[] = 'Text is required';
-}
-if (empty($user1) ) {
-$errors[] = 'Problem with user id';
-}
-if ( empty($errors) ) {
-return;
-}
-throw new ValidationException($errors);
+				$errors = array();
+				if ( !isset($text) || empty($text) ) {
+				$errors[] = 'Text is required';
+				}
+				if (empty($user1) ) {
+				$errors[] = 'Problem with user id';
+				}
+				if ( empty($errors) ) {
+				return;
+				}
+				throw new ValidationException($errors);
 }
 
 public function createNewQuestion($text, $user1,$user2,$topic1,$topic2) {

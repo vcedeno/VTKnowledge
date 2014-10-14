@@ -4,7 +4,6 @@ RewriteEngine on
 
 # ErrorDocument 404 /app/controller/error.php
 
-
 RewriteRule ^$ app/controller/home.php
 
 RewriteRule ^question/?$ app/controller/new_question.php

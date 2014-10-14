@@ -1,3 +1,4 @@
+<!--Page of a form to create a new topic--!>
 <?php
 require_once '../global.php';
 

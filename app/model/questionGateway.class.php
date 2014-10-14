@@ -1,6 +1,9 @@
 <?php
  
-
+/**
+ * Table data gateway for Question.
+ * 
+ */
 class QuestionGateway {
      
     public function selectAll($order) {

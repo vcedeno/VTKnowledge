@@ -1,3 +1,4 @@
+/*Our JS file*/
 $(document).ready(function(){
     
     // Password must be a valid one: at least one number, one lowercase and 
@@ -48,12 +49,10 @@ $(document).ready(function(){
     });
     
     
-    
-    	$('#detailsTopic').on('shown.bs.modal', function(e) {
-
+    //triggered when modal is about to be shown (my #detailsTopic modal)
+    $('#detailsTopic').on('shown.bs.modal', function(e) {
  	
-    //get data-id attribute of the clicked element
-   //var topicID = $(e.relatedTarget).attr('data-id');
+    //get data attributes of the clicked element 
     //populate the textbox
     $('label[for="detTopicID"]').text($(e.relatedTarget).attr('data-id'));
     $('label[for="detTopicName"]').text($(e.relatedTarget).attr('data-name'));
@@ -62,16 +61,14 @@ $(document).ready(function(){
 		});
 		
 		
-//triggered when modal is about to be shown
-		$('#deleteTopic').on('shown.bs.modal', function(e) {
-
- 	
-    //get data-id attribute of the clicked element
-
-   var topicID = $(e.relatedTarget).attr('data-id');
-	//alert(topicID);
-    //populate the textbox
-    $('label[for="alertTopic"]').text("Are you sure you want to delete the Topic \""+topicID+"\" ?");
+	//triggered when modal is about to be shown (my #deleteTopic modal)
+	$('#deleteTopic').on('shown.bs.modal', function(e) {
+    //get data-id attribute of the clicked element 
+    var topicID = $(e.relatedTarget).attr('data-id');
+    var topicName = $(e.relatedTarget).attr('data-name');
+    $('#myid').val(topicID);
+    //show warning message before delete specifying the topic ID
+    $('label[for="alertTopic"]').text("Are you sure you want to delete the Topic \""+topicName+"\" with ID \""+topicID+"\"?");
     
 		});
        

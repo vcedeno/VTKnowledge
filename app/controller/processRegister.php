@@ -23,7 +23,8 @@ if($existingUser == null) {
 
     $user->save(); // save the object to the database
 
-    header('Location: '.SERVER_PATH.'app/view/success.php');
+    //header('Location: '.SERVER_PATH.'app/view/success.php');
+    header('Location: '.SERVER_PATH);
     exit();
 } else {
     $_SESSION['error'] = "Email address already registered. Please enter another email address.";

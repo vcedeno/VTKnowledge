@@ -1,10 +1,8 @@
 <?php
  
 /**
- * Table data gateway.
+ * Table data gateway for Topic.
  * 
- *  OK I'm using old MySQL driver, so kill me ...
- *  This will do for simple apps but for serious apps you should use PDO.
  */
 class TopicGateway {
      
@@ -13,6 +11,8 @@ class TopicGateway {
             $order = "name";
         }
         $dbOrder =  mysql_real_escape_string($order);
+        //return the topics ordered in asc by $order
+        
         $dbres = mysql_query("SELECT * FROM topic ORDER BY $dbOrder ASC");
          
         $topics = array();

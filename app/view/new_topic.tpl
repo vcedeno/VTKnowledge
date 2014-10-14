@@ -1,3 +1,4 @@
+<!--Shows all the topics and allos to CRUD--!>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -23,7 +24,7 @@
   <body>
   
   <div class="container">
-  <form name="topicform" id="topicform" method="POST" action="">  
+    
   <h1>Topic</h1>  
 	<div class="row">
 		<table class="table table-striped" border="0" cellpadding="0" cellspacing="0">
@@ -48,37 +49,52 @@
                     <td><?php print htmlentities($topic->date); ?></td>
                    
                     <td><a href="<?= SERVER_PATH ?>topic?op=show&id=<?php print $topic->id; ?>" class="btn btn-primary">Edit</a></td>
-                    <td><a href="#deleteTopic" data-toggle="modal" class="btn btn-danger" data-id="<?php print $topic->name; ?>">Delete</a></td>
+                    <td><a href="#deleteTopic" data-toggle="modal" class="btn btn-danger" data-id="<?php print $topic->id; ?>" data-name="<?php print $topic->name; ?>">Delete</a></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>
         </table>
 	</div>
-	</form>
+	<form method="POST" action=""> 
 	<div class="col-lg-12" style="text-align:center">  
-	<a href="<?= SERVER_PATH ?>topic?op=new" class="btn btn-primary">Add New Topic</a>
+	<!--<a href="<?= SERVER_PATH ?>topic?op=new" class="btn btn-primary">Add New Topic</a>!-->
+	<input name="form-new" type="submit" class="btn btn-primary" value="Add New Topic" />
 	</div>  
+	</form> 
 </div> 
 
 		<div class="modal fade" id="deleteTopic" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form class="form-horizontal" role="form">
-			
+				
+					<form method="POST" action=""> 
 					<div class="modal-header">
 						<h4>Delete Topic</h4>
 					</div> 
 					<div class="modal-body">
 						<div class="form-group">
 							<label for="alertTopic" class="col-sm-12 control-label"></label>
+							<input type="hidden" name="myid" id="myid" /></td>
+							
 						</div> 
 
 
 					</div> 
-					<div class="modal-footer">
+					
+						<div class="row">
+							<div class="col-sm-10 text-center">	
+							<a class="btn btn-primary" data-dismiss="modal">Cancel</a>
+							<input name="form-delete" type="submit" class="btn btn-danger" value="Delete" />
+							
+							</div>
+						</div>
+					</form> 
+					<!--<div class="modal-footer">
 						<a class="btn btn-primary" data-dismiss="modal">Cancel</a>
-						<a href="<?= SERVER_PATH ?>topic?op=delete&id=<?php print $topic->id; ?>" class="btn btn-danger">Delete</a>
-					</div> 
+	
+						<a href="<?= SERVER_PATH ?>topic?op=delete&id=data-id" class="btn btn-danger">Delete</a>
+						<input name="form-delete" type="submit" class="btn btn-danger" value="Delete" />
+					</div> --!>
 					
 				<form>
 			</div> 
@@ -89,7 +105,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<form class="form-horizontal" role="form">
-			
+				
 					<div class="modal-header">
 						<h4>Topic Details</h4>
 					</div> 
@@ -119,7 +135,8 @@
 					
 				<form>
 			</div> 
-		</div> 
+		</div>
+		
 	</div> 
 	
   <!--<div class="container">

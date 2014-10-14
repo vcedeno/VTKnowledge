@@ -1,3 +1,4 @@
+<!--Form to create a new topic--!>
 <!DOCTYPE html>
 <html lang="en">
   <head>

@@ -1,3 +1,4 @@
+<!--Topic Page--!>
 <?php
 require_once '../global.php';
 
@@ -5,10 +6,10 @@ require_once '../model/topic.class.php';
 
 $pageName = 'New Topic';
 
+//we will allow a user to CRUD a topic only when he is log in
+if(isset($_SESSION['user'])) {
 
 require_once '../view/header.tpl';
-
-
 
 require_once '../view/footer.tpl';
 
@@ -28,16 +29,34 @@ class TopicController {
     public function handleRequest() {
         
         
+        if ( isset($_POST['form-new'])&& !isset($_POST['form-submitted']) ) {
+       
+       		$this->saveTopic();
+        	
+        }
+        elseif ( isset($_POST['form-delete']) ) {
+        
+       	 	$this->deleteTopic();
+        }
+
+        elseif ( isset($_POST['form-submitted']) ) {
+        
+       	 	$this->saveTopic();
+        }
+
+        else{
         
         $op = isset($_GET['op'])?$_GET['op']:NULL;
         try {
-            if ( !$op || $op == 'list' ) {
-                $this->listTopics();
-            }  elseif ( $op == 'new'   ) {
-                $this->saveTopic();
-            } elseif ( $op == 'delete' ) {
-                $this->deleteTopic();
-            } elseif ( $op == 'show' ) {
+            //if ( !$op && !isset($_POST['form-submitted']) && !isset($_POST['form-delete'])  ) {
+                //$this->listTopics();
+            
+            //} else
+             if ( !$op)
+             {
+             $this->listTopics();
+             }
+             elseif( $op == 'show' ) {
                 $this->showTopic();
             } else {
                 $this->showError("Page not found", "Page for operation ".$op." was not found!");
@@ -47,17 +66,18 @@ class TopicController {
             $this->showError("Application error", $e->getMessage());
         }
         
+       }
 
 			
     }
-     
+     //Show all the topics
  	public function listTopics() {
         $orderby = isset($_GET['orderby'])?$_GET['orderby']:"date";
         $topics = $this->contactsService->getAllTopics($orderby);
         include '../view/new_topic.tpl';
     }
     
-    
+    //Creates a new topic
     public function saveTopic() {
         
 
@@ -86,21 +106,25 @@ class TopicController {
          
         include '../controller/topic_form.php';
     }
-     
+     //Deletes a topic
     public function deleteTopic() {
-        $id = isset($_GET['id'])?$_GET['id']:NULL;
-        if ( !$id ) {
-            throw new Exception('Internal error.');
-        }
+        
+         $id = '';
+        
+        if ( isset($_POST['form-delete']) ) {
+         $id = isset($_POST["myid"]) ?   $_POST["myid"]  :NULL;
+         
         try {
+        
         $this->contactsService->deleteTopic($id);
         $this->listTopics();
         return;
         } catch (ValidationException $e) {
                 $errors = $e->getErrors();
         }
+        }
     }
-    
+    //Show details an specific Topic
      public function showTopic() {
         $id = isset($_GET['id'])?$_GET['id']:NULL;
         if ( !$id ) {
@@ -127,7 +151,7 @@ class TopicController {
         include '../controller/view_topic.php';
         
     }
-   
+   //Edits a topic
        public function editTopic($id,$name,$desc) {
          
     		
@@ -150,5 +174,11 @@ class TopicController {
 $controller = new TopicController();
  
 $controller->handleRequest();
+
+}
+else
+{
+	include '../controller/home.php';
+}
 
 ?>

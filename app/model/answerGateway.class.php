@@ -1,6 +1,9 @@
 <?php
  
-
+/**
+ * Table data gateway for Answer.
+ * 
+ */
 class AnswerGateway {
      
     public function selectAll($id) {

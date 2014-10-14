@@ -1,3 +1,4 @@
+<!--Shows all the answers to an specific question and allows you to create a new answer--!>
 <!DOCTYPE html>
 <html lang="en">
   <head>

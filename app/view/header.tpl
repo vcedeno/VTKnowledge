@@ -1,3 +1,4 @@
+<!--Header--!>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -42,7 +43,7 @@
 
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right">
-				
+				<!--Checks the path to define which menu should be active--!>
 			 	<li class="<?php if ($path=="/VTKnowledge/") {echo "active"; } else  {echo "noactive";}?>"><a href="<?= SERVER_PATH ?>">Home</a></li>	 	
 			 	<li class="<?php if ($path=="/VTKnowledge/question") {echo "active"; } else  {echo "noactive";}?>"><a href="<?= SERVER_PATH ?>question">Ask a question</a></li>
 			 	<li class="<?php if ($path=="/VTKnowledge/topic") {echo "active"; } else  {echo "noactive";}?>"><a href="<?= SERVER_PATH ?>topic">Create a Topic</a></li>
@@ -52,12 +53,13 @@
         print "Logged in as ".$arr[0];}?></a></li>
         <li> <a href="<?= SERVER_PATH ?>login">Log out</a></li>
 			</ul> 
+			<!--we will implement the search form later
 			<form class="navbar-form navbar-left" role="search">
         		<div class="form-group">
           			<input type="text" class="form-control" placeholder="Search">
         		</div>
         		<button type="submit" class="btn btn-default">Submit</button>
-      		</form>
+      		</form>--!>
 		</div> 
 	</div> 
 </div> 

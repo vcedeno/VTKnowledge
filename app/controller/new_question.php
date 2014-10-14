@@ -1,17 +1,17 @@
+<!--Question Page--!>
 <?php
 require_once '../global.php';
 
-//require_once '../model/question.class.php';
-//require_once '../model/topic.class.php';
 
 $pageName = 'New Question';
 
+//we will allow a user to create a question only when he is log in
+if(isset($_SESSION['user'])) {
+
 require_once '../view/header.tpl';
 
-//require_once '../view/new_question.tpl';
 
 require_once '../view/footer.tpl';
-
 
 
 class QuestionController {
@@ -34,13 +34,14 @@ class QuestionController {
         $op = isset($_GET['op'])?$_GET['op']:NULL;
         try {
             if ( !$op  ) {
+            	//Creates a new question
                 $this->saveQuestion();
                 
-            } elseif ( $op == 'delete' ) {
-                //$this->deleteTopic();
             } elseif ( $op == 'show' ) {
+            	//Shows all the questions
                 $this->showQuestion();
             } else {
+            	
                 $this->showError("Page not found", "Page for operation ".$op." was not found!");
             }
         } catch ( Exception $e ) {
@@ -48,7 +49,9 @@ class QuestionController {
             $this->showError("Application error", $e->getMessage());
         }
         
-
+	if ( isset($_POST['form-submitted']) ) {
+       	 	$this->saveQuestion();
+        }
 			
     }
      
@@ -58,14 +61,13 @@ class QuestionController {
         //include '../view/new_topic.tpl';
     }
     
-    
+	//creates a new question
     public function saveQuestion() {
         
 
         $title = 'Add new Question';
         
         $text = '';
-        //!!!!
         $user1 = '';
 		$user2 = '';
 		$topic1 = '';
@@ -76,6 +78,7 @@ class QuestionController {
         if ( isset($_POST['form-submitted']) && isset($_SESSION['user'])) {
             
             $text = isset($_POST["q-text"]) ?   $_POST["q-text"]  :NULL;
+            //the user in session is creating the question
             $user1 = isset($_SESSION['id']) ?   $_SESSION['id']  :NULL;
             $user2 = isset($_POST["q-user2"])?   $_POST["q-user2"] :NULL;
             $topic1 = isset($_POST["q-topic1"]) ?   $_POST["q-topic1"]  :NULL;
@@ -93,7 +96,7 @@ class QuestionController {
         $topics = $this->contactsService2->getAllTopics("name");
         require_once '../view/new_question.tpl';
     }
-    
+    //Show the details of an specific question
     public function showQuestion() {
         $id = isset($_GET['id'])?$_GET['id']:NULL;
         if ( !$id ) {
@@ -103,7 +106,6 @@ class QuestionController {
         if ( isset($_POST['form-submitted']) ){
 
         	$text = isset($_POST["answer-text"]) ?   $_POST["answer-text"]  :NULL;
-            //$user = isset($_SESSION['id']) ?   isset($_SESSION['id']) :NULL;
         	$question = $id;
 			$user =$_SESSION['id'];
         	try {
@@ -158,4 +160,9 @@ class QuestionController {
 $controller2 = new QuestionController();
  
 $controller2->handleRequest();
+}
+else
+{
+	include '../controller/home.php';
+}
 ?>

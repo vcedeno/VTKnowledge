@@ -1,3 +1,4 @@
+<!--Error page template --!>
 <!DOCTYPE html>
 <html>
     <head>
@@ -5,9 +6,9 @@
         <title>Application error</title>
     </head>
     <body>
-        <h1><?php print htmlentities($title) ?></h1>
         <p>
-            <?php print htmlentities($message) ?>
+            <h1>Opps, Error 404!</h1>
+            <a href="<?= SERVER_PATH ?>">Go to Home</a>
         </p>
     </body>
 </html>

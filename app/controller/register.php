@@ -1,3 +1,4 @@
+<!--Register Page--!>
 <?php
 require_once '../global.php';
 

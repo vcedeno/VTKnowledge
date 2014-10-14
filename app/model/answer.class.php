@@ -50,15 +50,15 @@ public function getAnswer($id) {
 }
 
 private function validateQuestionParams( $text, $user, $question) {
-$errors = array();
-if ( !isset($text) || empty($text) ) {
-$errors[] = 'Text is required';
+				$errors = array();
+				if ( !isset($text) || empty($text) ) {
+				$errors[] = 'Text is required';
 }
 
 if ( empty($errors) ) {
-return;
-}
-throw new ValidationException($errors);
+				return;
+				}
+				throw new ValidationException($errors);
 }
 
 public function createNewAnswer($text, $user, $question) {
