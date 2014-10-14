@@ -30,7 +30,7 @@
                 
                 <div class="col-md-6 text-center ">
                     <h1>VT Knowledge</h1>
-                    <p>Everything you need to know and want to know about Virginia Tech. 
+                    <p class="welcome">Everything you need to know and want to know about Virginia Tech. 
                     </p>
                     <a href="<?= SERVER_PATH ?>register" class="btn btn-primary">Sign Up with a VT email address</a>
                 </div>
@@ -42,7 +42,14 @@
                             print($errorMessage); 
                         }
                         ?>
-                    </p>  
+                    </p> 
+                    <p class="successMessage">
+                        <?php
+                        if($successMessage != '') {
+                            print($successMessage); 
+                        }
+                        ?>
+                    </p>   
                     <form name="form01" method="POST" action="<?= SERVER_PATH ?>login/process" class="form" role="form">
 
                         <input class="form-control" name="username" placeholder="Your VT Email Address" type="email" required/>
@@ -57,8 +64,8 @@
             </div>
           
             <div class="row text-center">
-                <h2>Why you will love VT Knowledge</h2>
-                <p>VT Knowledge lets you interact with the VT community to learn about all things VT!</p><br />
+                <h1>Why you will love VT Knowledge</h1>
+                <p class="welcome">VT Knowledge lets you interact with the VT community to learn about all things VT!</p><br />
             </div>
           
             <div class="row text-center">
@@ -66,33 +73,33 @@
 
                     <img src="<?= SERVER_PATH ?>public/img/Q&A4.jpg" alt="q&a" class="thumbnail col-centered">
 
-                    <h3>Ask Questions and get Answers</h3>
-                    <p>To and from real VT students and faculty members. 
+                    <h2>Ask Questions and get Answers</h2>
+                    <p  class="welcome">To and from real VT students and faculty members. 
                     </p>
                     
                 </div>
                 <div class="col-md-6">
                    <img src="<?= SERVER_PATH ?>public/img/topics.jpeg" alt="topics" class="thumbnail col-centered">
 
-                    <h3>Get updates on a variety of Topics</h3>
-                    <p>Follow topics that interest you, such as classes, dining, VT traditions, housing, and more! You can also follow other users. 
+                    <h2>Get updates on a variety of Topics</h2>
+                    <p class="welcome">Follow topics that interest you, such as classes, dining, VT traditions, housing, and more! You can also follow other users. 
                     </p>
                     
                 </div>
-            </div>
+            </div> <br />
           
             <div class="row text-center">
                 <div class="col-md-6">
                     <img src="<?= SERVER_PATH ?>public/img/improve.jpeg" alt="improve" class="thumbnail col-centered">
-                    <h3>Improve existing content</h3>
-                    <p>Provide your own answers, upvote/downvote questions and answers to promote interesting items, and you can even request another user to answer an existing question. 
+                    <h2>Improve existing content</h2>
+                    <p class="welcome">Provide your own answers, upvote/downvote questions and answers to promote interesting items, and you can even request another user to answer an existing question. 
                     </p>
                     
                 </div>
                 <div class="col-md-6">
                     <img src="<?= SERVER_PATH ?>public/img/validation.jpeg" alt="validation" class="thumbnail col-centered">
-                    <h3>Add validation your profile</h3>
-                    <p>Add Topics to your profile biography in order to add validation to the content you are writing. You can even create your own Topics! 
+                    <h2>Add validation your profile</h2>
+                    <p class="welcome">Add Topics to your profile biography in order to add validation to the content you are writing. You can even create your own Topics! 
                     </p>
                     
                 </div>

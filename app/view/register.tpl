@@ -47,7 +47,7 @@
                         </div>
                     </div>
 
-                    <input class="form-control" name="username" placeholder="Your VT Email Address" type="email" required/>
+                    <input class="form-control" name="username" placeholder="Your VT Email Address (yourpid@vt.edu)" type="email" id="email" required/>
                     <input class="form-control" name="pass" placeholder="Password" type="password" id="pass" required/>
                     <p>Use at least one lower case letter, one upper case letter, one numeral, and eight characters</p>
                     <input class="form-control" name="reenterpass" placeholder="Confirm Password" type="password" id="reenterpass" required/>
@@ -66,7 +66,7 @@
                     </label>
                     <br />
                     <br />
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up for VT Knowledge</button>
+                    <button id="submit_button" class="btn btn-lg btn-primary btn-block" type="submit">Sign Up for VT Knowledge</button>
                 </form>
                 <br />
                 <p>By clicking "Sign Up for VT Knowledge" you agree to our <a href="#">Terms of Service</a>.</p>
@@ -81,6 +81,6 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript" src="http://localhost/vtknowledge1/public/js/script.js"></script>
+    <script type="text/javascript" src="<?= SERVER_PATH ?>public/js/script.js"></script>
   </body>
 </html>

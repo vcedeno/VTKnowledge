@@ -21,6 +21,14 @@ if(isset($_SESSION['error'])) {
     unset($_SESSION['error']);
 }
 
+// return success message, if any
+
+$successMessage = '';
+if(isset($_SESSION['success'])) {
+    $successMessage = $_SESSION['success'];
+    unset($_SESSION['success']);
+}
+
 function renderEvent($event=null) {
     if($event == null)
         echo '';
