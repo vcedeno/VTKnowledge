@@ -33,7 +33,7 @@ class QuestionController {
         
         $op = isset($_GET['op'])?$_GET['op']:NULL;
         try {
-            if ( !$op  ) {
+            if ( !$op ) {
             	//Creates a new question
                 $this->saveQuestion();
                 
@@ -49,9 +49,9 @@ class QuestionController {
             $this->showError("Application error", $e->getMessage());
         }
         
-	if ( isset($_POST['form-submitted']) ) {
+	/*if ( isset($_POST['form-submitted']) ) {
        	 	$this->saveQuestion();
-        }
+        }*/
 			
     }
      
