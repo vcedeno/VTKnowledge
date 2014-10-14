@@ -33,8 +33,8 @@ $(document).ready(function(){
     $('#email').on('input', function() {
         var input=$(this);
         re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@vt.edu/;
-        var is_pwd=re.test(input.val());
-        if (is_pwd){
+        var is_email=re.test(input.val());
+        if (is_email){
             input.removeClass("invalid").addClass("valid");
         } else {
             input.removeClass("valid").addClass("invalid");
@@ -47,6 +47,7 @@ $(document).ready(function(){
     $("#submit_button").click(function(event){
         var isInvalidPw = $('#pass').hasClass("invalid");
         var isReenterPwDiff = $('#reenterpass').hasClass("invalid");
+        var isVTEmail = $('#email').hasClass("invalid");
 
         if (isInvalidPw) {
             event.preventDefault();
@@ -54,6 +55,9 @@ $(document).ready(function(){
         } else if (isReenterPwDiff) {
             event.preventDefault();
             alert("Password does not match the confirm password.");
+        } else if (isVTEmail){
+            event.preventDefault();
+            alert("Enter a valid VT email address.");
         }
     });
     
