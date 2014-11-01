@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `mydb` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `mydb`;
 # ************************************************************
 # Sequel Pro SQL dump
 # Version 4096
@@ -9,7 +7,7 @@ USE `mydb`;
 #
 # Host: 127.0.0.1 (MySQL 5.6.20)
 # Database: mydb
-# Generation Time: 2014-10-14 00:11:34 +0000
+# Generation Time: 2014-11-01 18:40:40 +0000
 # ************************************************************
 
 
@@ -51,7 +49,8 @@ VALUES
 	(20,'Torg bridge',0,'2014-10-13 18:31:12',6,20),
 	(21,'8pm and 10pm',0,'2014-10-13 18:32:22',4,19),
 	(22,'Theory of Algorithms',0,'2014-10-13 18:32:42',4,16),
-	(23,'The library',0,'2014-10-13 18:41:35',5,14);
+	(23,'The library',0,'2014-10-13 18:41:35',5,14),
+	(24,'hsjfhajfhjashsjfhajfhjashsjfhajfhjashsjfhajfh',0,'2014-10-21 10:59:47',18,20);
 
 /*!40000 ALTER TABLE `answer` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -94,9 +93,34 @@ VALUES
 	(17,'Who is the best HCI professor?','2014-10-13 16:33:28',0,6,4,2,11),
 	(18,'What\'s the best co-ed fraternity?','2014-10-13 16:38:53',0,6,NULL,8,NULL),
 	(19,'What times do people play bball at the gym?','2014-10-13 17:03:22',0,6,4,15,NULL),
-	(20,'Where do I take a computer for repair?','2014-10-13 18:30:05',0,5,6,NULL,NULL);
+	(20,'Where do I take a computer for repair?','2014-10-13 18:30:05',0,5,6,NULL,NULL),
+	(21,'new quwstion here?','2014-10-21 11:09:26',0,18,13,2,11);
 
 /*!40000 ALTER TABLE `question` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table role
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `role`;
+
+CREATE TABLE `role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `role` WRITE;
+/*!40000 ALTER TABLE `role` DISABLE KEYS */;
+
+INSERT INTO `role` (`id`, `name`)
+VALUES
+	(1,'registered'),
+	(2,'moderator'),
+	(3,'admin');
+
+/*!40000 ALTER TABLE `role` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
@@ -119,10 +143,8 @@ LOCK TABLES `topic` WRITE;
 INSERT INTO `topic` (`id`, `name`, `description`, `date`)
 VALUES
 	(2,'Education','Education classes and conferences','2014-10-13 12:18:49'),
-	(3,'Housing','Leases and furniture','2014-10-13 16:35:43'),
 	(8,'Greek Life','Fraternities and Sororities','2014-10-13 16:36:28'),
 	(11,'HCI','Topics in HCI','2014-10-13 13:03:23'),
-	(12,'Artificial Intelligence','Topics in AI','2014-10-13 16:34:41'),
 	(13,'Dining','Dining halls and food','2014-10-13 16:41:16'),
 	(15,'Sports','Pick up games','2014-10-13 17:02:21');
 
@@ -146,26 +168,30 @@ CREATE TABLE `user` (
   `gender` varchar(45) DEFAULT NULL,
   `topic_id` int(11) DEFAULT NULL,
   `topic_id1` int(11) DEFAULT NULL,
+  `role_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_user_topic1_idx` (`topic_id`),
   KEY `fk_user_topic2_idx` (`topic_id1`),
+  KEY `role_id` (`role_id`),
   CONSTRAINT `fk_user_topic1` FOREIGN KEY (`topic_id`) REFERENCES `topic` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_user_topic2` FOREIGN KEY (`topic_id1`) REFERENCES `topic` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_user_topic2` FOREIGN KEY (`topic_id1`) REFERENCES `topic` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `user_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 
-INSERT INTO `user` (`id`, `firstName`, `lastName`, `description`, `user`, `password`, `image`, `gender`, `topic_id`, `topic_id1`)
+INSERT INTO `user` (`id`, `firstName`, `lastName`, `description`, `user`, `password`, `image`, `gender`, `topic_id`, `topic_id1`, `role_id`)
 VALUES
-	(4,'Ambika','Karanth',NULL,'ambik89@vt.edu','Securepass1',NULL,'female',NULL,NULL),
-	(5,'Vanessa','Cedeno',NULL,'vcedeno@vt.edu','Securepass1',NULL,'female',NULL,NULL),
-	(6,'Mauricio','De la Barra',NULL,'mauri90@vt.edu','Securepass1',NULL,'male',NULL,NULL),
-	(13,'Andy','Johnson',NULL,'andy@vt.edu','Securepass1',NULL,'male',NULL,NULL),
-	(14,'Matt','Neal',NULL,'matt@vt.edu','Securepass1',NULL,'other',NULL,NULL),
-	(15,'Theo','Walcott',NULL,'theo@vt.edu','Securepass1',NULL,'male',NULL,NULL),
-	(16,'Anna','Knox',NULL,'anna@vt.edu','Securepass1',NULL,'female',NULL,NULL),
-	(17,'John','Leon',NULL,'john@vt.edu','Securepass1',NULL,'male',NULL,NULL);
+	(4,'Ambika','Karanth',NULL,'ambik89@vt.edu','Securepass1',NULL,'female',NULL,NULL,1),
+	(5,'Vanessa','Cedeno',NULL,'vcedeno@vt.edu','Securepass1',NULL,'female',NULL,NULL,1),
+	(6,'Mauricio','De la Barra',NULL,'mauri90@vt.edu','Securepass1',NULL,'male',NULL,NULL,1),
+	(13,'Andy','Johnson',NULL,'andy@vt.edu','Securepass1',NULL,'male',NULL,NULL,1),
+	(14,'Matt','Neal',NULL,'matt@vt.edu','Securepass1',NULL,'other',NULL,NULL,1),
+	(15,'Theo','Walcott',NULL,'theo@vt.edu','Securepass1',NULL,'male',NULL,NULL,1),
+	(16,'Anna','Knox',NULL,'anna@vt.edu','Securepass1',NULL,'female',NULL,NULL,1),
+	(17,'John','Leon',NULL,'john@vt.edu','Securepass1',NULL,'male',NULL,NULL,1),
+	(18,'Kurt','Luther',NULL,'kluther@vt.edu','Securepass1',NULL,'male',NULL,NULL,1);
 
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
