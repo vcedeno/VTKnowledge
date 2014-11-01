@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.20)
 # Database: mydb
-# Generation Time: 2014-11-01 18:40:40 +0000
+# Generation Time: 2014-11-01 20:52:50 +0000
 # ************************************************************
 
 
@@ -107,7 +107,7 @@ DROP TABLE IF EXISTS `role`;
 
 CREATE TABLE `role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(32) NOT NULL DEFAULT '',
+  `name` varchar(32) DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

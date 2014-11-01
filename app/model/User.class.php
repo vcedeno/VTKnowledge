@@ -14,6 +14,7 @@ class User extends DbObject {
     protected $gender;
     protected $topic_id;
     protected $topic_id1;
+    protected $role_id;
 
     
     // constructor
@@ -28,7 +29,8 @@ class User extends DbObject {
             'image' => null,
             'gender' => null,
             'topic_id' => null,
-            'topic_id1' => null
+            'topic_id1' => null,
+            'role_id' => null
             );
         
         $args += $defaultArgs;
@@ -43,6 +45,7 @@ class User extends DbObject {
         $this->gender = $args['gender'];
         $this->topic_id = $args['topic_id'];
         $this->topic_id1 = $args['topic_id1'];
+        $this->role_id = $args['role_id'];
 
     }
     
@@ -59,7 +62,8 @@ class User extends DbObject {
             'image' => $this->image,
             'gender' => $this->gender,
             'topic_id' => $this->topic_id,
-            'topic_id1' => $this->topic_id1
+            'topic_id1' => $this->topic_id1,
+            'role_id' => $this->role_id,
             );
         $db->store($this, __CLASS__, self::DB_TABLE, $db_properties);
     }
