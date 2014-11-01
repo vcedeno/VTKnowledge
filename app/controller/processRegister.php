@@ -23,7 +23,6 @@ if($existingUser == null) {
 
     $user->save(); // save the object to the database
 
-
     $_SESSION['success'] = "Account successfully registered!";
     header('Location: '.SERVER_PATH);
 

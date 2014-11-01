@@ -16,3 +16,7 @@ RewriteRule ^login/process/?$ app/controller/processLogin.php
 
 RewriteRule ^register/?$ app/controller/register.php
 RewriteRule ^register/process/?$ app/controller/processRegister.php
+
+
+RewriteRule ^users/?$ app/controller/users.php
+RewriteRule ^users/change_role/?$ app/controller/processChangeUserRole.php

@@ -1,4 +1,4 @@
-<!--Topic Page--!>
+<!--Topic Page-->
 <?php
 require_once '../global.php';
 

@@ -1,4 +1,4 @@
-<!-- Login page --!>
+<!-- Login page -->
 <?php
 require_once '../global.php';
 

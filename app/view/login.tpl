@@ -1,4 +1,4 @@
-<!--Log in page where you can also go to registration--!>
+<!-- Log in page where you can also go to registration -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
