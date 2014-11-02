@@ -54,5 +54,24 @@ class Role extends DbObject {
             return ($row['id']);
         }
     }
+
+    // load all roles
+    public static function loadRoles() {
+        $query = sprintf(" SELECT * FROM %s",
+            self::DB_TABLE
+            );
+        $db = Db::instance();
+        $result = $db->lookup($query);
+
+        if(!mysql_num_rows($result))
+            return null;
+        else {
+            $roleList = array();
+            while($row = mysql_fetch_assoc($result)) {
+                $roleList[] = self::loadById($row['id']);
+            }
+            return ($roleList);
+        }
+    }
     
 }

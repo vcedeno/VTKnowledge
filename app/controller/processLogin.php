@@ -10,13 +10,13 @@ $user = User::loadByUsername($username);
 
 // if user exists, username is valid
 if($user == null) {
-    $_SESSION['error'] = "Invalid username.";
+    $_SESSION['error'] = "Invalid username or password.";
     header('Location: '.SERVER_PATH.'login');
     exit();
 } else {
     // does inputted password match password in db?
     if($user->get('password') != $password) {
-        $_SESSION['error'] = "Invalid password.";
+        $_SESSION['error'] = "Invalid username or password.";
         header('Location: '.SERVER_PATH.'login'); 
         exit();
     } else {
@@ -31,6 +31,7 @@ if($user == null) {
         $_SESSION['gender'] = $user->get('gender');
         $_SESSION['topic_id'] = $user->get('topic_id');
         $_SESSION['topic_id1'] = $user->get('topic_id1');
+        $_SESSION['role_id'] = $user->get('role_id');
 
         header('Location: '.SERVER_PATH);
         exit();

@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.20)
 # Database: mydb
-# Generation Time: 2014-11-01 20:52:50 +0000
+# Generation Time: 2014-11-02 02:41:41 +0000
 # ************************************************************
 
 
@@ -183,15 +183,17 @@ LOCK TABLES `user` WRITE;
 
 INSERT INTO `user` (`id`, `firstName`, `lastName`, `description`, `user`, `password`, `image`, `gender`, `topic_id`, `topic_id1`, `role_id`)
 VALUES
-	(4,'Ambika','Karanth',NULL,'ambik89@vt.edu','Securepass1',NULL,'female',NULL,NULL,1),
+	(4,'Ambika','Karanth',NULL,'ambik89@vt.edu','Securepass1',NULL,'female',NULL,NULL,3),
 	(5,'Vanessa','Cedeno',NULL,'vcedeno@vt.edu','Securepass1',NULL,'female',NULL,NULL,1),
 	(6,'Mauricio','De la Barra',NULL,'mauri90@vt.edu','Securepass1',NULL,'male',NULL,NULL,1),
 	(13,'Andy','Johnson',NULL,'andy@vt.edu','Securepass1',NULL,'male',NULL,NULL,1),
-	(14,'Matt','Neal',NULL,'matt@vt.edu','Securepass1',NULL,'other',NULL,NULL,1),
+	(14,'Matt','Neal',NULL,'matt@vt.edu','Securepass1',NULL,'other',NULL,NULL,3),
 	(15,'Theo','Walcott',NULL,'theo@vt.edu','Securepass1',NULL,'male',NULL,NULL,1),
 	(16,'Anna','Knox',NULL,'anna@vt.edu','Securepass1',NULL,'female',NULL,NULL,1),
-	(17,'John','Leon',NULL,'john@vt.edu','Securepass1',NULL,'male',NULL,NULL,1),
-	(18,'Kurt','Luther',NULL,'kluther@vt.edu','Securepass1',NULL,'male',NULL,NULL,1);
+	(17,'John','Leon',NULL,'john@vt.edu','Securepass1',NULL,'male',NULL,NULL,2),
+	(18,'Kurt','Luther',NULL,'kluther@vt.edu','Securepass1',NULL,'male',NULL,NULL,1),
+	(19,'Daniel','Sanders',NULL,'sanders@vt.edu','Securepass1',NULL,'male',NULL,NULL,2),
+	(20,'Mary','Huang',NULL,'huang@vt.edu','Securepass1',NULL,'female',NULL,NULL,3);
 
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;

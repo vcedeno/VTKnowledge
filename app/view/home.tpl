@@ -1,4 +1,4 @@
-<!--Home Page shows all the posted questions order by date--!>
+<!--Home Page shows all the posted questions order by date-->
 <!DOCTYPE html>
 <html lang="en">
   <head>

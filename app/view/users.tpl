@@ -32,25 +32,79 @@
               <th>Username</th>
               <th>Gender</th>
               <th>Role</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
             <?php
-                $userList = User::loadUsers();
-                    foreach ($userList as $user) { ?>
-                        <tr>
-                          <td><?php print $user->get('id');?></td>
-                          <td><?php print $user->get('firstName');?></td>
-                          <td><?php print $user->get('lastName');?></td>
-                          <td><?php print $user->get('user');?></td>
-                          <td><?php print $user->get('gender');?></td>
-                          <td>Registered</td>
-                          <td><a href="" class="btn btn-info">Change Role</a></td>
-                        </tr>
-                    <?php } ?>
+                foreach ($userList as $user) { ?>
+                    <tr>
+                      <td><?php print $user->get('id');?></td>
+                      <td><?php print $user->get('firstName');?></td>
+                      <td><?php print $user->get('lastName');?></td>
+                      <td><?php print $user->get('user');?></td>
+                      <td><?php print $user->get('gender');?></td>
+                      <td>
+                        <?php
+                            $userRole = Role::loadById($user->get('role_id')); 
+                            print $userRole->get('name');
+                        ?>
+                      </td>
+                      <td><a href="#changeUserRole_<?php print $user->get('id');?>" class="btn btn-info" data-toggle="modal">Change Role</a></td>
+                    </tr>
+                <?php } ?>
           </tbody>
         </table>
-    </div> 
+    </div>
+
+    <?php
+        foreach ($userList as $user) { ?>
+        <div class="modal fade" id="changeUserRole_<?php print $user->get('id');?>" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form class="form-horizontal" role="form" method="POST" action="<?= SERVER_PATH ?>users/change_role/">
+                        <div class="modal-header">
+                            <h4>Change User Role</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="change_role" class="col-sm-8 control-label">Change current user role for <?php print $user->get('user');?>: </label>
+
+                                <div class="col-sm-4">
+
+                                    <select id="change_role" name="user_role" class="selectpicker show-tick form-control">
+
+                                    <?php
+                                    foreach ($roleList as $role) { 
+                                        $role_id_curr = $role->get('id');
+                                        $role_name_curr = $role->get('name');
+                                    ?>
+                                        <option value="<?php print $role_id_curr;?>" 
+                                            <?php if($user->get('role_id') == $role_id_curr) {
+                                                print("selected");
+                                            }?>
+                                        >
+                                            <?php print $role_name_curr;?>
+                                        </option>
+                                    <?php } ?>    
+                                        
+                                    </select>
+                                    <input type="hidden" name="user_id" value="<?php print $user->get('id');?>">
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-default" data-dismiss="modal">Cancel</a>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div> 
+    <?php } ?>
       
     <!-- Core JavaScript-->
       
