@@ -15,6 +15,7 @@ if(isset($_SESSION['user'])) {
 		require_once '../view/users.tpl';
 	} else {
 		//require_once '../view/home.tpl';
+		header('Location: '.SERVER_PATH);
 	}
 
 	require_once '../view/footer.tpl';

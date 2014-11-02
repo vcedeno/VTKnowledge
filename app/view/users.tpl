@@ -46,9 +46,20 @@
                       <td><?php print $user->get('gender');?></td>
                       <td>
                         <?php
-                            $userRole = Role::loadById($user->get('role_id')); 
-                            print $userRole->get('name');
-                        ?>
+                        $userRole = Role::loadById($user->get('role_id')); ?>
+                        <span class="label 
+                            <?php 
+                            if ($userRole->get('name') == "registered") {
+                                print "label-default";
+                            } else if ($userRole->get('name') == "moderator") {
+                                print "label-primary";
+                            } else if ($userRole->get('name') == "admin") {
+                                print "label-success";
+                            } 
+                            ?>"
+                        >
+                        <?php print $userRole->get('name'); ?>
+                        </span>                        
                       </td>
                       <td><a href="#changeUserRole_<?php print $user->get('id');?>" class="btn btn-info" data-toggle="modal">Change Role</a></td>
                     </tr>
