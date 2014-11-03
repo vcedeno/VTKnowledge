@@ -81,7 +81,7 @@
 
 					</div> 
 					
-						<div class="row">
+						<div class="modal-footer" >
 							<div class="col-sm-10 text-center">	
 							<a class="btn btn-primary" data-dismiss="modal">Cancel</a>
 							<input name="form-delete" type="submit" class="btn btn-danger" value="Delete" />

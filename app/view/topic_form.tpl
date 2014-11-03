@@ -37,30 +37,21 @@
 	
 				<h1>New Topic</h1>
 			<div class="row">
-				<div class="col-sm-12">
 					<div class="col-sm-2">
 						<label form="topic-name" class="control-label">Topic:</label>
 					</div>
 					<div class="col-sm-6">
 						<input type="text" class="form-control" name="topic-name" placeholder="Name of the topic..." value="<?php print htmlentities($name) ?>"/>
-				
-	
-	
+
 					</div> 
-				</div>
 			</div>
-	</div>	
-			
 			<div class="row">
-				<div class="col-sm-12">
 					<div class="col-sm-2">
 						<label form="topic-desc" class="control-label">Description:</label>
 					</div> 
-					<div class="col-sm-6">
+					<div class="col-sm-8">
 					<textarea class="form-control" name="topic-desc" rows=4><?php print htmlentities($desc) ?></textarea>
-            
 					</div> 
-				</div> 
 			</div>
 	
 	

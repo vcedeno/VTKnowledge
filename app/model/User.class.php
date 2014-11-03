@@ -97,7 +97,7 @@ class User extends DbObject {
 
     // load all users
     public static function loadUsers() {
-        $query = sprintf(" SELECT * FROM %s",
+        $query = sprintf(" SELECT * FROM %s order by user asc",
             self::DB_TABLE
             );
         $db = Db::instance();

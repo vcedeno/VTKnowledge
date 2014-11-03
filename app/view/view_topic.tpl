@@ -39,8 +39,9 @@
         				</div>
         				<div>
             				<span for = "editTopicDesc" class="label label-info">Description:</span>
-            				<input type="text" name="editTopicDesc" value="<?php print $topic->description; ?>"><br>
-            				
+            				<textarea class="form-control" name="editTopicDesc" rows=4><?php print $topic->description; ?>
+            				</textarea><br>
+					
         				</div>
 
 	</div>
