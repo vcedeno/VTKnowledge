@@ -20,11 +20,25 @@ if($existingUser == null) {
     $user->set('user', $username);
     $user->set('password', $password);
     $user->set('gender', $gender);
+    $user->set('role_id', 1);
 
     $user->save(); // save the object to the database
 
+    //$_SESSION['success'] = "Account successfully registered!";
 
-    $_SESSION['success'] = "Account successfully registered!";
+    $_SESSION['user'] = $username;
+
+    $_SESSION['id'] = $user->get('id');
+    $_SESSION['firstName'] = $user->get('firstName');
+    $_SESSION['lastName'] = $user->get('lastName');
+    $_SESSION['description'] = $user->get('description');
+    $_SESSION['password'] = $user->get('password');
+    $_SESSION['image'] = $user->get('image');
+    $_SESSION['gender'] = $user->get('gender');
+    $_SESSION['topic_id'] = $user->get('topic_id');
+    $_SESSION['topic_id1'] = $user->get('topic_id1');
+    $_SESSION['role_id'] = $user->get('role_id');
+
     header('Location: '.SERVER_PATH);
 
     exit();

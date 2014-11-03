@@ -1,4 +1,4 @@
-<!--Form that allows you to create a new question--!>
+<!--Form that allows you to create a new question-->
 <!DOCTYPE html>
 <html lang="en">
   <head>

@@ -1,4 +1,4 @@
-<!--Page to view an specific topic and edit it--!>
+<!--Page to view an specific topic and edit it-->
 <?php
 require_once '../global.php';
 

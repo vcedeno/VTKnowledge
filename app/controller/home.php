@@ -1,4 +1,4 @@
-<!--Home page --!>
+<!--Home page -->
 <?php
 require_once '../global.php';
 
