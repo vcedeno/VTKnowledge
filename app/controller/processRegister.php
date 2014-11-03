@@ -37,6 +37,10 @@ if($existingUser == null) {
     $_SESSION['gender'] = $user->get('gender');
     $_SESSION['topic_id'] = $user->get('topic_id');
     $_SESSION['topic_id1'] = $user->get('topic_id1');
+
+    // role_id = 1 -> registered
+    // role_id = 2 -> moderator
+    // role_id = 3 -> admin
     $_SESSION['role_id'] = $user->get('role_id');
 
     header('Location: '.SERVER_PATH);

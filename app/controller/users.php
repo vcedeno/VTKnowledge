@@ -11,6 +11,7 @@ if(isset($_SESSION['user'])) {
 	$userList = User::loadUsers();
 	$roleList = Role::loadRoles();
 
+	// If role_id is 3 (i.e., admin), display the 'users' template. Otherwise, redirect to 'home'
     if($_SESSION['role_id'] == 3) {
 		require_once '../view/users.tpl';
 	} else {
