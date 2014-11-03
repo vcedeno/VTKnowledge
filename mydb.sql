@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.20)
 # Database: mydb
-# Generation Time: 2014-11-02 02:41:41 +0000
+# Generation Time: 2014-11-03 19:40:20 +0000
 # ************************************************************
 
 
@@ -27,11 +27,13 @@ DROP TABLE IF EXISTS `answer`;
 
 CREATE TABLE `answer` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `text` varchar(45) DEFAULT NULL,
+  `text` text,
   `vote` int(11) DEFAULT NULL,
   `date` datetime DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   `question_id` int(11) NOT NULL,
+  `old_text` text,
+  `old_date` datetime DEFAULT NULL,
   PRIMARY KEY (`id`,`question_id`),
   KEY `fk_answer_user1_idx` (`user_id`),
   KEY `fk_answer_question1_idx` (`question_id`),
@@ -42,17 +44,67 @@ CREATE TABLE `answer` (
 LOCK TABLES `answer` WRITE;
 /*!40000 ALTER TABLE `answer` DISABLE KEYS */;
 
-INSERT INTO `answer` (`id`, `text`, `vote`, `date`, `user_id`, `question_id`)
+INSERT INTO `answer` (`id`, `text`, `vote`, `date`, `user_id`, `question_id`, `old_text`, `old_date`)
 VALUES
-	(7,'Nope, it\'s a holiday',0,'2014-10-12 15:31:41',5,13),
-	(14,'It\'s D2',0,'2014-10-12 15:39:00',5,12),
-	(20,'Torg bridge',0,'2014-10-13 18:31:12',6,20),
-	(21,'8pm and 10pm',0,'2014-10-13 18:32:22',4,19),
-	(22,'Theory of Algorithms',0,'2014-10-13 18:32:42',4,16),
-	(23,'The library',0,'2014-10-13 18:41:35',5,14),
-	(24,'hsjfhajfhjashsjfhajfhjashsjfhajfhjashsjfhajfh',0,'2014-10-21 10:59:47',18,20);
+	(7,'Nope, it\'s a holiday',0,'2014-10-12 15:31:41',5,13,NULL,NULL),
+	(14,'It\'s D2',0,'2014-10-12 15:39:00',5,12,NULL,NULL),
+	(20,'Torg bridge',0,'2014-10-13 18:31:12',6,20,NULL,NULL),
+	(21,'8pm and 10pm',0,'2014-10-13 18:32:22',4,19,NULL,NULL),
+	(22,'Theory of Algorithms',0,'2014-10-13 18:32:42',4,16,NULL,NULL),
+	(23,'The library',0,'2014-10-13 18:41:35',5,14,NULL,NULL),
+	(24,'hsjfhajfhjashsjfhajfhjashsjfhajfhjashsjfhajfh',0,'2014-10-21 10:59:47',18,20,NULL,NULL);
 
 /*!40000 ALTER TABLE `answer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Dump of table event
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `event`;
+
+CREATE TABLE `event` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `event_type_id` int(11) DEFAULT NULL,
+  `user_id1` int(11) DEFAULT NULL,
+  `user_id2` int(11) DEFAULT NULL,
+  `data_1` text,
+  `data_2` text,
+  `when_happened` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `event_type_id` (`event_type_id`),
+  KEY `user_id1` (`user_id1`),
+  KEY `user_id2` (`user_id2`),
+  CONSTRAINT `event_ibfk_1` FOREIGN KEY (`event_type_id`) REFERENCES `event_type` (`id`),
+  CONSTRAINT `event_ibfk_2` FOREIGN KEY (`user_id1`) REFERENCES `user` (`id`),
+  CONSTRAINT `event_ibfk_3` FOREIGN KEY (`user_id2`) REFERENCES `user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+# Dump of table event_type
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `event_type`;
+
+CREATE TABLE `event_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+LOCK TABLES `event_type` WRITE;
+/*!40000 ALTER TABLE `event_type` DISABLE KEYS */;
+
+INSERT INTO `event_type` (`id`, `name`)
+VALUES
+	(1,'edit_first_name'),
+	(2,'edit_last_name'),
+	(3,'edit_topic'),
+	(4,'post_question'),
+	(5,'post_answer');
+
+/*!40000 ALTER TABLE `event_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
@@ -63,7 +115,7 @@ DROP TABLE IF EXISTS `question`;
 
 CREATE TABLE `question` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `text` varchar(45) DEFAULT NULL,
+  `text` text,
   `date` datetime DEFAULT NULL,
   `vote` int(11) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
@@ -183,17 +235,17 @@ LOCK TABLES `user` WRITE;
 
 INSERT INTO `user` (`id`, `firstName`, `lastName`, `description`, `user`, `password`, `image`, `gender`, `topic_id`, `topic_id1`, `role_id`)
 VALUES
-	(4,'Ambika','Karanth',NULL,'ambik89@vt.edu','Securepass1',NULL,'female',NULL,NULL,3),
-	(5,'Vanessa','Cedeno',NULL,'vcedeno@vt.edu','Securepass1',NULL,'female',NULL,NULL,1),
-	(6,'Mauricio','De la Barra',NULL,'mauri90@vt.edu','Securepass1',NULL,'male',NULL,NULL,1),
-	(13,'Andy','Johnson',NULL,'andy@vt.edu','Securepass1',NULL,'male',NULL,NULL,1),
-	(14,'Matt','Neal',NULL,'matt@vt.edu','Securepass1',NULL,'other',NULL,NULL,3),
+	(4,'Ambika','Karanth',NULL,'ambik89@vt.edu','Securepass1',NULL,'female',NULL,NULL,1),
+	(5,'Vanessa','Cedeno',NULL,'vcedeno@vt.edu','Securepass1',NULL,'female',NULL,NULL,3),
+	(6,'Mauricio','De la Barra',NULL,'mauri90@vt.edu','Securepass1',NULL,'male',NULL,NULL,2),
+	(13,'Andy','Johnson',NULL,'andy@vt.edu','Securepass1',NULL,'male',NULL,NULL,2),
+	(14,'Matt','Neal',NULL,'matt@vt.edu','Securepass1',NULL,'other',NULL,NULL,2),
 	(15,'Theo','Walcott',NULL,'theo@vt.edu','Securepass1',NULL,'male',NULL,NULL,1),
 	(16,'Anna','Knox',NULL,'anna@vt.edu','Securepass1',NULL,'female',NULL,NULL,1),
 	(17,'John','Leon',NULL,'john@vt.edu','Securepass1',NULL,'male',NULL,NULL,2),
 	(18,'Kurt','Luther',NULL,'kluther@vt.edu','Securepass1',NULL,'male',NULL,NULL,1),
 	(19,'Daniel','Sanders',NULL,'sanders@vt.edu','Securepass1',NULL,'male',NULL,NULL,2),
-	(20,'Mary','Huang',NULL,'huang@vt.edu','Securepass1',NULL,'female',NULL,NULL,3);
+	(20,'Mary','Huang',NULL,'huang@vt.edu','Securepass1',NULL,'female',NULL,NULL,2);
 
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
