@@ -144,6 +144,7 @@ class QuestionController {
             }
             
         }
+        //Undo a delete
         if ( isset($_POST['form-ud']) ){
 			$idq = isset($_POST["qid"]) ?   $_POST["qid"]  :NULL;
         	$ida = isset($_POST["aid"]) ?   $_POST["aid"]  :NULL;
@@ -179,9 +180,9 @@ class QuestionController {
 			$ida = isset($_POST["editAnswerID"]) ?   $_POST["editAnswerID"]  :NULL;
 			$idq = isset($_POST["qID"]) ?   $_POST["qID"]  :NULL;
         	$text = isset($_POST["editAnsDesc"]) ?   $_POST["editAnsDesc"]  :NULL;
-            
+            $user =$_SESSION['id'];
         	try {  
-                $this->contactsService3->editAnswer($ida,$text);
+                $this->contactsService3->editAnswer($ida,$text,$user);
                 $answers = $this->contactsService3->getAllAnswers($idq);
         		$question=$this->contactsService->getQuestion($idq);
         		$userList = User::loadUsers();
@@ -195,14 +196,31 @@ class QuestionController {
               
         } 
         	
+        //Undo an edit
+        if ( isset($_POST['form-ue']) ){
+			$idq = isset($_POST["qid"]) ?   $_POST["qid"]  :NULL;
+        	$ida = isset($_POST["aid"]) ?   $_POST["aid"]  :NULL;
+			$user =$_SESSION['id'];
+        	try {
+                $this->contactsService3->undoEdit($ida);
+                $answers = $this->contactsService3->getAllAnswers($idq);
+        		$question=$this->contactsService->getQuestion($idq);
+        		$userList = User::loadUsers();
+        		$topics = $this->contactsService2->getAllTopics("name");
+        
+        		include '../view/answer.tpl';
+                return;
+            } catch (ValidationException $e) {
+                $errors = $e->getErrors();
+            }
+            
+        }
         $answers = $this->contactsService3->getAllAnswers($id);
         $question=$this->contactsService->getQuestion($id);
         $userList = User::loadUsers();
         $topics = $this->contactsService2->getAllTopics("name");
         
-        include '../view/answer.tpl';
-       
-      
+        include '../view/answer.tpl';  
     }
     
 

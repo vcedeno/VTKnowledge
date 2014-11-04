@@ -71,8 +71,8 @@
         	<?php if($_SESSION['id']==htmlentities($question->user_id)||$_SESSION['id']==htmlentities($answer->user_id) ||$_SESSION['role_id']=="2"||$_SESSION['role_id']=="3"){ ?>
         	
 			<input name="form-ea" type="submit" class="btn btn-primary" value="Edit" />
-			<?php if(htmlentities($answer->old_text)!=NULL){ ?>
-			<input name="form-ua" type="submit" class="btn btn-primary" value="Undo" />
+			<?php if(htmlentities($answer->old_text)!=NULL&& $_SESSION['id']==htmlentities($answer->user_update)){ ?>
+			<input name="form-ue" type="submit" value="Undo Edit" />
 			<?php } ?>
 			<?php } ?>
         	

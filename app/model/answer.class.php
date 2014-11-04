@@ -94,10 +94,21 @@ public function createNewAnswer($text, $user, $question) {
 		throw $e;
 		}
 }
-	public function editAnswer( $id, $text) {
+	public function editAnswer( $id, $text,$user) {
 		try {
 		$this->openDb();
-		$res = $this->answerGateway->update($id, $text);
+		$res = $this->answerGateway->update($id, $text,$user);
+		$this->closeDb();
+		} catch (Exception $e) {
+		$this->closeDb();
+		throw $e;
+		}
+}
+
+	public function undoEdit($id) {
+		try {
+		$this->openDb();
+		$res = $this->answerGateway->undoEdit($id);
 		$this->closeDb();
 		} catch (Exception $e) {
 		$this->closeDb();

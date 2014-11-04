@@ -35,6 +35,7 @@ CREATE TABLE `answer` (
   `old_date` datetime DEFAULT NULL,
   `show` int(11) DEFAULT 1,
   `user_delete` int(11) DEFAULT NULL,
+  `user_update` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`,`question_id`),
   KEY `fk_answer_user1_idx` (`user_id`),
   KEY `fk_answer_question1_idx` (`question_id`),
@@ -49,7 +50,7 @@ CREATE TABLE `answer` (
 
 LOCK TABLES `answer` WRITE;
 /*!40000 ALTER TABLE `answer` DISABLE KEYS */;
-INSERT INTO `answer` VALUES (7,'Nope, it\'s a holiday',0,'2014-10-12 15:31:41',5,13,NULL,NULL,1,NULL),(14,'It\'s D2',0,'2014-10-12 15:39:00',5,12,NULL,NULL,1,NULL),(20,'Torg bridge',0,'2014-10-13 18:31:12',6,20,NULL,NULL,1,NULL),(21,'8pm and 10pm',0,'2014-10-13 18:32:22',4,19,NULL,NULL,1,NULL),(22,'Theory of Algorithms',0,'2014-10-13 18:32:42',4,16,NULL,NULL,1,NULL),(23,'The library',0,'2014-10-13 18:41:35',5,14,NULL,NULL,1,NULL),(24,'hsjfhajfhjashsjfhajfhjashsjfhajfhjashsjfhajfh',0,'2014-10-21 10:59:47',18,20,NULL,NULL,1,NULL);
+INSERT INTO `answer` VALUES (7,'Nope, it\'s a holiday',0,'2014-10-12 15:31:41',5,13,NULL,NULL,1,NULL,NULL),(14,'It\'s D2',0,'2014-10-12 15:39:00',5,12,NULL,NULL,1,NULL,NULL),(20,'Torg bridge',0,'2014-10-13 18:31:12',6,20,NULL,NULL,1,NULL,NULL),(21,'8pm and 10pm',0,'2014-10-13 18:32:22',4,19,NULL,NULL,1,NULL,NULL),(22,'Theory of Algorithms',0,'2014-10-13 18:32:42',4,16,NULL,NULL,1,NULL,NULL),(23,'The library',0,'2014-10-13 18:41:35',5,14,NULL,NULL,1,NULL,NULL),(24,'hsjfhajfhjashsjfhajfhjashsjfhajfhjashsjfhajfh',0,'2014-10-21 10:59:47',18,20,NULL,NULL,1,NULL,NULL);
 /*!40000 ALTER TABLE `answer` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;

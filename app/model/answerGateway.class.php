@@ -53,13 +53,17 @@ class AnswerGateway {
         mysql_query("update answer a set a.show=1, a.user_delete=NULL WHERE id=$dbId");
     }
      
-    public function update( $id, $text) {
+    public function update( $id, $text,$user) {
          
         $dbId = ($id != NULL)?"'".mysql_real_escape_string($id)."'":'NULL';
         $dbText = ($text != NULL)?"'".mysql_real_escape_string($text)."'":'NULL';
+        $dbUser = ($user != NULL)?"'".mysql_real_escape_string($user)."'":'NULL';
+        mysql_query("update answer set old_text=text, text=$dbText, old_date=date, date=now(),user_update=$dbUser where id=$dbId");
         
-        mysql_query("update answer set old_text=text, text=$dbText, old_date=date, date=now() where id=$dbId");
-        
+    }
+        public function undoEdit($id) {
+        $dbId = mysql_real_escape_string($id);
+        mysql_query("update answer set text=old_text, old_text=NULL, date=old_date,old_date=NULL, user_update=NULL WHERE id=$dbId");
     }
 }
  
