@@ -74,17 +74,26 @@ public function createNewAnswer($text, $user, $question) {
 			}
 }
 
-	public function deleteAnswer( $id ) {
+	public function deleteAnswer( $id,$user ) {
 		try {
 		$this->openDb();
-		$res = $this->answerGateway->delete($id);
+		$res = $this->answerGateway->delete($id,$user);
 		$this->closeDb();
 		} catch (Exception $e) {
 		$this->closeDb();
 		throw $e;
 		}
 }
-
+	public function undoDelete($id) {
+		try {
+		$this->openDb();
+		$res = $this->answerGateway->undoDelete($id);
+		$this->closeDb();
+		} catch (Exception $e) {
+		$this->closeDb();
+		throw $e;
+		}
+}
 	public function editAnswer( $id, $text) {
 		try {
 		$this->openDb();

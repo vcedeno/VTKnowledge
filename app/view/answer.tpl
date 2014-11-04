@@ -22,8 +22,22 @@
     <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
   </head>
   <body>
+  
+  <input type="hidden" id="sesid" value="<?php print ($_SESSION['id']); ?>">
+<input type="hidden" id="rid" value="<?php print ($_SESSION['role_id']); ?>">
+<input type="hidden" id="ui" value="<?php print htmlentities($question->user_id); ?>">
+
 <div class="container">
-<h1><?php print htmlentities($question->text); ?></h1>
+<h1><?php print htmlentities($question->text); ?>
+<?php if($_SESSION['id']==htmlentities($question->user_id)||$_SESSION['role_id']=="2"||$_SESSION['role_id']=="3"){ ?>
+<a href="#" data-target="#updatingQuestion" data-toggle="modal" class="btn btn-primary" data-idq="<?php print htmlentities($question->id); ?>" data-q="<?php print htmlentities($question->text); ?>">Edit</a>
+<?php } ?>
+</h1>
+
+
+
+	</script>
+           
 		<div>
         	<label class="label label-info">Posted:</label>
         	<label><?php $question->date; print htmlentities($question->date); ?></label>
@@ -45,13 +59,32 @@
     <p><br></p>
     
     <h1>Answers</h1>
-<form method="POST" action="">  
 <?php foreach ($answers as $answer): ?>
-	<div class="row">
-		<div>
+
+		<form method="POST" action=""> 
+		<?php if(htmlentities($answer->show)=="1"){ ?>
         	<label class="label label-info">Answer:</label>
         	<label><?php print htmlentities($answer->text); ?></label>
-        </div>
+        	
+        	<input type="hidden" name="qid" id="qid" value="<?php print htmlentities($question->id); ?>">
+        	<input type="hidden" name="aid" id="aid" value="<?php print htmlentities($answer->id); ?>">
+        	<?php if($_SESSION['id']==htmlentities($question->user_id)||$_SESSION['id']==htmlentities($answer->user_id) ||$_SESSION['role_id']=="2"||$_SESSION['role_id']=="3"){ ?>
+			<input name="form-ea" type="submit" class="btn btn-primary" value="Edit" />
+			<?php if(htmlentities($answer->old_text)!=NULL){ ?>
+			<input name="form-ua" type="submit" class="btn btn-primary" value="Undo" />
+			<?php } ?>
+			<?php } ?>
+        	
+        	<?php if($_SESSION['id']==htmlentities($question->user_id)||$_SESSION['id']==htmlentities($answer->user_id) ||$_SESSION['role_id']=="2"||$_SESSION['role_id']=="3"){ ?>
+			<input name="form-da" type="submit" class="btn btn-danger" value="Delete" />
+
+			<?php } ?>
+		
+		</form>	
+			
+        	
+               
+	<div>
         <div>
         	<label class="label label-info">By User:</label>
         	<label><?php foreach ($userList as $user){ if(htmlentities($answer->user_id)==$user->get('id')) print $user->get('user'); }?></label>
@@ -60,16 +93,30 @@
         	<label class="label label-info">On:</label>
         	<label><?php print htmlentities($answer->date); ?></label>
         </div>
+        
 	</div>
+	<?php } ?>	
+	<form method="POST" action=""> 
+			<input type="hidden" name="qid" id="qid" value="<?php print htmlentities($question->id); ?>">
+        	<input type="hidden" name="aid" id="aid" value="<?php print htmlentities($answer->id); ?>">
+        	<?php if(htmlentities($answer->show)=="0" && $_SESSION['id']==htmlentities($answer->user_delete)){ ?>
+			<input name="form-ud" type="submit" value="Undo Delete" />
+			
+			<?php } ?>
+	</form>	
 <p><br></p>
+
+
 <?php endforeach; ?>
-</div> 
+
+
 
 <p><br></p>
-
+<form method="POST" action="">  
 <div class="row">
 				<div class="col-sm-12">
 					<div class="col-sm-12">
+						<input type="hidden" name="qqid" id="qqid" value="<?php print htmlentities($question->id); ?>">
 						<label form="answer-text" class="control-label">Your answer:</label>
 					</div> 
 					<div class="col-sm-10">
@@ -88,6 +135,34 @@
 </form> 
 </div> 
 
+	<div class="modal fade" id="updatingQuestion" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+					<form method="POST" action=""> 
+					<div class="modal-header">
+						<h4>Update Question</h4>
+					</div> 
+					<div class="modal-body">
+						<div class="form-group">
+							<input type="text" name="qid" id="qid" />
+							<input type="text" class="form-control" name="q" id="q">
+				
+						</div> 
+					</div> 
+					
+						<div class="modal-footer" >
+							<div class="col-sm-10 text-center">	
+							<a class="btn btn-primary" data-dismiss="modal">Cancel</a>
+							<input name="form-q" type="submit" class="btn btn-danger" value="Update" />
+							
+							</div>
+						</div>
+					</form> 
+
+					
+			</div> 
+		</div> 
+	</div> 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

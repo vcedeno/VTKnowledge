@@ -110,7 +110,49 @@ class QuestionController {
 			$user =$_SESSION['id'];
         	try {
                 $this->contactsService3->createNewAnswer($text,$user, $question);
-                include '../controller/home.php';
+                $answers = $this->contactsService3->getAllAnswers($question);
+        		$question=$this->contactsService->getQuestion($question);
+        		$userList = User::loadUsers();
+        		$topics = $this->contactsService2->getAllTopics("name");
+        		
+        		include '../view/answer.tpl';
+                return;
+            } catch (ValidationException $e) {
+                $errors = $e->getErrors();
+            }
+            
+        }
+        if ( isset($_POST['form-da']) ){
+			$idq = isset($_POST["qid"]) ?   $_POST["qid"]  :NULL;
+        	$ida = isset($_POST["aid"]) ?   $_POST["aid"]  :NULL;
+			$user =$_SESSION['id'];
+        	try {
+                $this->contactsService3->deleteAnswer($ida,$user);
+                $answers = $this->contactsService3->getAllAnswers($idq);
+        		$question=$this->contactsService->getQuestion($idq);
+        		$userList = User::loadUsers();
+        		$topics = $this->contactsService2->getAllTopics("name");
+        
+        		include '../view/answer.tpl';
+                return;
+            } catch (ValidationException $e) {
+                $errors = $e->getErrors();
+            }
+            
+        }
+        if ( isset($_POST['form-ud']) ){
+			$idq = isset($_POST["qid"]) ?   $_POST["qid"]  :NULL;
+        	$ida = isset($_POST["aid"]) ?   $_POST["aid"]  :NULL;
+ 
+			$user =$_SESSION['id'];
+        	try {
+                $this->contactsService3->undoDelete($ida);
+                $answers = $this->contactsService3->getAllAnswers($idq);
+        		$question=$this->contactsService->getQuestion($idq);
+        		$userList = User::loadUsers();
+        		$topics = $this->contactsService2->getAllTopics("name");
+        
+        		include '../view/answer.tpl';
                 return;
             } catch (ValidationException $e) {
                 $errors = $e->getErrors();
@@ -118,13 +160,14 @@ class QuestionController {
             
         }
         $answers = $this->contactsService3->getAllAnswers($id);
-        $question=$this->contactsService->getQuestion("$id");
+        $question=$this->contactsService->getQuestion($id);
         $userList = User::loadUsers();
         $topics = $this->contactsService2->getAllTopics("name");
         
         include '../view/answer.tpl';
         
     }
+    
      /*
     public function deleteTopic() {
         $id = isset($_GET['id'])?$_GET['id']:NULL;

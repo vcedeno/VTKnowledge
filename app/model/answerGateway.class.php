@@ -11,7 +11,7 @@ class AnswerGateway {
             $id = "NULL";
         }
         $dbId =  mysql_real_escape_string($id);
-        $dbres = mysql_query("SELECT * FROM answer where question_id = $dbId");
+        $dbres = mysql_query("SELECT * FROM answer where question_id = $dbId order by date desc");
          
         $answers = array();
         while ( ($obj = mysql_fetch_object($dbres)) != NULL ) {
@@ -42,9 +42,15 @@ class AnswerGateway {
         
     }
      
-    public function delete($id) {
+    public function delete($id,$user) {
         $dbId = mysql_real_escape_string($id);
-        mysql_query("DELETE FROM answer WHERE id=$dbId");
+        $userId = mysql_real_escape_string($user);
+        mysql_query("update answer a set a.show=0, a.user_delete=$userId WHERE id=$dbId");
+    }
+    
+        public function undoDelete($id) {
+        $dbId = mysql_real_escape_string($id);
+        mysql_query("update answer a set a.show=1, a.user_delete=NULL WHERE id=$dbId");
     }
      
     public function update( $id, $text) {
