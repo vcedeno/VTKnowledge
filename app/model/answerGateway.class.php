@@ -58,7 +58,7 @@ class AnswerGateway {
         $dbId = ($id != NULL)?"'".mysql_real_escape_string($id)."'":'NULL';
         $dbText = ($text != NULL)?"'".mysql_real_escape_string($text)."'":'NULL';
         
-        mysql_query("update answer set text=$dbText,date=now() where id=$dbId");
+        mysql_query("update answer set old_text=text, text=$dbText, old_date=date, date=now() where id=$dbId");
         
     }
 }

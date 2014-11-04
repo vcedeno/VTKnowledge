@@ -18,7 +18,8 @@ class QuestionController {
      
     private $contactsService = NULL;
     private $contactsService2 = NULL;
-     
+    
+    
     public function __construct() {
         $this->contactsService = new Question();
         $this->contactsService2 = new Topic();
@@ -103,6 +104,9 @@ class QuestionController {
             throw new Exception('Internal error.');
         }
         
+        
+        //include '../view/answer.tpl';
+        
         if ( isset($_POST['form-submitted']) ){
 
         	$text = isset($_POST["answer-text"]) ?   $_POST["answer-text"]  :NULL;
@@ -159,14 +163,49 @@ class QuestionController {
             }
             
         }
+        
+        //Edit an answer
+        if ( isset($_POST['form-ea']) ){
+			$idq = isset($_POST["qid"]) ?   $_POST["qid"]  :NULL;
+        	$ida = isset($_POST["aid"]) ?   $_POST["aid"]  :NULL;
+ 		
+ 		 $answer = $this->contactsService3->getAnswer($ida);
+         $question=$this->contactsService->getQuestion($idq);
+        include '../controller/view_answer.php';
+    
+    }
+        if ( isset($_POST['form-edit-answer']) ){
+			
+			$ida = isset($_POST["editAnswerID"]) ?   $_POST["editAnswerID"]  :NULL;
+			$idq = isset($_POST["qID"]) ?   $_POST["qID"]  :NULL;
+        	$text = isset($_POST["editAnsDesc"]) ?   $_POST["editAnsDesc"]  :NULL;
+            
+        	try {  
+                $this->contactsService3->editAnswer($ida,$text);
+                $answers = $this->contactsService3->getAllAnswers($idq);
+        		$question=$this->contactsService->getQuestion($idq);
+        		$userList = User::loadUsers();
+        		$topics = $this->contactsService2->getAllTopics("name");
+        
+        		include '../view/answer.tpl';
+                return;
+            } catch (ValidationException $e) {
+                $errors = $e->getErrors();
+            }
+              
+        } 
+        	
         $answers = $this->contactsService3->getAllAnswers($id);
         $question=$this->contactsService->getQuestion($id);
         $userList = User::loadUsers();
         $topics = $this->contactsService2->getAllTopics("name");
         
         include '../view/answer.tpl';
-        
+       
+      
     }
+    
+
     
      /*
     public function deleteTopic() {

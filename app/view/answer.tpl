@@ -69,6 +69,7 @@
         	<input type="hidden" name="qid" id="qid" value="<?php print htmlentities($question->id); ?>">
         	<input type="hidden" name="aid" id="aid" value="<?php print htmlentities($answer->id); ?>">
         	<?php if($_SESSION['id']==htmlentities($question->user_id)||$_SESSION['id']==htmlentities($answer->user_id) ||$_SESSION['role_id']=="2"||$_SESSION['role_id']=="3"){ ?>
+        	
 			<input name="form-ea" type="submit" class="btn btn-primary" value="Edit" />
 			<?php if(htmlentities($answer->old_text)!=NULL){ ?>
 			<input name="form-ua" type="submit" class="btn btn-primary" value="Undo" />
