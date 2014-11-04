@@ -43,7 +43,6 @@ class TopicController {
         
        	 	$this->saveTopic();
         }
-
         else{
         
         $op = isset($_GET['op'])?$_GET['op']:NULL;

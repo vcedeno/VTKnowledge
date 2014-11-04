@@ -81,7 +81,7 @@
 
 					</div> 
 					
-						<div class="row">
+						<div class="modal-footer" >
 							<div class="col-sm-10 text-center">	
 							<a class="btn btn-primary" data-dismiss="modal">Cancel</a>
 							<input name="form-delete" type="submit" class="btn btn-danger" value="Delete" />
@@ -89,14 +89,8 @@
 							</div>
 						</div>
 					</form> 
-					<!--<div class="modal-footer">
-						<a class="btn btn-primary" data-dismiss="modal">Cancel</a>
-	
-						<a href="<?= SERVER_PATH ?>topic?op=delete&id=data-id" class="btn btn-danger">Delete</a>
-						<input name="form-delete" type="submit" class="btn btn-danger" value="Delete" />
-					</div> --!>
+
 					
-				<form>
 			</div> 
 		</div> 
 	</div> 

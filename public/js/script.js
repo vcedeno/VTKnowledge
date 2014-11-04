@@ -1,6 +1,8 @@
 /*Our JS file*/
 $(document).ready(function(){
-    
+ 
+
+   
     // Password must be a valid one: at least one number, one lowercase and 
     // one uppercase letter, and at least eight characters.
     $('#pass').on('input', function() {
@@ -62,10 +64,10 @@ $(document).ready(function(){
         }
     });
     
+
     
     //triggered when modal is about to be shown (my #detailsTopic modal)
     $('#detailsTopic').on('shown.bs.modal', function(e) {
- 	
     //get data attributes of the clicked element 
     //populate the textbox
     $('label[for="detTopicID"]').text($(e.relatedTarget).attr('data-id'));
@@ -83,8 +85,17 @@ $(document).ready(function(){
     $('#myid').val(topicID);
     //show warning message before delete specifying the topic ID
     $('label[for="alertTopic"]').text("Are you sure you want to delete the Topic \""+topicName+"\" with ID \""+topicID+"\"?");
-    
 		});
+	
+ 	$('#updatingQuestion').on('show.bs.modal', function(e) {
+    //get data-id attribute of the clicked element 
+    alert("he");
+    var qid = $(e.relatedTarget).attr('data-idq');
+    var qt = $(e.relatedTarget).attr('data-q');
+    
+    $('#qid').val(qid);
+    $('#q').val(qt);
+	});
 
-       
+	
 });

@@ -11,7 +11,7 @@ class AnswerGateway {
             $id = "NULL";
         }
         $dbId =  mysql_real_escape_string($id);
-        $dbres = mysql_query("SELECT * FROM answer where question_id = $dbId");
+        $dbres = mysql_query("SELECT * FROM answer where question_id = $dbId order by date desc");
          
         $answers = array();
         while ( ($obj = mysql_fetch_object($dbres)) != NULL ) {
@@ -42,18 +42,28 @@ class AnswerGateway {
         
     }
      
-    public function delete($id) {
+    public function delete($id,$user) {
         $dbId = mysql_real_escape_string($id);
-        mysql_query("DELETE FROM answer WHERE id=$dbId");
+        $userId = mysql_real_escape_string($user);
+        mysql_query("update answer a set a.show=0, a.user_delete=$userId WHERE id=$dbId");
+    }
+    
+        public function undoDelete($id) {
+        $dbId = mysql_real_escape_string($id);
+        mysql_query("update answer a set a.show=1, a.user_delete=NULL WHERE id=$dbId");
     }
      
-    public function update( $id, $text) {
+    public function update( $id, $text,$user) {
          
         $dbId = ($id != NULL)?"'".mysql_real_escape_string($id)."'":'NULL';
         $dbText = ($text != NULL)?"'".mysql_real_escape_string($text)."'":'NULL';
+        $dbUser = ($user != NULL)?"'".mysql_real_escape_string($user)."'":'NULL';
+        mysql_query("update answer set old_text=text, text=$dbText, old_date=date, date=now(),user_update=$dbUser where id=$dbId");
         
-        mysql_query("update answer set text=$dbText,date=now() where id=$dbId");
-        
+    }
+        public function undoEdit($id) {
+        $dbId = mysql_real_escape_string($id);
+        mysql_query("update answer set text=old_text, old_text=NULL, date=old_date,old_date=NULL, user_update=NULL WHERE id=$dbId");
     }
 }
  

@@ -1,4 +1,4 @@
-<!--Footer--!>
+<!--View the details of a answer and modify it--!>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,24 +22,46 @@
     <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
   </head>
   <body>
-  
-<div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
-	<div class="container">
-		<div class="navbar-text pull-left">
-			<p>2014 VT Knowledge</p>
-		</div> 
-		<div class="navbar-text pull-right">
-			<a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>
-			<a href="#"><i class="fa fa-twitter fa-2x"></i></a>
-			<a href="#"><i class="fa fa-google-plus fa-2x"></i></a>
-		</div> 
+
+  <div class="container">
+  <form method="POST" action="">    
+	<div class="row">
+						<h4>Edit Answer</h4>
+
+						<div>
+            				<!--<span for="editTopicID" class="label label-info">ID:</span>
+            				<label for="editAnswerID"><?php print $answer->id; ?></label><br>--!>
+            				<input type="hidden" id="editAnswerID" name="editAnswerID" value="<?php print $answer->id; ?>" />
+            				<input type="hidden" id="qID" name="qID" value="<?php print $question->id; ?>" />
+        				
+        				</div>
+        				<div>
+            				<span for = "editAnsDesc" class="label label-info">Text:</span>
+            				<textarea class="form-control" id="editAnsDesc" name="editAnsDesc" rows=4><?php print $answer->text; ?>
+            				</textarea><br>
+        				</div>
+
+
+	</div>
+	<div class="col-lg-12" style="text-align:center">  
+	
+	<a href="<?= SERVER_PATH ?>question?op=show&id=<?php print $question->id; ?>" class="btn btn-primary">Cancel</a>
+	<!--<a href="<?= SERVER_PATH ?>new/topic?op=edit&id=<?php print $topic->id; ?>" class="btn btn-primary">Submit</a>--!>
+	<input name="form-edit-answer" type="submit" class="btn btn-primary" value="Submit" />
 	</div> 
-</div> 
+	</form>                
+	</div> 
+	<?php if (isset($_POST['form-edit-answer'])&&empty($_POST["editAnsDesc"])) { ?>
+	
+  	<div class="alert alert-danger" role="alert">You can't leave the answer empty...</div>
+	<?php } ?>
+
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="<?= SERVER_PATH ?>public/js/bootstrap.min.js"></script>
     <script src="<?= SERVER_PATH ?>public/js/script.js"></script>
+
   </body>
 </html>
