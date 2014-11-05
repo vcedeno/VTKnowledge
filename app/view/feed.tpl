@@ -27,34 +27,27 @@
 
 <h1 class="text-center">Home Feed</h1>
 	<div class="row">
-	<div class="col-sm-2">
-	</div>
+		<div class="col-sm-2">
+		</div>
 		<div class="col-sm-8">
-		<?php foreach ($questions as $question): ?>
+		<?php foreach ($events as $event): ?>
 			<div>
-			<a href="<?= SERVER_PATH ?>question?op=show&id=<?php print $question->id; ?>"><h2 class="text-primary"><?php print htmlentities($question->text); ?></h2></a>
-			
-			<a href="<?= SERVER_PATH ?>question?op=show&id=<?php print $question->id; ?>" class="btn btn-danger">View Question</a>
+			<?php foreach ($userList as $user){ if(htmlentities($event->user_id1)==$user->get('id')) print $user->get('user'); }?>
+			<a href="<?= SERVER_PATH ?>question?op=show&id=<?php print $event->data_1; ?>"><?php if(htmlentities($event->event_type_id)==4) print "Post a question to: "; 
+			if(htmlentities($event->event_type_id)==5) print "Answer a question from: ";?>
+			</a>
+			<?php if(htmlentities($event->user_id2)!=NULL)
+			{foreach ($userList as $user){ if(htmlentities($event->user_id2)==$user->get('id')) print $user->get('user'); }}
+			else print ("everyone");?>
 			</div>
 			<p></p>
-			<div>
-            	<label class="label label-info">Posted:</label>
-            	<label><?php $question->date; print htmlentities($question->date); ?></label>
-        	
-            	<label class="label label-info">By User:</label>
-            	<label><?php foreach ($userList as $user){ if(htmlentities($question->user_id)==$user->get('id')) print $user->get('user'); }?></label>
-        	
-            	<label class="label label-info">To User:</label>
-            	<label><?php foreach ($userList as $user){ if(htmlentities($question->user_id1)==$user->get('id')) print $user->get('user'); }?></label>
-        	
-            </div>
 			</br>
 			
 			</br>
 		<?php endforeach; ?>
 		</div>
 		<div class="col-sm-2">
-	</div>
+		</div>
 		
 	</div>
 	</br>

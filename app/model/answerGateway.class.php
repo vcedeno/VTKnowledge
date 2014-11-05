@@ -21,6 +21,21 @@ class AnswerGateway {
         return $answers;
     }
      
+        public function allEvents($id) {
+        if ( !isset($id) ) {
+            $id = "NULL";
+        }
+        $dbId =  mysql_real_escape_string($id);
+        $dbres = mysql_query("select * from event where user_id1=$dbId or user_id2=$dbId");
+         
+        $events = array();
+        while ( ($obj = mysql_fetch_object($dbres)) != NULL ) {
+            $events[] = $obj;
+        }
+         
+        return $events;
+    }
+    
     public function selectById($id) {
         $dbId = mysql_real_escape_string($id);
          
@@ -65,6 +80,12 @@ class AnswerGateway {
         $dbId = mysql_real_escape_string($id);
         mysql_query("update answer set text=old_text, old_text=NULL, date=old_date,old_date=NULL, user_update=NULL WHERE id=$dbId");
     }
+    
+
+    
+    
+    
+    
 }
  
 ?>

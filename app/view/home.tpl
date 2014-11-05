@@ -27,9 +27,9 @@
 
 <h1 class="text-center">Questions</h1>
 	<div class="row">
-	<div class="col-sm-2">
+	<div class="col-sm-1">
 	</div>
-		<div class="col-sm-8">
+		<div class="col-sm-9">
 		<?php foreach ($questions as $question): ?>
 			<div>
 			<a href="<?= SERVER_PATH ?>question?op=show&id=<?php print $question->id; ?>"><h2 class="text-primary"><?php print htmlentities($question->text); ?></h2></a>
@@ -41,12 +41,15 @@
             	<label class="label label-info">Posted:</label>
             	<label><?php $question->date; print htmlentities($question->date); ?></label>
         	
+        		
             	<label class="label label-info">By User:</label>
             	<label><?php foreach ($userList as $user){ if(htmlentities($question->user_id)==$user->get('id')) print $user->get('user'); }?></label>
-        	
+        		
+        		<?php if(htmlentities($question->user_id1)!=NULL){?>
             	<label class="label label-info">To User:</label>
             	<label><?php foreach ($userList as $user){ if(htmlentities($question->user_id1)==$user->get('id')) print $user->get('user'); }?></label>
-        	
+        		<?php }?>
+        		
             	<label class="label label-info">Related Topics:</label>
             	<label class="bg-success"><?php foreach ($topics as $topic){if (htmlentities($topic->id)==htmlentities($question->topic_id)) print htmlentities($topic->name); } ?></label>
             	<label class="bg-warning"><?php foreach ($topics as $topic){if (htmlentities($topic->id)==htmlentities($question->topic_id1)) print htmlentities($topic->name); } ?></label>

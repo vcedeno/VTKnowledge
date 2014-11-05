@@ -116,4 +116,15 @@ public function createNewAnswer($text, $user, $question) {
 		}
 }
 
+	public function allEvents($id) {
+		try {
+		$this->openDb();
+		$res = $this->answerGateway->allEvents($id);
+		return $res;
+		$this->closeDb();
+		} catch (Exception $e) {
+		$this->closeDb();
+		throw $e;
+		}
+}
 }

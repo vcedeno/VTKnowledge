@@ -189,8 +189,8 @@ UNLOCK TABLES;
 
 CREATE TRIGGER post_question AFTER INSERT ON question
   FOR EACH ROW
-  INSERT INTO event (event_type_id,user_id1,user_id2,when_happened)
-  values(4,NEW.user_id,NEW.user_id1,NEW.date) ;
+  INSERT INTO event (event_type_id,user_id1,user_id2,data_1,when_happened)
+  values(4,NEW.user_id,NEW.user_id1,NEW.id, NEW.date) ;
 
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;

@@ -2,7 +2,7 @@
 <?php
 require_once '../global.php';
 
-$pageName = 'Home';
+$pageName = 'Feed';
 
 /*Verify if the user has a session to show login or homepage*/
 if(isset($_SESSION['user'])) {
@@ -11,15 +11,12 @@ if(isset($_SESSION['user'])) {
 	require_once '../view/footer.tpl';
 
 
-	class HomeController {
+	class FeedController {
      
     private $contactsService = NULL;
-    private $contactsService2 = NULL;
-     
+    
     public function __construct() {
-        $this->contactsService = new Question();
-        $this->contactsService2 = new Topic();
-        $this->contactsService3 = new Answer();
+        $this->contactsService = new Answer();
     }
      
     public function redirect($location) {
@@ -28,19 +25,18 @@ if(isset($_SESSION['user'])) {
      
     public function handleRequest() {
  
- 				//load all the questions
-                $questions=$this->contactsService->getAllQuestions("date");
+ 				//load all the events
+        		$events=$this->contactsService->allEvents($_SESSION['id']);
+    
                 //load all the users
                 $userList = User::loadUsers();
-                //load all the topics
-        		$topics = $this->contactsService2->getAllTopics("name");
-        		
+                
 				require_once '../view/feed.tpl';
 	}
 	}
-	$controller3 = new HomeController();
+	$controller4 = new FeedController();
  
-	$controller3->handleRequest();
+	$controller4->handleRequest();
 }
 else
 {
