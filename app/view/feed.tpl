@@ -25,7 +25,7 @@
 
 <div class="container">
 
-<h1 class="text-center">Questions</h1>
+<h1 class="text-center">Home Feed</h1>
 	<div class="row">
 	<div class="col-sm-2">
 	</div>
@@ -47,10 +47,7 @@
             	<label class="label label-info">To User:</label>
             	<label><?php foreach ($userList as $user){ if(htmlentities($question->user_id1)==$user->get('id')) print $user->get('user'); }?></label>
         	
-            	<label class="label label-info">Related Topics:</label>
-            	<label class="bg-success"><?php foreach ($topics as $topic){if (htmlentities($topic->id)==htmlentities($question->topic_id)) print htmlentities($topic->name); } ?></label>
-            	<label class="bg-warning"><?php foreach ($topics as $topic){if (htmlentities($topic->id)==htmlentities($question->topic_id1)) print htmlentities($topic->name); } ?></label>
-        	</div>
+            </div>
 			</br>
 			
 			</br>

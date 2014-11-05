@@ -49,7 +49,8 @@
           if($_SESSION['role_id'] == 3) { ?>
             <li class="<?php if ($path=="/VTKnowledge/users") {echo "active"; } else  {echo "noactive";}?>"><a href="<?= SERVER_PATH ?>users">User list</a></li>  
         <?php } ?>
-			 	<li class="<?php if ($path=="/VTKnowledge/") {echo "active"; } else  {echo "noactive";}?>"><a href="<?= SERVER_PATH ?>">Home</a></li>	 	
+        		<li class="<?php if ($path=="/VTKnowledge") {echo "active"; } else  {echo "noactive";}?>"><a href="<?= SERVER_PATH ?>">Home</a></li>	 	
+			 	<li class="<?php if ($path=="/VTKnowledge/allquestions") {echo "active"; } else  {echo "noactive";}?>"><a href="<?= SERVER_PATH ?>allquestions">All Questions</a></li>	 	
 			 	<li class="<?php if ($path=="/VTKnowledge/question") {echo "active"; } else  {echo "noactive";}?>"><a href="<?= SERVER_PATH ?>question">Ask a question</a></li>
 			 	<li class="<?php if ($path=="/VTKnowledge/topic") {echo "active"; } else  {echo "noactive";}?>"><a href="<?= SERVER_PATH ?>topic">Create a Topic</a></li>
 			 	<!--<?php if(isset($_SESSION['id'])) {?><li> <a href="#"> <?php $arr = explode('@',trim($_SESSION['user']));

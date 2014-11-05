@@ -129,7 +129,7 @@
 
 	<div class="row">
 		<div class="col-sm-10 text-center">	
-			<a href="<?= SERVER_PATH ?>" class="btn btn-primary">Cancel</a>
+			<a href="<?= SERVER_PATH ?>allquestions" class="btn btn-primary">Cancel</a>
 			<input name="form-submitted" type="submit" class="btn btn-primary" value="Post" />
 		</div>
 	</div>
