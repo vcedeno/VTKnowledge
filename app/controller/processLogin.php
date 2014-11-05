@@ -3,7 +3,7 @@
 require_once '../global.php';
 
 $username = $_POST['username'];
-$password = $_POST['pass'];
+$password = $_POST['pass']; 
 
 // get user with this username from database
 $user = User::loadByUsername($username);
