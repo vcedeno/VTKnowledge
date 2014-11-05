@@ -33,8 +33,8 @@
 		<?php foreach ($events as $event): ?>
 			<div>
 			<?php foreach ($userList as $user){ if(htmlentities($event->user_id1)==$user->get('id')) print $user->get('user'); }?>
-			<a href="<?= SERVER_PATH ?>question?op=show&id=<?php print $event->data_1; ?>"><?php if(htmlentities($event->event_type_id)==4) print "Post a question to: "; 
-			if(htmlentities($event->event_type_id)==5) print "Answer a question from: ";?>
+			<a href="<?= SERVER_PATH ?>question?op=show&id=<?php print $event->data_1; ?>"><?php if(htmlentities($event->event_type_id)==4) print "Posted a question to: "; 
+			if(htmlentities($event->event_type_id)==5) print "Answered a question from: ";?>
 			</a>
 			<?php if(htmlentities($event->user_id2)!=NULL)
 			{foreach ($userList as $user){ if(htmlentities($event->user_id2)==$user->get('id')) print $user->get('user'); }}

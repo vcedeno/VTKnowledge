@@ -30,7 +30,7 @@
 <div class="container">
 <h1><?php print htmlentities($question->text); ?>
 <?php if($_SESSION['id']==htmlentities($question->user_id)||$_SESSION['role_id']=="2"||$_SESSION['role_id']=="3"){ ?>
-<a href="#" data-target="#updatingQuestion" data-toggle="modal" class="btn btn-primary" data-idq="<?php print htmlentities($question->id); ?>" data-q="<?php print htmlentities($question->text); ?>">Edit</a>
+<!--<a href="#" data-target="#updatingQuestion" data-toggle="modal" class="btn btn-primary" data-idq="<?php print htmlentities($question->id); ?>" data-q="<?php print htmlentities($question->text); ?>">Edit</a>-->
 <?php } ?>
 </h1>
 
