@@ -31,12 +31,12 @@
 	</div>
 		<div class="col-sm-9">
 		<?php foreach ($questions as $question): ?>
-			<div>
+			<p>
 			<a href="<?= SERVER_PATH ?>question?op=show&id=<?php print $question->id; ?>"><h2 class="text-primary"><?php print htmlentities($question->text); ?></h2></a>
 			
 			<a href="<?= SERVER_PATH ?>question?op=show&id=<?php print $question->id; ?>" class="btn btn-danger">View Question</a>
-			</div>
-			<p></p>
+			
+			</p>
 			<div>
             	<label class="label label-info">Posted:</label>
             	<label><?php $question->date; print htmlentities($question->date); ?></label>
