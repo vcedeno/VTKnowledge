@@ -37,7 +37,7 @@ function renderEvent($event=null) {
     switch($eventTypeID) {
         // first name
         case EventType::getIdFromName('edit_first_name'):
-            $user = AppUser::loadById($event->get('user_1_id'));
+            $user = User::loadById($event->get('user_id1'));
             echo '<li>';
             echo 'Changed their first name from '.$event->get('data_1').' to '.$event->get('data_2').'. ';
             echo '<span class="byline">'.date("M j, g:i a", strtotime($event->get('when_happened'))).'</span>';
@@ -46,7 +46,7 @@ function renderEvent($event=null) {
         
         // last name
         case EventType::getIdFromName('edit_last_name'):
-            $user = AppUser::loadById($event->get('user_1_id'));
+            $user = User::loadById($event->get('user_id1'));
             echo '<li>';
             echo 'Changed their last name from '.$event->get('data_1').' to '.$event->get('data_2').'. ';
             echo '<span class="byline">'.date("M j, g:i a", strtotime($event->get('when_happened'))).'</span>';
