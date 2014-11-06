@@ -1,0 +1,32 @@
+Options -Indexes
+
+RewriteEngine on
+
+# ErrorDocument 404 /app/controller/error.php
+
+
+
+RewriteRule ^$ app/controller/feed.php
+
+RewriteRule ^allquestions/?$ app/controller/home.php
+
+RewriteRule ^question/?$ app/controller/new_question.php
+
+RewriteRule ^view/answer/?$ app/controller/view_answer.php
+
+RewriteRule ^topic/?$ app/controller/new_topic.php
+RewriteRule ^view/topic/?$ app/controller/view_topic.php
+RewriteRule ^new/topic/?$ app/controller/topic_form.php
+
+RewriteRule ^login/?$ app/controller/login.php
+RewriteRule ^login/process/?$ app/controller/processLogin.php
+
+RewriteRule ^register/?$ app/controller/register.php
+RewriteRule ^register/process/?$ app/controller/processRegister.php
+
+
+RewriteRule ^users/?$ app/controller/users.php
+RewriteRule ^users/change_role/?$ app/controller/processChangeUserRole.php
+
+RewriteRule ^profile/(.*)/edit/?$ app/controller/editProfile.php?u=$1
+RewriteRule ^profile/(.*)/?$ app/controller/profile.php?u=$1

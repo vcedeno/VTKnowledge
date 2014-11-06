@@ -73,7 +73,11 @@ $(document).ready(function(){
 <hr />
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <div class="container">
+=======
+<div class="container"> 
+>>>>>>> 4aebdb4d171eb00629fc80127f30fe0793025237
 =======
 <div class="container"> 
 >>>>>>> 4aebdb4d171eb00629fc80127f30fe0793025237
