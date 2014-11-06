@@ -29,7 +29,11 @@ if($user->get('firstName') != $firstName) {
     $e->set('data_1', $oldFirstName);
     $e->set('data_2', $firstName);
     $e->save();
+<<<<<<< HEAD
 }
+=======
+}  
+>>>>>>> c165565aaaf2f8006a32fa1e0b489ef201c26f5f
     
 // last name
 if($user->get('lastName') != $lastName) {
