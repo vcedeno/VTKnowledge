@@ -40,15 +40,15 @@
            
 		<div>
         	<label class="label label-info">Posted:</label>
-        	<label><?php $question->date; print htmlentities($question->date); ?></label>
+        	<label><?php print date("M j, g:i a",strtotime($question->date)); ?></label>
         </div>
         <div>
             <label class="label label-info">By User:</label>
-        	<label><?php foreach ($userList as $user){ if(htmlentities($question->user_id)==$user->get('id')) print $user->get('user'); }?></label>
+        	<a href="<?= SERVER_PATH ?>profile/<?php foreach ($userList as $user){ if(htmlentities($question->user_id)==$user->get('id')) print $user->get('user'); } ?>"><?php foreach ($userList as $user){ if(htmlentities($question->user_id)==$user->get('id')) print $user->get('user'); }?></a>
         </div>
 		<div>
            	<label class="label label-info">To User:</label>
-        	<label><?php foreach ($userList as $user){ if(htmlentities($question->user_id1)==$user->get('id')) print $user->get('user'); }?></label>
+        	<a href="<?= SERVER_PATH ?>profile/<?php foreach ($userList as $user){ if(htmlentities($question->user_id1)==$user->get('id')) print $user->get('user'); } ?>"><?php foreach ($userList as $user){ if(htmlentities($question->user_id1)==$user->get('id')) print $user->get('user'); }?></a>
     	</div>
     	<div>
             <label class="label label-info">Related Topics:</label>
@@ -92,7 +92,7 @@
         </div>
         <div>
         	<label class="label label-info">On:</label>
-        	<label><?php print htmlentities($answer->date); ?></label>
+        	<label><?php print date("M j, g:i a",strtotime($answer->date)); ?></label>
         </div>
         
 	</div>

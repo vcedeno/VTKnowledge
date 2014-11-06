@@ -29,7 +29,7 @@
 	<div class="row">
 	<div class="col-sm-1">
 	</div>
-		<div class="col-sm-9">
+		<div class="col-sm-10">
 		<?php foreach ($questions as $question): ?>
 			<p>
 			<a href="<?= SERVER_PATH ?>question?op=show&id=<?php print $question->id; ?>"><h2 class="text-primary"><?php print htmlentities($question->text); ?></h2></a>
@@ -39,15 +39,15 @@
 			</p>
 			<div>
             	<label class="label label-info">Posted:</label>
-            	<label><?php $question->date; print htmlentities($question->date); ?></label>
+            	<label><?php print date("M j, g:i a",strtotime($question->date)); ?></label>
         	
         		
             	<label class="label label-info">By User:</label>
-            	<label><?php foreach ($userList as $user){ if(htmlentities($question->user_id)==$user->get('id')) print $user->get('user'); }?></label>
+            	<a href="<?= SERVER_PATH ?>profile/<?php foreach ($userList as $user){ if(htmlentities($question->user_id)==$user->get('id')) print $user->get('user'); } ?>"><?php foreach ($userList as $user){ if(htmlentities($question->user_id)==$user->get('id')) print $user->get('user'); }?></a>
         		
         		<?php if(htmlentities($question->user_id1)!=NULL){?>
             	<label class="label label-info">To User:</label>
-            	<label><?php foreach ($userList as $user){ if(htmlentities($question->user_id1)==$user->get('id')) print $user->get('user'); }?></label>
+            	<a href="<?= SERVER_PATH ?>profile/<?php foreach ($userList as $user){ if(htmlentities($question->user_id1)==$user->get('id')) print $user->get('user'); } ?>"><?php foreach ($userList as $user){ if(htmlentities($question->user_id1)==$user->get('id')) print $user->get('user'); }?></a>
         		<?php }?>
         		
             	<label class="label label-info">Related Topics:</label>
@@ -59,7 +59,7 @@
 			</br>
 		<?php endforeach; ?>
 		</div>
-		<div class="col-sm-2">
+		<div class="col-sm-1">
 	</div>
 		
 	</div>

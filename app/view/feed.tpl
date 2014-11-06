@@ -36,9 +36,22 @@
 			<a href="<?= SERVER_PATH ?>question?op=show&id=<?php print $event->data_1; ?>"><?php if(htmlentities($event->event_type_id)==4) print "Posted a question to: "; 
 			if(htmlentities($event->event_type_id)==5) print "Answered a question from: ";?>
 			</a>
-			<?php if(htmlentities($event->user_id2)!=NULL)
-			{foreach ($userList as $user){ if(htmlentities($event->user_id2)==$user->get('id')) print $user->get('user'); }}
-			else print ("everyone");?>
+			<?php if(htmlentities($event->user_id2)!=NULL &&htmlentities($event->event_type_id)==5)
+			{foreach ($userList as $user){ if(htmlentities($event->user_id2)==$user->get('id')) print $user->get('user').". "; }}?>
+			
+			<?php if(htmlentities($event->event_type_id)==1) print "Changed first name from: ".htmlentities($event->data_1)." to ".htmlentities($event->data_2).". ";?> 
+			
+			<?php if(htmlentities($event->event_type_id)==2) print "Changed last name from: ".htmlentities($event->data_1)." to ".htmlentities($event->data_2).". ";?> 
+			
+			<?php if(htmlentities($event->event_type_id)==3) print "Changed interest in topic from : ".htmlentities($event->data_1)." to ".htmlentities($event->data_2).". ";?> 
+			
+		
+			<?php if(htmlentities($event->user_id2)!=NULL&&htmlentities($event->event_type_id)==4)
+			{foreach ($userList as $user){ if(htmlentities($event->user_id2)==$user->get('id')) print $user->get('user').". "; }}?>
+			<?php if(htmlentities($event->user_id2)==NULL&&htmlentities($event->event_type_id)==4)
+			 print ("everyone. ");?>
+			
+			<?php print date("M j, g:i a",strtotime($event->when_happened));?>
 			</div>
 			<p></p>
 			</br>

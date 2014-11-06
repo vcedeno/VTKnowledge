@@ -26,7 +26,7 @@ class AnswerGateway {
             $id = "NULL";
         }
         $dbId =  mysql_real_escape_string($id);
-        $dbres = mysql_query("select * from event where user_id1=$dbId or user_id2=$dbId");
+        $dbres = mysql_query("select * from event where user_id1=$dbId or user_id2=$dbId order by when_happened desc");
          
         $events = array();
         while ( ($obj = mysql_fetch_object($dbres)) != NULL ) {

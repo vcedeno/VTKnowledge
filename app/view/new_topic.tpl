@@ -46,7 +46,7 @@
                 	<td><?php print htmlentities($topic->id); ?></td>
                     <td><?php print htmlentities($topic->name); ?></td>
                     <td><?php print htmlentities($topic->description); ?></td>
-                    <td><?php print htmlentities($topic->date); ?></td>
+                    <td><?php print date("M j, g:i a",strtotime($topic->date)); ?></td>
                    
                     <td><a href="<?= SERVER_PATH ?>topic?op=show&id=<?php print $topic->id; ?>" class="btn btn-primary">Edit</a></td>
                     <td><a href="#deleteTopic" data-toggle="modal" class="btn btn-danger" data-id="<?php print $topic->id; ?>" data-name="<?php print $topic->name; ?>">Delete</a></td>
