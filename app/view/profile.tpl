@@ -72,7 +72,7 @@ $(document).ready(function(){
 
 <hr />
 
-<div class="container">
+<div class="container"> 
     <div class="row">
         <div class="col-md-3">
 
