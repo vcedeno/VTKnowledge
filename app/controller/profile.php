@@ -11,8 +11,11 @@ $user = User::loadByUsername($username);
 
 //$user = User::loadById($username);
 
+
+// All events related to a particular user (with his id)
 $events = Event::loadByUserId($user->get('id'));
 
+// ALL events in event table
 $allEvents = Event::loadEvents();
 
 require_once '../view/header.tpl';
