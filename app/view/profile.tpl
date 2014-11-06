@@ -14,7 +14,7 @@ $(document).ready(function(){
 <?php } ?>
 });
 
-</script> 
+</script>  
 
 <div id="avatar"></div>
 
