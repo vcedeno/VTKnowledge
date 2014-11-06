@@ -72,8 +72,14 @@ foreach($events as $e) {
     renderEvent($e);
 }
 
+<<<<<<< HEAD
 ?>
 </ul>
+=======
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+>>>>>>> parent of 4aebdb4... htaccesss
 
 <hr />
 
