@@ -29,7 +29,7 @@ if($user->get('firstName') != $firstName) {
     $e->set('data_1', $oldFirstName);
     $e->set('data_2', $firstName);
     $e->save();
-} 
+}  
     
 // last name
 if($user->get('lastName') != $lastName) {
