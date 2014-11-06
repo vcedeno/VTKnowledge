@@ -13,6 +13,8 @@ $user = User::loadByUsername($username);
 
 $events = Event::loadByUserId($user->get('id'));
 
+$allEvents = Event::loadEvents();
+
 require_once '../view/header.tpl';
 require_once '../view/profile.tpl';
 require_once '../view/footer.tpl';

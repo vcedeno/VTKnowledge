@@ -74,5 +74,24 @@ class Event extends DbObject {
         return ($events);
         
     }
+
+    // load all events
+    public static function loadEvents() {
+        $query = sprintf(" SELECT * FROM %s order by when_happened desc",
+            self::DB_TABLE
+            );
+        $db = Db::instance();
+        $result = $db->lookup($query);
+
+        if(!mysql_num_rows($result))
+            return null;
+        else {
+            $eventList = array();
+            while($row = mysql_fetch_assoc($result)) {
+                $eventList[] = self::loadById($row['id']);
+            }
+            return ($eventList);
+        }
+    }
     
 }
