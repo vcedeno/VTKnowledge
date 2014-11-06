@@ -30,6 +30,11 @@ $(document).ready(function(){
 
                 <p>Email: <a href="mailto:<?= $user->get('user') ?>"><?= $user->get('user') ?></a></p>
 
+                <p>Description:</p>
+                <p><?= $user->get('description') ?></p>
+
+                <p>Gender: <?= $user->get('gender') ?></p>
+
 
                 <button name="editProfileButton" id="editProfileButton">Edit profile</button>
             </div>
