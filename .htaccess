@@ -28,5 +28,8 @@ RewriteRule ^register/process/?$ app/controller/processRegister.php
 RewriteRule ^users/?$ app/controller/users.php
 RewriteRule ^users/change_role/?$ app/controller/processChangeUserRole.php
 
+
+RewriteRule ^profile/(.*)/change_password/?$ app/controller/changePassword.php?u=$1
+
 RewriteRule ^profile/(.*)/edit/?$ app/controller/editProfile.php?u=$1
 RewriteRule ^profile/(.*)/?$ app/controller/profile.php?u=$1

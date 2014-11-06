@@ -4,19 +4,39 @@ $(document).ready(function(){
    
 <?php if($_SESSION['user'] == $user->get('user')) { ?>
     $('#editProfilePanel').hide();
-    
+    $('#changePasswordPanel').hide();
+
     $('#editProfileButton').click(function(){
         $('#editProfilePanel').show();
         $('input[name="first_name"]').focus();
         $('#profileInfo').hide();
     });
 
+    $('#changePasswordButton').click(function(){
+        $('#changePasswordPanel').show();
+        $('input[name="new_password"]').focus();
+        $('#profileInfo').hide();
+    });
+
+    $('#cancelEditProfile').click(function(event){
+        $('#editProfilePanel').hide();
+        $('#profileInfo').show();
+    });
+
+    $('#cancelChangePassword').click(function(event){
+        $('#changePasswordPanel').hide();
+        $('#profileInfo').show();
+    });
+
+<?php } else {?>
+
+    $('#editProfileButton').hide();
+    $('#changePasswordButton').hide();
+
 <?php } ?>
 });
 
 </script>  
-
-<div id="avatar"></div>
 
 <div class="container">
     <div class="row">
@@ -36,7 +56,9 @@ $(document).ready(function(){
                 <p>Gender: <?= $user->get('gender') ?></p>
 
 
-                <button name="editProfileButton" id="editProfileButton">Edit profile</button>
+                <button class="btn btn-info" name="editProfileButton" id="editProfileButton">Edit profile</button>
+
+                <button class="btn btn-primary" name="changePasswordButton" id="changePasswordButton">Change password</button>
             </div>
         </div>
         <div class="col-md-4">
@@ -57,11 +79,13 @@ $(document).ready(function(){
             <div id="editProfilePanel">
 
                 <form name="form01" method="POST" action="<?= SERVER_PATH ?>profile/<?= $_SESSION['user'] ?>/edit">    
-                    <label>First name: <input type="text" name="first_name" value="<?= $user->get('firstName') ?>" /></label>
+                    <label>First name: <input class="form-control" type="text" name="first_name" value="<?= $user->get('firstName') ?>" required/></label>
 
-                    <label>Last name: <input type="text" name="last_name" value="<?= $user->get('lastName') ?>" /></label>
-                    
-                    <input type="submit" name="submit" value="Save changes" />
+                    <label>Last name: <input class="form-control" type="text" name="last_name" value="<?= $user->get('lastName') ?>" required/></label>
+                    <br />
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default" id="cancelEditProfile">Cancel</button>
+
                 </form>
                 
             </div>
@@ -74,6 +98,40 @@ $(document).ready(function(){
 </div>
 
 <?php } ?>
+
+
+<?php if($_SESSION['user'] == $user->get('user')) { ?>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4">
+        
+            <div id="changePasswordPanel">
+
+                <form name="form02" method="POST" action="<?= SERVER_PATH ?>profile/<?= $_SESSION['user'] ?>/change_password">    
+                    <label>New Password: <input class="form-control" type="password" name="new_password" required/></label>
+                    <br />
+                    <button type="submit" class="btn btn-primary">Save New Password</button>
+                    <button type="button" class="btn btn-default" id="cancelChangePassword">Cancel</button>
+                </form>
+                
+            </div>
+
+        </div>
+        <div class="col-md-4">
+
+        </div>
+    </div>
+</div>
+
+<?php } ?>
+
+
+
+
 
 <hr />
 
