@@ -9,7 +9,7 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link href="<?= SERVER_PATH ?>public/css/custom.css" rel="stylesheet">
+    <link href="<?php echo SERVER_PATH ?>public/css/custom.css" rel="stylesheet">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     
 
@@ -34,7 +34,7 @@
                     }
                     ?>
                 </p>  
-                <form action="<?= SERVER_PATH ?>register/process" method="post" class="form" role="form">
+                <form action="<?php echo SERVER_PATH ?>register/process" method="post" class="form" role="form">
                     
                     <div class="row">
                         <div class="col-xs-6 col-md-6">
@@ -81,6 +81,6 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript" src="<?= SERVER_PATH ?>public/js/script.js"></script>
+    <script type="text/javascript" src="<?php echo SERVER_PATH ?>public/js/script.js"></script>
   </body>
 </html>

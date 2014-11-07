@@ -44,11 +44,11 @@
         </div>
         <div>
             <label class="label label-info">By User:</label>
-        	<a href="<?= SERVER_PATH ?>profile/<?php foreach ($userList as $user){ if(htmlentities($question->user_id)==$user->get('id')) print $user->get('user'); } ?>"><?php foreach ($userList as $user){ if(htmlentities($question->user_id)==$user->get('id')) print $user->get('user'); }?></a>
+        	<a href="<?php echo SERVER_PATH ?>profile/<?php foreach ($userList as $user){ if(htmlentities($question->user_id)==$user->get('id')) print $user->get('user'); } ?>"><?php foreach ($userList as $user){ if(htmlentities($question->user_id)==$user->get('id')) print $user->get('user'); }?></a>
         </div>
 		<div>
            	<label class="label label-info">To User:</label>
-        	<a href="<?= SERVER_PATH ?>profile/<?php foreach ($userList as $user){ if(htmlentities($question->user_id1)==$user->get('id')) print $user->get('user'); } ?>"><?php foreach ($userList as $user){ if(htmlentities($question->user_id1)==$user->get('id')) print $user->get('user'); }?></a>
+        	<a href="<?php echo SERVER_PATH ?>profile/<?php foreach ($userList as $user){ if(htmlentities($question->user_id1)==$user->get('id')) print $user->get('user'); } ?>"><?php foreach ($userList as $user){ if(htmlentities($question->user_id1)==$user->get('id')) print $user->get('user'); }?></a>
     	</div>
     	<div>
             <label class="label label-info">Related Topics:</label>
@@ -129,7 +129,7 @@
 
 	<div class="row">
 		<div class="col-sm-10 text-center">	
-			<a href="<?= SERVER_PATH ?>allquestions" class="btn btn-primary">Cancel</a>
+			<a href="<?php echo SERVER_PATH ?>allquestions" class="btn btn-primary">Cancel</a>
 			<input name="form-submitted" type="submit" class="btn btn-primary" value="Post" />
 		</div>
 	</div>

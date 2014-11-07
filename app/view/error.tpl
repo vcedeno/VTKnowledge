@@ -8,7 +8,7 @@
     <body>
         <p>
             <h1>Opps, Error 404!</h1>
-            <a href="<?= SERVER_PATH ?>">Go to Home</a>
+            <a href="<?php echo SERVER_PATH ?>">Go to Home</a>
         </p>
     </body>
 </html>

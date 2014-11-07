@@ -9,7 +9,7 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link href="<?= SERVER_PATH ?>public/css/custom.css" rel="stylesheet">
+    <link href="<?php echo SERVER_PATH ?>public/css/custom.css" rel="stylesheet">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     
 
@@ -73,7 +73,7 @@
         <div class="modal fade" id="changeUserRole_<?php print $user->get('id');?>" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form class="form-horizontal" role="form" method="POST" action="<?= SERVER_PATH ?>users/change_role/">
+                    <form class="form-horizontal" role="form" method="POST" action="<?php echo SERVER_PATH ?>users/change_role/">
                         <div class="modal-header">
                             <h4>Change User Role</h4>
                         </div>
@@ -124,6 +124,6 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript" src="<?= SERVER_PATH ?>public/js/script.js"></script>
+    <script type="text/javascript" src="<?php echo SERVER_PATH ?>public/js/script.js"></script>
   </body>
 </html>

@@ -78,7 +78,7 @@
 	<p><br></p>
 	<div class="row">
 		<div class="col-sm-10 text-center">	
-			<a href="<?= SERVER_PATH ?>allquestions" class="btn btn-primary">Cancel</a>
+			<a href="<?php echo SERVER_PATH ?>allquestions" class="btn btn-primary">Cancel</a>
 			<input name="form-submitted" type="submit" class="btn btn-primary" value="Post" />
 		</div>
 	</div>

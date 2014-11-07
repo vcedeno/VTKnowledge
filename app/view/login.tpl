@@ -9,7 +9,7 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link href="<?= SERVER_PATH ?>public/css/custom.css" rel="stylesheet">
+    <link href="<?php echo SERVER_PATH ?>public/css/custom.css" rel="stylesheet">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     
 
@@ -32,7 +32,7 @@
                     <h1>VT Knowledge</h1>
                     <p class="welcome">Everything you need to know and want to know about Virginia Tech. 
                     </p>
-                    <a href="<?= SERVER_PATH ?>register" class="btn btn-primary">Sign Up with a VT email address</a>
+                    <a href="<?php echo SERVER_PATH ?>register" class="btn btn-primary">Sign Up with a VT email address</a>
                 </div>
                 
                 <div class="col-md-6 well well-sm">
@@ -50,7 +50,7 @@
                         // }
                         ?>
                     </p>-->   
-                    <form name="form01" method="POST" action="<?= SERVER_PATH ?>login/process" class="form" role="form">
+                    <form name="form01" method="POST" action="<?php echo SERVER_PATH ?>login/process" class="form" role="form">
 
                         <input class="form-control" name="username" placeholder="Your VT Email Address" type="email" required/>
                         <input class="form-control" name="pass" placeholder="Password" type="password" required/>
@@ -71,7 +71,7 @@
             <div class="row text-center">
                 <div class="col-md-6 ">
 
-                    <img src="<?= SERVER_PATH ?>public/img/Q&A4.jpg" alt="q&a" class="thumbnail col-centered">
+                    <img src="<?php echo SERVER_PATH ?>public/img/Q&A4.jpg" alt="q&a" class="thumbnail col-centered">
 
                     <h2>Ask Questions and get Answers</h2>
                     <p  class="welcome">To and from real VT students and faculty members. 
@@ -79,7 +79,7 @@
                     
                 </div>
                 <div class="col-md-6">
-                   <img src="<?= SERVER_PATH ?>public/img/topics.jpeg" alt="topics" class="thumbnail col-centered">
+                   <img src="<?php echo SERVER_PATH ?>public/img/topics.jpeg" alt="topics" class="thumbnail col-centered">
 
                     <h2>Get updates on a variety of Topics</h2>
                     <p class="welcome">Follow topics that interest you, such as classes, dining, VT traditions, housing, and more! You can also follow other users. 
@@ -90,14 +90,14 @@
           
             <div class="row text-center">
                 <div class="col-md-6">
-                    <img src="<?= SERVER_PATH ?>public/img/improve.jpeg" alt="improve" class="thumbnail col-centered">
+                    <img src="<?php echo SERVER_PATH ?>public/img/improve.jpeg" alt="improve" class="thumbnail col-centered">
                     <h2>Improve existing content</h2>
                     <p class="welcome">Provide your own answers, upvote/downvote questions and answers to promote interesting items, and you can even request another user to answer an existing question. 
                     </p>
                     
                 </div>
                 <div class="col-md-6">
-                    <img src="<?= SERVER_PATH ?>public/img/validation.jpeg" alt="validation" class="thumbnail col-centered">
+                    <img src="<?php echo SERVER_PATH ?>public/img/validation.jpeg" alt="validation" class="thumbnail col-centered">
                     <h2>Add validation your profile</h2>
                     <p class="welcome">Add Topics to your profile biography in order to add validation to the content you are writing. You can even create your own Topics! 
                     </p>
@@ -108,7 +108,7 @@
             <br />
           
             <div class="row text-center">
-                    <a href="<?= SERVER_PATH ?>register" class="btn btn-primary">Sign Up with a VT email address</a>
+                    <a href="<?php echo SERVER_PATH ?>register" class="btn btn-primary">Sign Up with a VT email address</a>
            </div>
           
       </div>

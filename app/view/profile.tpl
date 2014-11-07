@@ -80,7 +80,7 @@ $(document).ready(function(){
         
             <div id="editProfilePanel">
 
-                <form name="form01" method="POST" action="<?= SERVER_PATH ?>profile/<?= $_SESSION['user'] ?>/edit">    
+                <form name="form01" method="POST" action="<?php echo SERVER_PATH ?>profile/<?= $_SESSION['user'] ?>/edit">    
                     <label>First name: <input class="form-control" type="text" name="first_name" value="<?= $user->get('firstName') ?>" required/></label>
 
                     <label>Last name: <input class="form-control" type="text" name="last_name" value="<?= $user->get('lastName') ?>" required/></label>
@@ -128,7 +128,7 @@ $(document).ready(function(){
         
             <div id="changePasswordPanel">
 
-                <form name="form02" method="POST" action="<?= SERVER_PATH ?>profile/<?= $_SESSION['user'] ?>/change_password">    
+                <form name="form02" method="POST" action="<?php echo SERVER_PATH ?>profile/<?= $_SESSION['user'] ?>/change_password">    
                     <label>New Password: <input class="form-control" type="password" name="new_password" required/></label>
                     <br />
                     <button type="submit" class="btn btn-primary">Save New Password</button>
