@@ -2,6 +2,8 @@
 
 session_start();
 
+
+
 // get correct login link for navigation menu
 if(isset($_SESSION['user'])) {
     $loggedInUser = $_SESSION['user'];
@@ -49,6 +51,15 @@ function renderEvent($event=null) {
             $user = User::loadById($event->get('user_id1'));
             echo '<li>';
             echo 'Changed their last name from '.$event->get('data_1').' to '.$event->get('data_2').'. ';
+            echo '<span class="byline">'.date("M j, g:i a", strtotime($event->get('when_happened'))).'</span>';
+            echo '</li>';
+            break;
+            
+        // topic
+        case EventType::getIdFromName('edit_topic'):
+            $user = User::loadById($event->get('user_id1'));
+            echo '<li>';
+            echo 'Changed topics of interest. ';
             echo '<span class="byline">'.date("M j, g:i a", strtotime($event->get('when_happened'))).'</span>';
             echo '</li>';
             break;

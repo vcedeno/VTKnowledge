@@ -55,8 +55,8 @@ $(document).ready(function(){
 
                 <p>Gender: <?= $user->get('gender') ?></p>
 
-				<p>Topics of interest: <?php foreach ($topics as $topic){if ($topic->id==$user->get('topic_id')) print $topic->name; }
-				foreach ($topics as $topic){if ($topic->id==$user->get('topic_id1')) print ', '.$topic->name; } ?></p>
+				<p>Topics of interest: <label class="bg-success"><?php foreach ($topics as $topic){if ($topic->id==$user->get('topic_id')) print $topic->name; }?></label>
+				<label class="bg-warning"><?php foreach ($topics as $topic){if ($topic->id==$user->get('topic_id1')) print ' '.$topic->name; } ?></label></p>
 				
                 <button class="btn btn-info" name="editProfileButton" id="editProfileButton">Edit profile</button>
 

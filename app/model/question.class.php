@@ -8,10 +8,10 @@ class Question {
 private $questionGateway    = NULL;
 
 private function openDb() {
-if (!mysql_connect("127.0.0.1", "root", "")) {
+if (!mysql_connect(DB_HOST, DB_USER, DB_PASS)) {
 throw new Exception("Connection to the database server failed!");
 }
-if (!mysql_select_db("mydb")) {
+if (!mysql_select_db(DB_DATABASE)) {
 throw new Exception("No mydb database found on database server.");
 }
 }

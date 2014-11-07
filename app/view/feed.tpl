@@ -43,7 +43,14 @@
 			
 			<?php if(htmlentities($event->event_type_id)==2) print "Changed last name from: ".htmlentities($event->data_1)." to ".htmlentities($event->data_2).". ";?> 
 			
-			<?php if(htmlentities($event->event_type_id)==3) print "Changed interest in topic from : ".htmlentities($event->data_1)." to ".htmlentities($event->data_2).". ";?> 
+			<?php if(htmlentities($event->event_type_id)==3) 
+			{print "Changed interest in topic from : ";
+			foreach ($topics as $topic){if (htmlentities($topic->id)==htmlentities($event->data_1)) 
+			print htmlentities($topic->name); }
+			print " to "; 
+			foreach ($topics as $topic){if (htmlentities($topic->id)==htmlentities($event->data_2)) 
+			print htmlentities($topic->name); } 
+			print".";}?> 
 			
 		
 			<?php if(htmlentities($event->user_id2)!=NULL&&htmlentities($event->event_type_id)==4)

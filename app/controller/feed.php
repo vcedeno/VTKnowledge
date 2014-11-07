@@ -14,9 +14,11 @@ if(isset($_SESSION['user'])) {
 	class FeedController {
      
     private $contactsService = NULL;
+    private $contactsService1 = NULL;
     
     public function __construct() {
         $this->contactsService = new Answer();
+        $this->contactsService1 = new Topic();
     }
      
     public function redirect($location) {
@@ -27,6 +29,10 @@ if(isset($_SESSION['user'])) {
  
  				//load all the events
         		$events=$this->contactsService->allEvents($_SESSION['id']);
+    			
+    			//load all the topics
+        		$topics = $this->contactsService1->getAllTopics("name");
+    
     
                 //load all the users
                 $userList = User::loadUsers();
