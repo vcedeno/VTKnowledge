@@ -1,4 +1,4 @@
-<!--Question Page--!>
+<!--Question Page-->
 <?php
 require_once '../global.php';
 
