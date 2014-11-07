@@ -55,7 +55,9 @@ $(document).ready(function(){
 
                 <p>Gender: <?= $user->get('gender') ?></p>
 
-
+				<p>Topics of interest: <?php foreach ($topics as $topic){if ($topic->id==$user->get('topic_id')) print $topic->name; }
+				foreach ($topics as $topic){if ($topic->id==$user->get('topic_id1')) print ', '.$topic->name; } ?></p>
+				
                 <button class="btn btn-info" name="editProfileButton" id="editProfileButton">Edit profile</button>
 
                 <button class="btn btn-primary" name="changePasswordButton" id="changePasswordButton">Change password</button>
@@ -82,6 +84,21 @@ $(document).ready(function(){
                     <label>First name: <input class="form-control" type="text" name="first_name" value="<?= $user->get('firstName') ?>" required/></label>
 
                     <label>Last name: <input class="form-control" type="text" name="last_name" value="<?= $user->get('lastName') ?>" required/></label>
+                    
+                    			<select name="topic1" class="selectpicker show-tick form-control" data-live-search="true">
+  									
+  									<option value="NULL">No topic</option>
+  									<?php foreach ($topics as $topic): ?>
+  									<option value="<?php echo htmlentities($topic->id); ?>" <?php if($user->get('topic_id')==$topic->id) print "selected"?>><?php echo htmlentities($topic->name); ?></option>
+  									<?php endforeach; ?>
+								</select>
+								
+								<select name="topic2" class="selectpicker show-tick form-control" data-live-search="true">
+  									<option value="NULL">No topic</option>
+  									<?php foreach ($topics as $topic): ?>
+  									<option value="<?php echo htmlentities($topic->id); ?>"<?php if($user->get('topic_id1')==$topic->id) print "selected"?>><?php echo htmlentities($topic->name); ?></option>
+  									<?php endforeach; ?>
+								</select>
                     <br />
                     <button type="submit" class="btn btn-primary">Save changes</button>
                     <button type="button" class="btn btn-default" id="cancelEditProfile">Cancel</button>
