@@ -23,6 +23,25 @@
   <body>
       
     <div class="container">
+
+        <div class="row">
+
+          <div class="col-md-3">
+
+          </div>
+
+          <div class="col-md-6">
+        
+            <p>A <span class="label label-default">registered</span> user is a normal user.</p>
+            <p>A <span class="label label-primary">moderator</span> user is a normal user + can edit items of other users.</p>
+            <p>An <span class="label label-success">admin</span> user is a moderator user + can change roles of other users.</p>
+
+          </div>
+          <div class="col-md-6">
+
+          </div>
+        </div>
+
         <table class="table table-striped">
           <thead>
             <tr>
