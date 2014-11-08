@@ -46,14 +46,14 @@ $(document).ready(function(){
         <div class="col-md-4">
         
             <div id="profileInfo">
-                <h3><?= $user->get('firstName').' '.$user->get('lastName') ?></h3>
+                <h3><?php echo $user->get('firstName').' '.$user->get('lastName'); ?></h3>
 
-                <p>Email: <a href="mailto:<?= $user->get('user') ?>"><?= $user->get('user') ?></a></p>
+                <p>Email: <a href="mailto:<?php echo $user->get('user'); ?>"><?php echo $user->get('user'); ?></a></p>
 
                 <p>Description:</p>
-                <p><?= $user->get('description') ?></p>
+                <p><?php echo $user->get('description'); ?></p>
 
-                <p>Gender: <?= $user->get('gender') ?></p>
+                <p>Gender: <?php echo $user->get('gender'); ?></p>
 
 				<p>Topics of interest: <label class="bg-success"><?php foreach ($topics as $topic){if ($topic->id==$user->get('topic_id')) print $topic->name; }?></label>
 				<label class="bg-warning"><?php foreach ($topics as $topic){if ($topic->id==$user->get('topic_id1')) print ' '.$topic->name; } ?></label></p>
@@ -80,10 +80,10 @@ $(document).ready(function(){
         
             <div id="editProfilePanel">
 
-                <form name="form01" method="POST" action="<?php echo SERVER_PATH ?>profile/<?= $_SESSION['user'] ?>/edit">    
-                    <label>First name: <input class="form-control" type="text" name="first_name" value="<?= $user->get('firstName') ?>" required/></label>
+                <form name="form01" method="POST" action="<?php echo SERVER_PATH ?>profile/<?php echo $_SESSION['user']; ?>/edit">    
+                    <label>First name: <input class="form-control" type="text" name="first_name" value="<?php echo $user->get('firstName'); ?>" required/></label>
 
-                    <label>Last name: <input class="form-control" type="text" name="last_name" value="<?= $user->get('lastName') ?>" required/></label>
+                    <label>Last name: <input class="form-control" type="text" name="last_name" value="<?php echo $user->get('lastName'); ?>" required/></label>
                     
                     			<select name="topic1" class="selectpicker show-tick form-control" data-live-search="true">
   									
@@ -128,7 +128,7 @@ $(document).ready(function(){
         
             <div id="changePasswordPanel">
 
-                <form name="form02" method="POST" action="<?php echo SERVER_PATH ?>profile/<?= $_SESSION['user'] ?>/change_password">    
+                <form name="form02" method="POST" action="<?php echo SERVER_PATH ?>profile/<?php echo $_SESSION['user']; ?>/change_password">    
                     <label>New Password: <input class="form-control" type="password" name="new_password" required/></label>
                     <br />
                     <button type="submit" class="btn btn-primary">Save New Password</button>
