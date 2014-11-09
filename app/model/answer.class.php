@@ -7,17 +7,19 @@ class Answer {
 
 private $answerGateway    = NULL;
 
+
 private function openDb() {
-if (!mysql_connect(DB_HOST, DB_USER, DB_PASS)) {
+$link=mysqli_connect(DB_HOST, DB_USER, DB_PASS,DB_DATABASE);
+if (mysqli_connect_errno()) {
 throw new Exception("Connection to the database server failed!");
 }
-if (!mysql_select_db(DB_DATABASE)) {
-throw new Exception("No mydb database found on database server.");
-}
+//if (!mysql_select_db(DB_DATABASE)) {
+//throw new Exception("No mydb database found on database server.");
+//}
 }
 
 private function closeDb() {
-mysql_close();
+mysqli_close(mysqli_connect(DB_HOST, DB_USER, DB_PASS,DB_DATABASE));
 }
 
 public function __construct() {
@@ -27,7 +29,7 @@ $this->answerGateway = new answerGateway();
 public function getAllAnswers($id) {
 		try {
 				$this->openDb();
-				$res = $this->answerGateway->selectAll($id);
+				$res = $this->answerGateway->selectAll($id,mysqli_connect(DB_HOST, DB_USER, DB_PASS,DB_DATABASE));
 				$this->closeDb();
 				return $res;
 				} catch (Exception $e) {
@@ -39,14 +41,14 @@ public function getAllAnswers($id) {
 public function getAnswer($id) {
 		try {
 				$this->openDb();
-				$res = $this->answerGateway->selectById($id);
+				$res = $this->answerGateway->selectById($id,mysqli_connect(DB_HOST, DB_USER, DB_PASS,DB_DATABASE));
 				$this->closeDb();
 				return $res;
 				} catch (Exception $e) {
 				$this->closeDb();
 				throw $e;
 				}
-				return $this->answerGateway->find($id);
+				return $this->answerGateway->find($id,mysqli_connect(DB_HOST, DB_USER, DB_PASS,DB_DATABASE));
 }
 
 private function validateQuestionParams( $text, $user, $question) {
@@ -65,7 +67,7 @@ public function createNewAnswer($text, $user, $question) {
 	try {
 			$this->openDb();
 			$this->validateQuestionParams($text, $user, $question);
-			$res = $this->answerGateway->insert($text, $user, $question);
+			$res = $this->answerGateway->insert($text, $user, $question,mysqli_connect(DB_HOST, DB_USER, DB_PASS,DB_DATABASE));
 			$this->closeDb();
 			return $res;
 		} catch (Exception $e) {
@@ -77,7 +79,7 @@ public function createNewAnswer($text, $user, $question) {
 	public function deleteAnswer( $id,$user ) {
 		try {
 		$this->openDb();
-		$res = $this->answerGateway->delete($id,$user);
+		$res = $this->answerGateway->delete($id,$user,mysqli_connect(DB_HOST, DB_USER, DB_PASS,DB_DATABASE));
 		$this->closeDb();
 		} catch (Exception $e) {
 		$this->closeDb();
@@ -87,7 +89,7 @@ public function createNewAnswer($text, $user, $question) {
 	public function undoDelete($id) {
 		try {
 		$this->openDb();
-		$res = $this->answerGateway->undoDelete($id);
+		$res = $this->answerGateway->undoDelete($id,mysqli_connect(DB_HOST, DB_USER, DB_PASS,DB_DATABASE));
 		$this->closeDb();
 		} catch (Exception $e) {
 		$this->closeDb();
@@ -97,7 +99,7 @@ public function createNewAnswer($text, $user, $question) {
 	public function editAnswer( $id, $text,$user) {
 		try {
 		$this->openDb();
-		$res = $this->answerGateway->update($id, $text,$user);
+		$res = $this->answerGateway->update($id, $text,$user,mysqli_connect(DB_HOST, DB_USER, DB_PASS,DB_DATABASE));
 		$this->closeDb();
 		} catch (Exception $e) {
 		$this->closeDb();
@@ -108,7 +110,7 @@ public function createNewAnswer($text, $user, $question) {
 	public function undoEdit($id) {
 		try {
 		$this->openDb();
-		$res = $this->answerGateway->undoEdit($id);
+		$res = $this->answerGateway->undoEdit($id,mysqli_connect(DB_HOST, DB_USER, DB_PASS,DB_DATABASE));
 		$this->closeDb();
 		} catch (Exception $e) {
 		$this->closeDb();
@@ -119,7 +121,7 @@ public function createNewAnswer($text, $user, $question) {
 	public function allEvents($id) {
 		try {
 		$this->openDb();
-		$res = $this->answerGateway->allEvents($id);
+		$res = $this->answerGateway->allEvents($id,mysqli_connect(DB_HOST, DB_USER, DB_PASS,DB_DATABASE));
 		return $res;
 		$this->closeDb();
 		} catch (Exception $e) {

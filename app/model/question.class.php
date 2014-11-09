@@ -8,16 +8,17 @@ class Question {
 private $questionGateway    = NULL;
 
 private function openDb() {
-if (!mysql_connect(DB_HOST, DB_USER, DB_PASS)) {
+$link=mysqli_connect(DB_HOST, DB_USER, DB_PASS,DB_DATABASE);
+if (mysqli_connect_errno()) {
 throw new Exception("Connection to the database server failed!");
 }
-if (!mysql_select_db(DB_DATABASE)) {
-throw new Exception("No mydb database found on database server.");
-}
+//if (!mysql_select_db(DB_DATABASE)) {
+//throw new Exception("No mydb database found on database server.");
+//}
 }
 
 private function closeDb() {
-mysql_close();
+mysqli_close(mysqli_connect(DB_HOST, DB_USER, DB_PASS,DB_DATABASE));
 }
 
 public function __construct() {
@@ -27,7 +28,7 @@ $this->questionGateway = new questionGateway();
 public function getAllQuestions($order) {
 		try {
 				$this->openDb();
-				$res = $this->questionGateway->selectAll($order);
+				$res = $this->questionGateway->selectAll($order,mysqli_connect(DB_HOST, DB_USER, DB_PASS,DB_DATABASE));
 				$this->closeDb();
 				return $res;
 				} catch (Exception $e) {
@@ -39,14 +40,14 @@ public function getAllQuestions($order) {
 public function getQuestion($id) {
 		try {
 				$this->openDb();
-				$res = $this->questionGateway->selectById($id);
+				$res = $this->questionGateway->selectById($id,mysqli_connect(DB_HOST, DB_USER, DB_PASS,DB_DATABASE));
 				$this->closeDb();
 				return $res;
 				} catch (Exception $e) {
 				$this->closeDb();
 				throw $e;
 				}
-				return $this->questionGateway->find($id);
+				return $this->questionGateway->find($id,mysqli_connect(DB_HOST, DB_USER, DB_PASS,DB_DATABASE));
 }
 
 private function validateQuestionParams( $text, $user1,$user2,$topic1,$topic2) {
@@ -67,7 +68,7 @@ public function createNewQuestion($text, $user1,$user2,$topic1,$topic2) {
 	try {
 			$this->openDb();
 			$this->validateQuestionParams($text, $user1,$user2,$topic1,$topic2);
-			$res = $this->questionGateway->insert($text, $user1,$user2,$topic1,$topic2);
+			$res = $this->questionGateway->insert($text, $user1,$user2,$topic1,$topic2,mysqli_connect(DB_HOST, DB_USER, DB_PASS,DB_DATABASE));
 			$this->closeDb();
 			return $res;
 		} catch (Exception $e) {
@@ -79,7 +80,7 @@ public function createNewQuestion($text, $user1,$user2,$topic1,$topic2) {
 	public function deleteQuestion( $id ) {
 		try {
 		$this->openDb();
-		$res = $this->questionGateway->delete($id);
+		$res = $this->questionGateway->delete($id,mysqli_connect(DB_HOST, DB_USER, DB_PASS,DB_DATABASE));
 		$this->closeDb();
 		} catch (Exception $e) {
 		$this->closeDb();
@@ -90,7 +91,7 @@ public function createNewQuestion($text, $user1,$user2,$topic1,$topic2) {
 	public function editQuestion( $id, $name, $desc ) {
 		try {
 		$this->openDb();
-		$res = $this->questionGateway->update($id, $name, $desc);
+		$res = $this->questionGateway->update($id, $name, $desc,mysqli_connect(DB_HOST, DB_USER, DB_PASS,DB_DATABASE));
 		$this->closeDb();
 		} catch (Exception $e) {
 		$this->closeDb();

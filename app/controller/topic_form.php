@@ -5,8 +5,6 @@ require_once '../global.php';
 
 $pageName = 'New Topic';
 
-require_once '../model/topic.class.php';
-
 require_once '../view/header.tpl';
 
 require_once '../view/topic_form.tpl';

@@ -7,4 +7,5 @@ require_once 'view/viewHelpers.php';
 
 function __autoload($class_name) {
 	require_once 'model/'.$class_name.'.class.php';
+	//include("model/$class_name.class.php");
 }

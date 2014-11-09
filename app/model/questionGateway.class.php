@@ -6,56 +6,56 @@
  */
 class QuestionGateway {
      
-    public function selectAll($order) {
+    public function selectAll($order,$link) {
         if ( !isset($order) ) {
             $order = "name";
         }
-        $dbOrder =  mysql_real_escape_string($order);
-        $dbres = mysql_query("SELECT * FROM question ORDER BY $dbOrder DESC");
+        $dbOrder =  mysqli_real_escape_string($link,$order);
+        $dbres = mysqli_query($link,"SELECT * FROM question ORDER BY $dbOrder DESC");
          
         $topics = array();
-        while ( ($obj = mysql_fetch_object($dbres)) != NULL ) {
+        while ( ($obj = mysqli_fetch_object($dbres)) != NULL ) {
             $topics[] = $obj;
         }
          
         return $topics;
     }
      
-    public function selectById($id) {
-        $dbId = mysql_real_escape_string($id);
+    public function selectById($id,$link) {
+        $dbId = mysqli_real_escape_string($link,$id);
          
-        $dbres = mysql_query("SELECT * FROM question WHERE id=$dbId");
+        $dbres = mysqli_query($link,"SELECT * FROM question WHERE id=$dbId");
          
-        return mysql_fetch_object($dbres);
+        return mysqli_fetch_object($dbres);
          
     }
      
-    public function insert($text, $user1,$user2,$topic1,$topic2) {
+    public function insert($text, $user1,$user2,$topic1,$topic2,$link) {
          
-        $dbText = ($text != NULL)?"'".mysql_real_escape_string($text)."'":'NULL';
-        $dbUser1 = ($user1 != NULL)?"'".mysql_real_escape_string($user1)."'":'NULL';
-		$dbUser2 = ($user2 != NULL)?"'".mysql_real_escape_string($user2)."'":'NULL';
-        $dbTopic1 = ($topic1 != NULL)?"'".mysql_real_escape_string($topic1)."'":'NULL';
-        $dbTopic2 = ($topic2 != NULL)?"'".mysql_real_escape_string($topic2)."'":'NULL';
+        $dbText = ($text != NULL)?"'".mysqli_real_escape_string($link,$text)."'":'NULL';
+        $dbUser1 = ($user1 != NULL)?"'".mysqli_real_escape_string($link,$user1)."'":'NULL';
+		$dbUser2 = ($user2 != NULL)?"'".mysqli_real_escape_string($link,$user2)."'":'NULL';
+        $dbTopic1 = ($topic1 != NULL)?"'".mysqli_real_escape_string($link,$topic1)."'":'NULL';
+        $dbTopic2 = ($topic2 != NULL)?"'".mysqli_real_escape_string($link,$topic2)."'":'NULL';
         
         
-        mysql_query("INSERT INTO question (text,date,vote,user_id,user_id1, topic_id,topic_id1) VALUES ($dbText,now(),0,$dbUser1,$dbUser2,$dbTopic1,$dbTopic2)");
-        return mysql_insert_id();
+        mysqli_query($link,"INSERT INTO question (text,date,vote,user_id,user_id1, topic_id,topic_id1) VALUES ($dbText,now(),0,$dbUser1,$dbUser2,$dbTopic1,$dbTopic2)");
+        return mysqli_insert_id($link);
         
     }
      
-    public function delete($id) {
-        $dbId = mysql_real_escape_string($id);
-        mysql_query("DELETE FROM question WHERE id=$dbId");
+    public function delete($id,$link) {
+        $dbId = mysqli_real_escape_string($link,$id);
+        mysqli_query($link,"DELETE FROM question WHERE id=$dbId");
     }
      
-    public function update( $id, $name, $desc ) {
+    public function update( $id, $name, $desc,$link) {
          
-        $dbId = ($id != NULL)?"'".mysql_real_escape_string($id)."'":'NULL';
-        $dbName = ($name != NULL)?"'".mysql_real_escape_string($name)."'":'NULL';
-        $dbDesc = ($desc != NULL)?"'".mysql_real_escape_string($desc)."'":'NULL';
+        $dbId = ($id != NULL)?"'".mysqli_real_escape_string($link,$id)."'":'NULL';
+        $dbName = ($name != NULL)?"'".mysqli_real_escape_string($link,$name)."'":'NULL';
+        $dbDesc = ($desc != NULL)?"'".mysqli_real_escape_string($link,$desc)."'":'NULL';
 		
-        mysql_query("update question set name=$dbName, description=$dbDesc,date=now() where id=$dbId");
+        mysqli_query($link,"update question set name=$dbName, description=$dbDesc,date=now() where id=$dbId");
         
     }
 }

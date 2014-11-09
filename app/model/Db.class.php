@@ -11,10 +11,10 @@ class Db {
 		$username = DB_USER;
 		$password = DB_PASS;
 
-		$conn = mysql_connect($host, $username, $password)
+		$conn = mysqli_connect($host, $username, $password,$database)
 			or die ('Error: Could not connect to MySql database');
 
-		mysql_select_db($database);
+		//mysqli_select_db($database);
 	}
 
 	public static function instance() {
@@ -36,10 +36,10 @@ class Db {
 		//echo $query;
 		$result = $this->lookup($query);
 
-		if(!mysql_num_rows($result)) {
+		if(!mysqli_num_rows($result)) {
 			return null;
 		} else {
-			$row = mysql_fetch_assoc($result);
+			$row = mysqli_fetch_assoc($result);
 			$obj = new $class_name($row);
 			return $obj;
 		}	
@@ -70,7 +70,7 @@ class Db {
 	// Formats a string for use in SQL queries.
 	// Use this on ANY string that comes from external sources (i.e. the user).
 	public function quoteString($s) {
-		return "'" . mysql_real_escape_string($s) . "'";
+		return "'" . mysqli_real_escape_string(mysqli_connect(DB_HOST, DB_USER, DB_PASS,DB_DATABASE),$s) . "'";
 	}
 	
 	// Formats a date (i.e. UNIX timestamp) for use in SQL queries.
@@ -80,7 +80,7 @@ class Db {
 
 	//Query the database for information
 	public function lookup($query) {	
-		$result = mysql_query($query);
+		$result = mysqli_query(mysqli_connect(DB_HOST, DB_USER, DB_PASS,DB_DATABASE),$query);
 		if(!$result)
 			die('Invalid query: ' . $query);
 		return ($result);			
@@ -88,9 +88,9 @@ class Db {
 
 	//Execute operations like UPDATE or INSERT
 	public function execute($query) {		
-		$ex = mysql_query($query);
+		$ex = mysqli_query(mysqli_connect(DB_HOST, DB_USER, DB_PASS,DB_DATABASE),$query);
 		if(!$ex)
-			die ('Query failed:' . mysql_error());
+			die ('Query failed:' . mysqli_error());
 	}
 	
 	//Build an INSERT query.  Mostly here to make things neater elsewhere.
@@ -153,11 +153,11 @@ class Db {
 	//RETURN -> The ID of the last inserted row
 	public function getLastInsertID() {
 		$query = "SELECT LAST_INSERT_ID() AS id";
-		$result = mysql_query($query);
+		$result = mysqli_query(mysqli_connect(DB_HOST, DB_USER, DB_PASS,DB_DATABASE),$query);
 		if(!$result)
 			die('Invalid query.');
 			
-		$row = mysql_fetch_assoc($result);
+		$row = mysqli_fetch_assoc(mysqli_connect(DB_HOST, DB_USER, DB_PASS,DB_DATABASE),$result);
 		return ($row['id']);
 	}
 

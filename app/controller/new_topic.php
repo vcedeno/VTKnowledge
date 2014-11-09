@@ -2,7 +2,7 @@
 <?php
 require_once '../global.php';
 
-require_once '../model/topic.class.php';
+
 
 $pageName = 'New Topic';
 

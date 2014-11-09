@@ -6,59 +6,59 @@
  */
 class TopicGateway {
      
-    public function selectAll($order) {
+    public function selectAll($order,$link) {
         if ( !isset($order) ) {
             $order = "name";
         }
-        $dbOrder =  mysql_real_escape_string($order);
+        $dbOrder =  mysqli_real_escape_string($link,$order);
         //return the topics ordered in asc by $order
         
-        $dbres = mysql_query("SELECT * FROM topic ORDER BY $dbOrder ASC");
+        $dbres = mysqli_query($link,"SELECT * FROM topic ORDER BY $dbOrder ASC");
          
         $topics = array();
-        while ( ($obj = mysql_fetch_object($dbres)) != NULL ) {
+        while ( ($obj = mysqli_fetch_object($dbres)) != NULL ) {
             $topics[] = $obj;
         }
          
         return $topics;
     }
      
-    public function selectById($id) {
-        $dbId = mysql_real_escape_string($id);
+    public function selectById($id,$link) {
+        $dbId = mysqli_real_escape_string($link,$id);
          
-        $dbres = mysql_query("SELECT * FROM topic WHERE id=$dbId");
+        $dbres = mysqli_query($link,"SELECT * FROM topic WHERE id=$dbId");
          
-        return mysql_fetch_object($dbres);
+        return mysqli_fetch_object($dbres);
          
     }
      
-    public function insert( $name, $desc ) {
+    public function insert( $name, $desc,$link ) {
          
-        $dbName = ($name != NULL)?"'".mysql_real_escape_string($name)."'":'NULL';
-        $dbDesc = ($desc != NULL)?"'".mysql_real_escape_string($desc)."'":'NULL';
+        $dbName = ($name != NULL)?"'".mysqli_real_escape_string($link,$name)."'":'NULL';
+        $dbDesc = ($desc != NULL)?"'".mysqli_real_escape_string($link,$desc)."'":'NULL';
 		
-        mysql_query("INSERT INTO topic (name, description,date) VALUES ($dbName, $dbDesc, now())");
-        return mysql_insert_id();
+        mysqli_query($link,"INSERT INTO topic (name, description,date) VALUES ($dbName, $dbDesc, now())");
+        return mysqli_insert_id($link);
         
     }
      
-    public function delete($id) {
-        $dbId = mysql_real_escape_string($id);
-        mysql_query("DELETE FROM topic WHERE id=$dbId");
-        if (mysql_affected_rows() <= 0) {
+    public function delete($id,$link) {
+        $dbId = mysqli_real_escape_string($link,$id);
+        mysqli_query($link,"DELETE FROM topic WHERE id=$dbId");
+        if (mysqli_affected_rows($link) <= 0) {
     		echo "You can't delete a topic being referenced by a User or Question.<br><br>";
 		}
 
 
     }
      
-    public function update( $id, $name, $desc ) {
+    public function update( $id, $name, $desc,$link ) {
          
-        $dbId = ($id != NULL)?"'".mysql_real_escape_string($id)."'":'NULL';
-        $dbName = ($name != NULL)?"'".mysql_real_escape_string($name)."'":'NULL';
-        $dbDesc = ($desc != NULL)?"'".mysql_real_escape_string($desc)."'":'NULL';
+        $dbId = ($id != NULL)?"'".mysqli_real_escape_string($link,$id)."'":'NULL';
+        $dbName = ($name != NULL)?"'".mysqli_real_escape_string($link,$name)."'":'NULL';
+        $dbDesc = ($desc != NULL)?"'".mysqli_real_escape_string($link,$desc)."'":'NULL';
 		
-        mysql_query("update topic set name=$dbName, description=$dbDesc,date=now() where id=$dbId");
+        mysqli_query($link,"update topic set name=$dbName, description=$dbDesc,date=now() where id=$dbId");
         
     }
 }

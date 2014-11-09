@@ -47,10 +47,10 @@ class EventType extends DbObject {
                 $name
                     );
         $result = $db->lookup($q);
-        if(!mysql_num_rows($result)) {
+        if(!mysqli_num_rows($result)) {
             return null;
         } else {
-            $row = mysql_fetch_assoc($result);
+            $row = mysqli_fetch_assoc($result);
             return ($row['id']);
         }
     }

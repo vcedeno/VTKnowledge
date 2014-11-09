@@ -47,10 +47,10 @@ class Role extends DbObject {
                 $name
                     );
         $result = $db->lookup($q);
-        if(!mysql_num_rows($result)) {
+        if(!mysqli_num_rows($result)) {
             return null;
         } else {
-            $row = mysql_fetch_assoc($result);
+            $row = mysqli_fetch_assoc($result);
             return ($row['id']);
         }
     }
@@ -63,11 +63,11 @@ class Role extends DbObject {
         $db = Db::instance();
         $result = $db->lookup($query);
 
-        if(!mysql_num_rows($result))
+        if(!mysqli_num_rows($result))
             return null;
         else {
             $roleList = array();
-            while($row = mysql_fetch_assoc($result)) {
+            while($row = mysqli_fetch_assoc($result)) {
                 $roleList[] = self::loadById($row['id']);
             }
             return ($roleList);
