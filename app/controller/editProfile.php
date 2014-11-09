@@ -9,6 +9,7 @@ $username = $_GET['u'];
 // POST variables
 $firstName = $_POST['first_name'];
 $lastName = $_POST['last_name'];
+$description = $_POST['description'];
 $topic1 = $_POST['topic1'];
 $topic2 = $_POST['topic2'];
 
@@ -47,6 +48,9 @@ if($user->get('lastName') != $lastName) {
     $e->set('data_2', $lastName);
     $e->save();
 }
+
+// description
+$user->set('description', $description); 
 
 // topic 1
 if($user->get('topic_id') != $topic1) {
