@@ -48,14 +48,14 @@ $(document).ready(function(){
             <div id="profileInfo">
                 <h3><?php echo $user->get('firstName').' '.$user->get('lastName'); ?></h3>
 
-                <p>Email: <a href="mailto:<?php echo $user->get('user'); ?>"><?php echo $user->get('user'); ?></a></p>
+                <p><strong>Email: </strong><a href="mailto:<?php echo $user->get('user'); ?>"><?php echo $user->get('user'); ?></a></p>
 
-                <p>Description:</p>
+                <p><strong>Description: </strong></p>
                 <p><?php echo $user->get('description'); ?></p>
 
-                <p>Gender: <?php echo $user->get('gender'); ?></p>
+                <p><strong>Gender: </strong><?php echo $user->get('gender'); ?></p>
 
-				<p>Topics of interest: <label class="bg-success"><?php foreach ($topics as $topic){if ($topic->id==$user->get('topic_id')) print $topic->name; }?></label>
+				<p><strong>Topics of interest: </strong><label class="bg-success"><?php foreach ($topics as $topic){if ($topic->id==$user->get('topic_id')) print $topic->name; }?></label>
 				<label class="bg-warning"><?php foreach ($topics as $topic){if ($topic->id==$user->get('topic_id1')) print ' '.$topic->name; } ?></label></p>
 				
                 <button class="btn btn-info" name="editProfileButton" id="editProfileButton">Edit profile</button>
@@ -84,6 +84,8 @@ $(document).ready(function(){
                     <label>First name: <input class="form-control" type="text" name="first_name" value="<?php echo $user->get('firstName'); ?>" required/></label>
 
                     <label>Last name: <input class="form-control" type="text" name="last_name" value="<?php echo $user->get('lastName'); ?>" required/></label>
+
+                    <label>Description: <textarea class="form-control" name="description" rows="4" cols="35" required><?php echo $user->get('description'); ?></textarea></label>
                     
                     			<select name="topic1" class="selectpicker show-tick form-control" data-live-search="true">
   									

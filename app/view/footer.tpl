@@ -1,4 +1,4 @@
-<!--Footer--!>
+<!--Footer-->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -29,9 +29,7 @@
 			<p>2014 VT Knowledge</p>
 		</div> 
 		<div class="navbar-text pull-right">
-			<a href="#"><i class="fa fa-facebook-square fa-2x"></i></a>
-			<a href="#"><i class="fa fa-twitter fa-2x"></i></a>
-			<a href="#"><i class="fa fa-google-plus fa-2x"></i></a>
+
 		</div> 
 	</div> 
 </div> 

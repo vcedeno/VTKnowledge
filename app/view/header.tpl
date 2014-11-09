@@ -55,7 +55,7 @@
 			 	<li class="<?php if ($path=="/VTKnowledge/topic") {echo "active"; } else  {echo "noactive";}?>"><a href="<?php echo SERVER_PATH ?>topic">Create a Topic</a></li>
 			 	<!--<?php if(isset($_SESSION['id'])) {?><li> <a href="#"> <?php $arr = explode('@',trim($_SESSION['user']));
         print "Logged in as ".$arr[0];?></a></li><li> <a href="<?php echo SERVER_PATH ?>login">Log out</a></li><?php }?>--!>
-			<li> <a href="<?php echo SERVER_PATH ?>profile/<?php echo $_SESSION['user']; ?>"><?php if(isset($_SESSION['id'])) {$arr = explode('@',trim($_SESSION['user']));
+			<li> <a href="<?php echo SERVER_PATH ?>profile/<?php echo $_SESSION['user'] ?>"><?php if(isset($_SESSION['id'])) {$arr = explode('@',trim($_SESSION['user']));
         print "Logged in as ".$arr[0];}?></a></li>
         <li> <a href="<?php echo SERVER_PATH ?>login">Log out</a></li>
 			</ul> 
