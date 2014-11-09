@@ -60,18 +60,19 @@ VALUES
 /*!40000 ALTER TABLE `answer` ENABLE KEYS */;
 UNLOCK TABLES;
 
-DELIMITER ;;
-/*!50003 SET SESSION SQL_MODE="STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION" */;;
-/*!50003 CREATE */ /*!50017 DEFINER=`root`@`localhost` */ /*!50003 TRIGGER `post_answer` AFTER INSERT ON `answer` FOR EACH ROW BEGIN
+delimiter |
+CREATE TRIGGER post_answer AFTER INSERT ON answer
+  FOR EACH ROW
+BEGIN
 DECLARE user integer;
 
   SET @user:=(select user_id from question where id= NEW.question_id);
   INSERT INTO event (event_type_id,user_id1,user_id2,data_1,when_happened)
   values(5,NEW.user_id,@user,NEW.question_id,NEW.date);
 
-END */;;
-DELIMITER ;
-/*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE */;
+END
+|
+delimiter ;
 
 
 # Dump of table event
@@ -174,16 +175,11 @@ VALUES
 	(19,'What times do people play bball at the gym?','2014-10-13 17:03:22',0,6,4,15,NULL,1),
 	(20,'Where do I take a computer for repair?','2014-10-13 18:30:05',0,5,6,NULL,NULL,1);
 
-/*!40000 ALTER TABLE `question` ENABLE KEYS */;
+CREATE TRIGGER post_question AFTER INSERT ON question
+  FOR EACH ROW
+  INSERT INTO event (event_type_id,user_id1,user_id2,data_1,when_happened)
+  values(4,NEW.user_id,NEW.user_id1,NEW.id, NEW.date) ;
 UNLOCK TABLES;
-
-DELIMITER ;;
-/*!50003 SET SESSION SQL_MODE="STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION" */;;
-/*!50003 CREATE */ /*!50017 DEFINER=`root`@`localhost` */ /*!50003 TRIGGER `post_question` AFTER INSERT ON `question` FOR EACH ROW INSERT INTO event (event_type_id,user_id1,user_id2,data_1,when_happened)
-  values(4,NEW.user_id,NEW.user_id1,NEW.id, NEW.date) */;;
-DELIMITER ;
-/*!50003 SET SESSION SQL_MODE=@OLD_SQL_MODE */;
-
 
 # Dump of table role
 # ------------------------------------------------------------

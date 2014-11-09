@@ -88,7 +88,7 @@
 	<div>
         <div>
         	<label class="label label-info">By User:</label>
-        	<label><?php foreach ($userList as $user){ if(htmlentities($answer->user_id)==$user->get('id')) print $user->get('user'); }?></label>
+        	<a href="<?php echo SERVER_PATH ?>profile/<?php foreach ($userList as $user){ if(htmlentities($answer->user_id)==$user->get('id')) print $user->get('user'); } ?>"><?php foreach ($userList as $user){ if(htmlentities($answer->user_id)==$user->get('id')) print $user->get('user'); }?></a>
         </div>
         <div>
         	<label class="label label-info">On:</label>
