@@ -5,7 +5,7 @@ $(document).ready(function(){
    
     // Password must be a valid one: at least one number, one lowercase and 
     // one uppercase letter, and at least eight characters.
-    $('#pass').on('input', function() {
+    $('#pass, #new_pass').on('input', function() {
         var input=$(this);
         var re = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
         var is_pwd=re.test(input.val());
@@ -54,7 +54,7 @@ $(document).ready(function(){
 
         if (isInvalidPw) {
             event.preventDefault();
-            alert("Password must be a valid one: at least one number, one lowercase and one uppercase letter, and at least eight characters. Please enter a new password.");
+            alert("Password must be a valid one: it should contain at least one number, one lowercase and one uppercase letter, and at least eight characters. Please enter a new password.");
         } else if (isReenterPwDiff) {
             event.preventDefault();
             alert("Password does not match the confirm password.");
@@ -62,6 +62,16 @@ $(document).ready(function(){
             event.preventDefault();
             alert("Enter a valid VT email address.");
         }
+    });
+
+
+    $("#submit_new_pass").click(function(event){
+        var isInvalidPw = $('#new_pass').hasClass("invalid");
+        
+        if (isInvalidPw) {
+            event.preventDefault();
+            alert("Password must be a valid one: it should contain at least one number, one lowercase and one uppercase letter, and at least eight characters. Please enter a new password.");
+        } 
     });
     
 

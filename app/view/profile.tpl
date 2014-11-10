@@ -131,9 +131,10 @@ $(document).ready(function(){
             <div id="changePasswordPanel">
 
                 <form name="form02" method="POST" action="<?php echo SERVER_PATH ?>profile/<?php echo $_SESSION['user']; ?>/change_password">    
-                    <label>New Password: <input class="form-control" type="password" name="new_password" required/></label>
+                    <label>New Password: <input id="new_pass" class="form-control" type="password" name="new_password" required/></label>
                     <br />
-                    <button type="submit" class="btn btn-primary">Save New Password</button>
+                    <p>Use at least one lower case letter, one upper case letter, one numeral, and eight characters.</p>
+                    <button type="submit" class="btn btn-primary" id="submit_new_pass">Save New Password</button>
                     <button type="button" class="btn btn-default" id="cancelChangePassword">Cancel</button>
                 </form>
                 

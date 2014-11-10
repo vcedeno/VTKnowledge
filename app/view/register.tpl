@@ -49,7 +49,7 @@
 
                     <input class="form-control" name="username" placeholder="Your VT Email Address (yourpid@vt.edu)" type="email" id="email" required/>
                     <input class="form-control" name="pass" placeholder="Password" type="password" id="pass" required/>
-                    <p>Use at least one lower case letter, one upper case letter, one numeral, and eight characters</p>
+                    <p>Use at least one lower case letter, one upper case letter, one numeral, and eight characters.</p>
                     <input class="form-control" name="reenterpass" placeholder="Confirm Password" type="password" id="reenterpass" required/>
 
                     <label class="radio-inline">
