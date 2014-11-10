@@ -63,5 +63,34 @@ function renderEvent($event=null) {
             echo '<span class="byline">'.date("M j, g:i a", strtotime($event->get('when_happened'))).'</span>';
             echo '</li>';
             break;
+            
+        // posted a question
+        case EventType::getIdFromName('post_question'):
+            $user = User::loadById($event->get('user_id1'));
+            echo '<li>';
+         
+            echo 'Posted a <a href="';
+            echo SERVER_PATH;
+            echo 'question?op=show&id=';
+            echo $event->get('data_1');
+            echo '">question</a> to ';
+            echo $user->get('user').'.';
+            echo '<span class="byline">'.date("M j, g:i a", strtotime($event->get('when_happened'))).'</span>';
+            echo '</li>';
+            break;
+            
+        // posted an answer
+        case EventType::getIdFromName('post_answer'):
+            $user = User::loadById($event->get('user_id1'));
+            echo '<li>';
+            echo 'Posted an <a href="';
+            echo SERVER_PATH;
+            echo 'question?op=show&id=';
+            echo $event->get('data_1');
+            echo '">answer</a> to ';
+            echo $user->get('user').'.';
+            echo '<span class="byline">'.date("M j, g:i a", strtotime($event->get('when_happened'))).'</span>';
+            echo '</li>';
+            break;
     }
 }

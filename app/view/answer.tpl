@@ -58,9 +58,10 @@
     <p><br></p>
     <p><br></p>
     
+    <hr />
     <h1>Answers</h1>
 <?php foreach ($answers as $answer): ?>
-
+<hr />
 		<form method="POST" action=""> 
 		<?php if(htmlentities($answer->show)=="1"){ ?>
         	<label class="label label-info">Answer:</label>
@@ -70,14 +71,14 @@
         	<input type="hidden" name="aid" id="aid" value="<?php print htmlentities($answer->id); ?>">
         	<?php if($_SESSION['id']==htmlentities($question->user_id)||$_SESSION['id']==htmlentities($answer->user_id) ||$_SESSION['role_id']=="2"||$_SESSION['role_id']=="3"){ ?>
         	
-			<input name="form-ea" type="submit" class="btn btn-primary" value="Edit" />
+			<input name="form-ea" type="submit" class="btn-primary btn-mini" value="Edit" />
 			<?php if(htmlentities($answer->old_text)!=NULL&& $_SESSION['id']==htmlentities($answer->user_update)){ ?>
 			<input name="form-ue" type="submit" value="Undo Edit" />
 			<?php } ?>
 			<?php } ?>
         	
         	<?php if($_SESSION['id']==htmlentities($question->user_id)||$_SESSION['id']==htmlentities($answer->user_id) ||$_SESSION['role_id']=="2"||$_SESSION['role_id']=="3"){ ?>
-			<input name="form-da" type="submit" class="btn btn-danger" value="Delete" />
+			<input name="form-da" type="submit" class="btn-danger btn-mini" value="Delete" />
 
 			<?php } ?>
 		
@@ -109,8 +110,7 @@
 
 
 <?php endforeach; ?>
-
-
+<hr />
 
 <p><br></p>
 <form method="POST" action="">  
