@@ -8,8 +8,8 @@
     <title>VT Knowledge</title>
 
     <!-- Bootstrap -->
-    <link href="../../public/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../public/css/custom.css" rel="stylesheet">
+    <link href="<?php echo SERVER_PATH ?>public/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo SERVER_PATH ?>public/css/custom.css" rel="stylesheet">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -80,8 +80,8 @@ label {
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../../public/js/bootstrap.min.js"></script>
-    <script src="../../public/js/script.js"></script>
+    <script src="<?php echo SERVER_PATH ?>public/js/bootstrap.min.js"></script>
+    <script src="<?php echo SERVER_PATH ?>public/js/script.js"></script>
     <script src="http://d3js.org/d3.v3.min.js"></script>
 	
 <div class="chart">
@@ -132,9 +132,10 @@ var valueline = d3.svg.line()
   .x(function(d) { return x(d.day); })
   .y(function(d) { return y(d.variable); });
 
+
 var json 
 
-d3.json("http://localhost/VTKnowledge/app/controller/stats.json", function(error, result){
+d3.json("<?php echo SERVER_PATH ?>app/controller/stats.json", function(error, result){
   json = result;
   var data = [];
         json.forEach(function(d){
