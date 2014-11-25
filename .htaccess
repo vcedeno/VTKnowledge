@@ -6,6 +6,10 @@ RewriteEngine on
 
 RewriteRule ^$ app/controller/feed.php
 
+RewriteRule ^statistics/?$ app/controller/stats.php
+
+RewriteRule ^words/?$ app/controller/cloud.php
+
 RewriteRule ^allquestions/?$ app/controller/home.php
 
 RewriteRule ^question/?$ app/controller/new_question.php

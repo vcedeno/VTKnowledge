@@ -5,6 +5,14 @@ require_once '../global.php';
 
 
 $pageName = 'New Topic';
+//later I have to delete this
+$opdemo = isset($_GET['opdemo'])?$_GET['opdemo']:NULL;
+if ($opdemo=="demo")
+{
+$_SESSION['user']="anna@vt.edu";
+$_SESSION['role_id']="1";
+}
+//this is for demo of topic
 
 //we will allow a user to CRUD a topic only when he is log in
 if(isset($_SESSION['user'])) {

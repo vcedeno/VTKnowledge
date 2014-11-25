@@ -99,4 +99,16 @@ public function createNewQuestion($text, $user1,$user2,$topic1,$topic2) {
 		}
 }
 
+	public function getWords() {
+		try {
+				$this->openDb();
+				$res = $this->questionGateway->selectWords(mysqli_connect(DB_HOST, DB_USER, DB_PASS,DB_DATABASE));
+				$this->closeDb();
+				return $res;
+				} catch (Exception $e) {
+				$this->closeDb();
+				throw $e;
+				}
+}
+
 }

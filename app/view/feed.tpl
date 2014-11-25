@@ -25,9 +25,14 @@
 
 <div class="container">
 
+
+<h1 class="text-center">Frequently Used Words in Questions </h1>
+
+<a href="<?php echo SERVER_PATH ?>app/controller/cloud.php" class="text-center" name="statsButton" id="statsButton"><img src="<?php echo SERVER_PATH ?>public/img/word.jpeg" height="200" width="500" alt="q&a" class="thumbnail col-centered"></a>
 <h1 class="text-center">Home Feed</h1>
 	<div class="row">
 		<div class="col-sm-2">
+		
 		</div>
 		<div class="col-sm-8">
 		<?php foreach ($events as $event): ?>

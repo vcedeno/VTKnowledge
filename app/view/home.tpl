@@ -26,6 +26,7 @@
 <div class="container">
 
 <h1 class="text-center">Questions</h1>
+
 	<div class="row">
 	<div class="col-sm-1">
 	</div>
