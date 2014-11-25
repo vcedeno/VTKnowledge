@@ -64,7 +64,7 @@ $(document).ready(function(){
             </div>
         </div>
         <div class="col-md-4">
-
+			<h3><a href="<?php echo SERVER_PATH ?>statistics" class="btn btn-info" name="statsButton" id="statsButton">Statistics<img src="<?php echo SERVER_PATH ?>public/img/stats.jpeg" height="50" width="100" alt="q&a" class="thumbnail col-centered"></a></h3>
         </div>
     </div>
 </div>
@@ -87,7 +87,7 @@ $(document).ready(function(){
 
                     <label>Description: <textarea class="form-control" name="description" rows="4" cols="35" required><?php echo $user->get('description'); ?></textarea></label>
                     
-                    			<select name="topic1" class="selectpicker show-tick form-control" data-live-search="true">
+                    			<select id="topic1" name="topic1" class="selectpicker show-tick form-control" data-live-search="true">
   									
   									<option value="NULL">No topic</option>
   									<?php foreach ($topics as $topic): ?>
@@ -95,7 +95,7 @@ $(document).ready(function(){
   									<?php endforeach; ?>
 								</select>
 								
-								<select name="topic2" class="selectpicker show-tick form-control" data-live-search="true">
+								<select id="topic2" name="topic2" class="selectpicker show-tick form-control" data-live-search="true">
   									<option value="NULL">No topic</option>
   									<?php foreach ($topics as $topic): ?>
   									<option value="<?php echo htmlentities($topic->id); ?>"<?php if($user->get('topic_id1')==$topic->id) print "selected"?>><?php echo htmlentities($topic->name); ?></option>
@@ -176,8 +176,7 @@ $(document).ready(function(){
 
         </div>
         <div class="col-md-3">
-			<h3><a href="<?php echo SERVER_PATH ?>statistics" class="btn btn-info" name="statsButton" id="statsButton">Statistics<img src="<?php echo SERVER_PATH ?>public/img/stats.jpeg" height="50" width="100" alt="q&a" class="thumbnail col-centered"></a></h3>
-
+			
         </div>
     </div>
 </div>

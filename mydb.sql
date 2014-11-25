@@ -279,7 +279,26 @@ VALUES
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
+--
+-- Table structure for table `count`
+--
 
+DROP TABLE IF EXISTS `count`;
+CREATE TABLE `count` (
+  `word` varchar(50) NOT NULL,
+  `count` int(11) DEFAULT NULL,
+  PRIMARY KEY (`word`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `count`
+--
+
+LOCK TABLES `count` WRITE;
+/*!40000 ALTER TABLE `count` DISABLE KEYS */;
+INSERT INTO `count` VALUES ('also',21),('away',24),('class',46),('classes',15),('dining',52),('eat',43),('for',36),('gpa',45),('in',356),('is',68),('lunch',98),('me',1),('not',NULL),('park',1),('professor',34),('question',76),('student',24),('tech',87),('the',26),('this',89),('virginia',123),('where',1);
+/*!40000 ALTER TABLE `count` ENABLE KEYS */;
+UNLOCK TABLES;
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

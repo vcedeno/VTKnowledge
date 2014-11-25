@@ -43,14 +43,14 @@
 				<label form="topic-desc" class="col-sm-2 control-label">Topic Related: (Select up to two)</label>
 				<div class="col-sm-3">
 				
-								<select name="q-topic1" class="selectpicker show-tick form-control" data-live-search="true">
+								<select id="q-topic1" name="q-topic1" class="selectpicker show-tick form-control" data-live-search="true">
   									<option value="">No topic</option>
   									<?php foreach ($topics as $topic): ?>
   									<option value="<?php echo htmlentities($topic->id); ?>"><?php echo htmlentities($topic->name); ?></option>
   									<?php endforeach; ?>
 								</select>
 								
-								<select name="q-topic2" class="form-control">
+								<select id="q-topic2" name="q-topic2" class="form-control">
   									<option value="">No topic</option>
   									<?php foreach ($topics as $topic): ?>
   									<option value="<?php echo htmlentities($topic->id); ?>"><?php echo htmlentities($topic->name); ?></option>

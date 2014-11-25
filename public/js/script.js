@@ -106,6 +106,31 @@ $(document).ready(function(){
     $('#qid').val(qid);
     $('#q').val(qt);
 	});
-
 	
+	//prevent choosing two equal topics in the new question
+	$('#q-topic1').change(function(){
+	var id=$('#q-topic1').val();
+	$("#q-topic2 option:disabled").attr("disabled", "disabled").siblings().removeAttr("disabled");
+	$('#q-topic2 option[value='+id+']').attr('disabled',true);
+    });
+
+	$('#q-topic2').change(function(){
+	var id=$('#q-topic2').val();
+	$("#q-topic1 option:disabled").attr("disabled", "disabled").siblings().removeAttr("disabled");
+	$('#q-topic1 option[value='+id+']').attr('disabled',true);
+    });
+    
+    //prevent choosing two equal topics in the profile edit
+	$('#topic1').change(function(){
+	var id=$('#topic1').val();
+	$("#topic2 option:disabled").attr("disabled", "disabled").siblings().removeAttr("disabled");
+	$('#topic2 option[value='+id+']').attr('disabled',true);
+    });
+
+	$('#topic2').change(function(){
+	var id=$('#topic2').val();
+	$("#topic1 option:disabled").attr("disabled", "disabled").siblings().removeAttr("disabled");
+	$('#topic1 option[value='+id+']').attr('disabled',true);
+    });
+    
 });
