@@ -30,7 +30,7 @@
                 
                 <div class="col-md-6 text-center ">
                     <h1>VT Knowledge</h1>
-                    <p class="welcome">Everything you need to know and want to know about Virginia Tech. 
+                    <p class="welcome">Everything you need to know AND want to know about Virginia Tech. 
                     </p>
                     <a href="<?php echo SERVER_PATH ?>register" class="btn btn-primary">Sign Up with a VT email address</a>
                 </div>
