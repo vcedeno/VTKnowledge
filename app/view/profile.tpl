@@ -85,7 +85,7 @@ $(document).ready(function(){
 
                     <label>Last name: <input class="form-control" type="text" name="last_name" value="<?php echo $user->get('lastName'); ?>" required/></label>
 
-                    <label>Description: <textarea class="form-control" name="description" rows="4" cols="35" required><?php echo $user->get('description'); ?></textarea></label>
+                    <label>Description: <textarea class="form-control" name="description" rows="4" cols="35" ><?php echo $user->get('description'); ?></textarea></label>
                     
                     			<select id="topic1" name="topic1" class="selectpicker show-tick form-control" data-live-search="true">
   									
