@@ -33,16 +33,16 @@ $(document).ready(function(){
 
     
     // VT email checking
-    $('#email').on('input', function() {
-        var input=$(this);
-        re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@vt.edu/;
-        var is_email=re.test(input.val());
-        if (is_email){
-            input.removeClass("invalid").addClass("valid");
-        } else {
-            input.removeClass("valid").addClass("invalid");
-        }
-    });
+    // $('#email').on('input', function() {
+    //     var input=$(this);
+    //     re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@vt.edu/;
+    //     var is_email=re.test(input.val());
+    //     if (is_email){
+    //         input.removeClass("invalid").addClass("valid");
+    //     } else {
+    //         input.removeClass("valid").addClass("invalid");
+    //     }
+    // });
 
 
     
@@ -50,7 +50,7 @@ $(document).ready(function(){
     $("#submit_button").click(function(event){
         var isInvalidPw = $('#pass').hasClass("invalid");
         var isReenterPwDiff = $('#reenterpass').hasClass("invalid");
-        var isVTEmail = $('#email').hasClass("invalid");
+        //var isVTEmail = $('#email').hasClass("invalid");
 
         if (isInvalidPw) {
             event.preventDefault();
@@ -58,13 +58,14 @@ $(document).ready(function(){
         } else if (isReenterPwDiff) {
             event.preventDefault();
             alert("Password does not match the confirm password.");
-        } else if (isVTEmail){
-            event.preventDefault();
-            alert("Enter a valid VT email address.");
-        }
+        } 
+        // else if (isVTEmail){
+        //     event.preventDefault();
+        //     alert("Enter a valid VT email address.");
+        // }
     });
 
-
+    // Password validation for editing profile
     $("#submit_new_pass").click(function(event){
         var isInvalidPw = $('#new_pass').hasClass("invalid");
         

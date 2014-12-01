@@ -24,6 +24,7 @@ RewriteRule ^login/?$ app/controller/login.php
 RewriteRule ^login/process/?$ app/controller/processLogin.php
 
 RewriteRule ^register/?$ app/controller/register.php
+RewriteRule ^registerWithFB/?$ app/controller/registerWithFB.php
 RewriteRule ^register/process/?$ app/controller/processRegister.php
 
 

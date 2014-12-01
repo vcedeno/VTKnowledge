@@ -38,30 +38,68 @@
                     
                     <div class="row">
                         <div class="col-xs-6 col-md-6">
-                            <input class="form-control" name="firstName" placeholder="First Name" type="text"
-                                required autofocus />
+                            <input class="form-control" name="firstName" placeholder="First Name" type="text" 
+                            value="<?php 
+                                if(isset($_SESSION['firstNameFB'])) {
+                                    echo $_SESSION['firstNameFB'];
+                                }
+                            ?>" 
+                            required/>
                         </div>
 
                         <div class="col-xs-6 col-md-6">
-                            <input class="form-control" name="lastName" placeholder="Last Name" type="text" required />
+                            <input class="form-control" name="lastName" placeholder="Last Name" type="text" 
+                            value="<?php 
+                                if(isset($_SESSION['lastNameFB'])) {
+                                    echo $_SESSION['lastNameFB'];
+                                }
+                            ?>" 
+                            required />
                         </div>
                     </div>
 
-                    <input class="form-control" name="username" placeholder="Your VT Email Address (yourpid@vt.edu)" type="email" id="email" required/>
+                    <input class="form-control" name="username" placeholder="Your Email Address" type="email" id="email" value="<?php 
+                                if(isset($_SESSION['emailFB'])) {
+                                    echo $_SESSION['emailFB'];
+                                }
+                            ?>" required/>
                     <input class="form-control" name="pass" placeholder="Password" type="password" id="pass" required/>
                     <p>Use at least one lower case letter, one upper case letter, one numeral, and eight characters.</p>
                     <input class="form-control" name="reenterpass" placeholder="Confirm Password" type="password" id="reenterpass" required/>
 
+
                     <label class="radio-inline">
-                        <input type="radio" name="gender" id="inlineCheckbox1" value="male" required/>
+                        <input type="radio" name="gender" id="inlineCheckbox1" value="male" <?php 
+                                if(isset($_SESSION['genderFB'])) {
+                                    if ($_SESSION['genderFB'] == 'male')
+                                        echo 'checked';
+                                }
+                            ?> required/>
                         Male
                     </label>
+
                     <label class="radio-inline">
-                        <input type="radio" name="gender" id="inlineCheckbox2" value="female" required/>
+                        <input type="radio" name="gender" id="inlineCheckbox2" value="female" <?php 
+                                if(isset($_SESSION['genderFB'])) {
+                                    if ($_SESSION['genderFB'] == 'female')
+                                        echo 'checked';
+                                }
+                            ?> required 
+                        <?php
+                            // elseif($_SESSION['genderFB'] == 'female') {
+                            //     echo 'checked'; 
+                            // }
+                        ?>/>
                         Female
                     </label>
+
                     <label class="radio-inline">
-                        <input type="radio" name="gender" id="inlineCheckbox3" value="other" required/>
+                        <input type="radio" name="gender" id="inlineCheckbox3" value="other" <?php 
+                                if(isset($_SESSION['genderFB'])) {
+                                    if ($_SESSION['genderFB'] != 'male' && $_SESSION['genderFB'] != 'female')
+                                        echo 'checked';
+                                }
+                            ?> required/>
                         Don't want to disclose
                     </label>
                     <br />

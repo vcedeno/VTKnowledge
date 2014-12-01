@@ -10,6 +10,7 @@
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link href="<?php echo SERVER_PATH ?>public/css/custom.css" rel="stylesheet">
+    <link href="<?php echo SERVER_PATH ?>public/css/bootstrap-social.css" rel="stylesheet">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     
 
@@ -21,8 +22,7 @@
     <![endif]-->
   </head>
   <body>
-      
-     
+   
       <!-- Body of page: Columns of text with thumbnails -->
       <div class="container">
             
@@ -30,9 +30,14 @@
                 
                 <div class="col-md-6 text-center ">
                     <h1>VT Knowledge</h1>
-                    <p class="welcome">Everything you need to know AND want to know about Virginia Tech. 
+                    <p class="welcome">Everything you need to know and want to know about Virginia Tech. 
                     </p>
-                    <a href="<?php echo SERVER_PATH ?>register" class="btn btn-primary">Sign Up with a VT email address</a>
+                    <a href="<?php 
+                        echo $helper->getLoginUrl(array(
+                        'scope' => 'email'
+                    )); ?>" class="btn btn-social btn-facebook"><i class="fa fa-facebook"></i>Sign Up With Facebook</a>
+                    <a href="<?php echo SERVER_PATH ?>register" class="btn btn-default">Sign Up With Email</a>
+
                 </div>
                 
                 <div class="col-md-6 well well-sm">
@@ -52,7 +57,7 @@
                     </p>-->   
                     <form name="form01" method="POST" action="<?php echo SERVER_PATH ?>login/process" class="form" role="form">
 
-                        <input class="form-control" name="username" placeholder="Your VT Email Address" type="email" required/>
+                        <input class="form-control" name="username" placeholder="Your Email Address" type="email" required/>
                         <input class="form-control" name="pass" placeholder="Password" type="password" required/>
                        
                         <button class="btn  btn-primary" type="submit" name="submit" value="Log i">Log In</button>
