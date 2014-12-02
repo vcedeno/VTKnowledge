@@ -97,7 +97,7 @@
                 <div class="col-md-6">
                     <img src="<?php echo SERVER_PATH ?>public/img/improve.jpeg" alt="improve" class="thumbnail col-centered">
                     <h2>Improve existing content</h2>
-                    <p class="welcome">Provide your own answers, upvote/downvote questions and answers to promote interesting items, and you can even request another user to answer an existing question. 
+                    <p class="welcome">Provide your own answers and you can even request another user to answer an existing question. 
                     </p>
                     
                 </div>
