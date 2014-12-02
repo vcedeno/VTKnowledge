@@ -69,7 +69,7 @@
             </div>
           
             <div class="row text-center">
-                <h1>Why You Will love VT Knowledge</h1>
+                <h1>Why You Will Love VT Knowledge</h1>
                 <p class="welcome">VT Knowledge lets you interact with the VT community to learn about all things VT!</p><br />
             </div>
           
@@ -111,10 +111,6 @@
                 
             </div>
             <br />
-          
-            <div class="row text-center">
-                    <a href="<?php echo SERVER_PATH ?>register" class="btn btn-primary">Sign Up with a VT email address</a>
-           </div>
           
       </div>
       
