@@ -69,7 +69,7 @@
             </div>
           
             <div class="row text-center">
-                <h1>Why you will love VT Knowledge</h1>
+                <h1>Why You Will love VT Knowledge</h1>
                 <p class="welcome">VT Knowledge lets you interact with the VT community to learn about all things VT!</p><br />
             </div>
           
