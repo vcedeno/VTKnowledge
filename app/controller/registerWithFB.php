@@ -39,7 +39,7 @@ use Facebook\FacebookHttpable;
 use Facebook\FacebookCurlHttpClient;
 use Facebook\FacebookCurl;
 
-/* Main process  */
+/* Main process */
 
 // Use app id, secret and redirect url
 $app_id = '1374976189463583';
