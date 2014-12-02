@@ -47,7 +47,7 @@ use Facebook\FacebookCurl;
 // Use app id, secret and redirect url
 $app_id = '1374976189463583';
 $app_secret = '3b4b491041382443d0b0ca88a371c0e9';
-$redirect_url = 'http://www.vtknowledge.com/registerWithFB';
+$redirect_url = 'http://localhost/VTKnowledge/registerWithFB';
 
 // Initialize application, create helper object, and get fb session
 FacebookSession::setDefaultApplication($app_id, $app_secret);
