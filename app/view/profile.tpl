@@ -63,14 +63,19 @@ $(document).ready(function(){
                 <button class="btn btn-primary" name="changePasswordButton" id="changePasswordButton">Change password</button>
             </div>
         </div>
-        <div class="col-md-4">
-			<h3><a href="<?php echo SERVER_PATH ?>statistics" class="btn btn-info" name="statsButton" id="statsButton">Statistics<img src="<?php echo SERVER_PATH ?>public/img/stats.jpeg" height="50" width="100" alt="q&a" class="thumbnail col-centered"></a></h3>
-        </div>
+
     </div>
 </div>
 
 <?php if($_SESSION['user'] == $user->get('user')) { ?>
-
+       <div class="col-md-5">
+        </div>
+        <div class="col-md-3">
+			<h3><a href="<?php echo SERVER_PATH ?>statistics" class="btn btn-info" name="statsButton" id="statsButton">Statistics<img src="<?php echo SERVER_PATH ?>public/img/stats.jpeg" height="50" width="100" alt="q&a" class="thumbnail col-centered"></a></h3>
+        </div>
+        <div class="col-md-4">
+        </div>
+        
 <div class="container">
     <div class="row">
         <div class="col-md-4">
