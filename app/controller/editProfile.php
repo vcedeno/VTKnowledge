@@ -55,10 +55,10 @@ $user->set('description', $description);
 // topic 1
 if($user->get('topic_id') != $topic1) {
 	
-	if($topic1=="NULL")
+	if($topic1!="NULL")
 	{
-		$topic1=NULL;
-	}
+		//$topic1=NULL;
+	//}
     $oldTopic1 = $user->get('topic_id'); // save the old topic1
     $user->set('topic_id', $topic1); // change the topic
     // log the event
@@ -69,14 +69,15 @@ if($user->get('topic_id') != $topic1) {
     $e->set('data_1', $oldTopic1);
     $e->set('data_2', $topic1);
     $e->save();
+    }
 }
 
 // topic 2
 if($user->get('topic_id1') != $topic2) {
-	if($topic2=="NULL")
+	if($topic2!="NULL")
 	{
-		$topic2=NULL;
-	}
+		//$topic2=NULL;
+	//}
     $oldTopic2 = $user->get('topic_id1'); // save the old topic1
     $user->set('topic_id1', $topic2); // change the topic
     // log the event
@@ -87,6 +88,7 @@ if($user->get('topic_id1') != $topic2) {
     $e->set('data_1', $oldTopic2);
     $e->set('data_2', $topic2);
     $e->save();
+    }
 }
 $user->save(); // save any changes to the user
 
