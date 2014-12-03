@@ -87,7 +87,7 @@
                    <img src="<?php echo SERVER_PATH ?>public/img/topics.jpeg" alt="topics" class="thumbnail col-centered">
 
                     <h2>Get updates on a variety of Topics</h2>
-                    <p class="welcome">Follow topics that interest you, such as classes, dining, VT traditions, housing, and more! You can also follow other users. 
+                    <p class="welcome">Follow topics that interest you, such as classes, dining, VT traditions, housing, and more! 
                     </p>
                     
                 </div>
