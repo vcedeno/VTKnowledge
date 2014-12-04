@@ -43,6 +43,8 @@ if($existingUser == null) {
     // role_id = 3 -> admin
     $_SESSION['role_id'] = $user->get('role_id');
 
+    session_destroy(); // log us out
+
     header('Location: '.SERVER_PATH);
 
     exit();
