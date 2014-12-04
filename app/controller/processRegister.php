@@ -44,6 +44,8 @@ if($existingUser == null) {
     $_SESSION['role_id'] = $user->get('role_id');
 
     session_destroy(); // log us out
+    session_start();
+    $_SESSION['success'] = "Account successfully registered!"; 
 
     header('Location: '.SERVER_PATH);
 
