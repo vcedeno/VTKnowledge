@@ -74,7 +74,10 @@ function renderEvent($event=null) {
             echo 'question?op=show&id=';
             echo $event->get('data_1');
             echo '">question</a> to ';
-            echo User::loadById($event->get('user_id2'))->get('user').'. ';
+            if(User::loadById($event->get('user_id2'))==null)
+            	echo 'everyone. ';
+            else
+            	echo User::loadById($event->get('user_id2'))->get('user').'. ';
             echo '<span class="byline">'.date("M j, g:i a", strtotime($event->get('when_happened'))).'</span>';
             echo '</li>';
             break;
