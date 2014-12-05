@@ -74,7 +74,7 @@ function renderEvent($event=null) {
             echo 'question?op=show&id=';
             echo $event->get('data_1');
             echo '">question</a> to ';
-            echo $user->get('user').'.';
+            echo User::loadById($event->get('user_id2'))->get('user').'. ';
             echo '<span class="byline">'.date("M j, g:i a", strtotime($event->get('when_happened'))).'</span>';
             echo '</li>';
             break;
@@ -88,7 +88,7 @@ function renderEvent($event=null) {
             echo 'question?op=show&id=';
             echo $event->get('data_1');
             echo '">answer</a> to ';
-            echo $user->get('user').'.';
+            echo User::loadById($event->get('user_id2'))->get('user').'. ';
             echo '<span class="byline">'.date("M j, g:i a", strtotime($event->get('when_happened'))).'</span>';
             echo '</li>';
             break;
